@@ -1,0 +1,11 @@
+<resources>
+  <string name="app_name">Pokedex</string>
+  <string name="weight">Weight</string>
+  <string name="height">Height</string>
+  <string name="base_stats">Base Stats</string>
+  <string name="hp">HP</string>
+  <string name="atk">ATK</string>
+  <string name="def">DEF</string>
+  <string name="spd">SPD</string>
+  <string name="exp">EXP</string>
+</resources>

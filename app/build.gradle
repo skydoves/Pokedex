@@ -1,0 +1,145 @@
+///*
+// * Designed and developed by 2020 skydoves (Jaewoong Eum)
+// *
+// * Licensed under the Apache License, Version 2.0 (the "License");
+// * you may not use this file except in compliance with the License.
+// * You may obtain a copy of the License at
+// *
+// * http://www.apache.org/licenses/LICENSE-2.0
+// *
+// * Unless required by applicable law or agreed to in writing, software
+// * distributed under the License is distributed on an "AS IS" BASIS,
+// * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// * See the License for the specific language governing permissions and
+// * limitations under the License.
+// */
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'dagger.hilt.android.plugin'
+apply plugin: 'kotlin-kapt'
+apply from: '../dependencies.gradle'
+
+android {
+    compileSdkVersion versions.compileSdk
+    defaultConfig {
+        applicationId "com.skydoves.pokedex"
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.compileSdk
+        versionCode versions.versionCode
+        versionName versions.versionName
+        vectorDrawables.useSupportLibrary = true
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+    buildFeatures {
+        dataBinding = true
+    }
+    androidExtensions {
+        experimental = true
+    }
+    sourceSets {
+        androidTest.java.srcDirs += "src/test-common/java"
+        test.java.srcDirs += "src/test-common/java"
+        test.assets.srcDirs += files("$projectDir/schemas".toString())
+    }
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+            returnDefaultValues = true
+        }
+    }
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/ASL2.0'
+        exclude("META-INF/*.kotlin_module")
+    }
+}
+
+dependencies {
+    // kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
+
+    // android supports
+    implementation "com.google.android.material:material:$versions.materialVersion"
+    implementation "androidx.constraintlayout:constraintlayout:$versions.constraintVersion"
+
+    // architecture components
+    implementation "androidx.fragment:fragment-ktx:$versions.fragmentVersion"
+    implementation "androidx.lifecycle:lifecycle-extensions:$versions.lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$versions.lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:$versions.lifecycleVersion"
+    implementation "androidx.room:room-runtime:$versions.roomVersion"
+    kapt "androidx.room:room-compiler:$versions.roomVersion"
+    testImplementation "androidx.arch.core:core-testing:$versions.archCompomentVersion"
+
+    // dagger
+    implementation "com.google.dagger:dagger:$versions.dagger"
+    implementation "com.google.dagger:hilt-android:$versions.daggerHiltAndroidVersion"
+    implementation "androidx.hilt:hilt-common:$versions.daggerHiltVersion"
+    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$versions.daggerHiltVersion"
+    kapt "com.google.dagger:dagger-compiler:$versions.dagger"
+    kapt "com.google.dagger:hilt-android-compiler:$versions.daggerHiltAndroidVersion"
+    kapt "androidx.hilt:hilt-compiler:$versions.daggerHiltVersion"
+
+    // network
+    implementation "com.github.skydoves:sandwich:$versions.sandwichVersion"
+    implementation "com.squareup.retrofit2:retrofit:$versions.retrofitVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:$versions.okhttpVersion"
+    testImplementation "com.squareup.okhttp3:mockwebserver:$versions.mockWebServerVersion"
+
+    // moshi
+    implementation "com.squareup.moshi:moshi-kotlin:$versions.moshiVersion"
+    implementation "com.squareup.moshi:moshi-kotlin-codegen:$versions.moshiVersion"
+    implementation "com.squareup.retrofit2:converter-moshi:$versions.moshiConverterVersion"
+
+    // coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.coroutinesVersion"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.coroutinesVersion"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$versions.coroutinesVersion"
+
+    // glide
+    implementation "com.github.bumptech.glide:glide:$versions.glideVersion"
+    implementation "com.github.florent37:glidepalette:$versions.glidePaletteVersion"
+    kapt "com.github.bumptech.glide:compiler:$versions.glideVersion"
+
+    // transformation
+    implementation "com.github.skydoves:transformationlayout:$versions.transformationLayout"
+
+    // adapter
+    implementation "com.github.skydoves:baserecyclerviewadapter:$versions.baseAdapter"
+
+    // whatIf
+    implementation "com.github.skydoves:whatif:$versions.whatIfVersion"
+
+    // gradation
+    implementation "com.github.skydoves:rainbow:$versions.rainbowVersion"
+
+    // custom views
+    implementation "com.github.skydoves:androidribbon:$versions.androidRibbonVersion"
+    implementation "com.github.skydoves:progressview:$versions.progressViewVersion"
+
+    // debugging
+    implementation "com.jakewharton.timber:timber:$versions.timberVersion"
+
+    // unit test
+    testImplementation "junit:junit:$versions.junitVersion"
+    testImplementation "androidx.test:core:$versions.androidxTest"
+    testImplementation "org.robolectric:robolectric:$versions.robolectricVersion"
+    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$versions.mockitoKotlinVersion"
+    testImplementation "org.mockito:mockito-inline:$versions.mockitoInlineVersion"
+}
+
+apply from: '../spotless.gradle'

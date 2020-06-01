@@ -1,0 +1,10 @@
+apply plugin: "com.diffplug.gradle.spotless"
+spotless {
+  kotlin {
+    target "**/*.kt"
+    ktlint().userData(['indent_size': '2', 'continuation_indent_size': '2'])
+    licenseHeaderFile '../spotless.license.kt'
+    trimTrailingWhitespace()
+    endWithNewline()
+  }
+}
