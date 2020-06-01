@@ -28,6 +28,7 @@ import com.skydoves.pokedex.ui.details.DetailActivity
 class PokemonAdapter : RecyclerView.Adapter<PokemonAdapter.PokemonViewHolder>() {
 
   private val items: MutableList<Pokemon> = mutableListOf()
+  private var onClickedTime = System.currentTimeMillis()
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PokemonViewHolder {
     val inflater = LayoutInflater.from(parent.context)
@@ -47,7 +48,11 @@ class PokemonAdapter : RecyclerView.Adapter<PokemonAdapter.PokemonViewHolder>() 
       pokemon = item
       executePendingBindings()
       root.setOnClickListener {
-        DetailActivity.startActivity(transformationLayout, item)
+        val currentTime = System.currentTimeMillis()
+        if (currentTime - onClickedTime > 550) {
+          onClickedTime = currentTime
+          DetailActivity.startActivity(transformationLayout, item)
+        }
       }
     }
   }
