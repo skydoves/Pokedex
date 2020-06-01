@@ -3,6 +3,7 @@
 <p align="center">
   <a href="https://opensource.org/licenses/Apache-2.0"><img alt="License" src="https://img.shields.io/badge/License-Apache%202.0-blue.svg"/></a>
   <a href="https://android-arsenal.com/api?level=21"><img alt="API" src="https://img.shields.io/badge/API-21%2B-brightgreen.svg?style=flat"/></a>
+  <a href="https://github.com/skydoves/Pokedex/actions"><img alt="Build Status" src="https://github.com/skydoves/Pokedex/workflows/Android%20CI/badge.svg"/></a> 
   <a href="https://github.com/skydoves"><img alt="Profile" src="https://skydoves.github.io/badges/skydoves.svg"/></a> 
 </p>
 
@@ -45,7 +46,7 @@ Go to the [Releases](https://github.com/skydoves/Pokedex/releases) to download t
 - Custom Views
   - [Rainbow](https://github.com/skydoves/rainbow) - An easy way to apply gradations and tinting for Android.
   - [AndroidRibbon](https://github.com/skydoves/androidribbon) - A simple way to implement a  beautiful ribbon with the shimmering on Android.
-  - [ProgressView](https://github.com/skydoves/progressview) - 🌊 A polished and flexible ProgressView, fully customizable with animations.
+  - [ProgressView](https://github.com/skydoves/progressview) - A polished and flexible ProgressView, fully customizable with animations.
 
 ## Architecture
 Pokedex is based on MVVM architecture and a repository pattern.
