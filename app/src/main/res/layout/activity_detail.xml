@@ -36,7 +36,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      android:layout_marginBottom="32dp">
+      android:layout_marginBottom="32dp"
+      android:descendantFocusability="blocksDescendants">
 
       <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/arrow"
