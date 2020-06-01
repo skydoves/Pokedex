@@ -49,7 +49,7 @@ class PokemonAdapter : RecyclerView.Adapter<PokemonAdapter.PokemonViewHolder>() 
       executePendingBindings()
       root.setOnClickListener {
         val currentTime = System.currentTimeMillis()
-        if (currentTime - onClickedTime > 550) {
+        if (currentTime - onClickedTime > transformationLayout.duration) {
           onClickedTime = currentTime
           DetailActivity.startActivity(transformationLayout, item)
         }
