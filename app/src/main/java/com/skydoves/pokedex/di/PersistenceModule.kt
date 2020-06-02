@@ -25,10 +25,9 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
-import dagger.hilt.android.internal.modules.ApplicationContextModule
 import javax.inject.Singleton
 
-@Module(includes = [ApplicationContextModule::class])
+@Module
 @InstallIn(ApplicationComponent::class)
 object PersistenceModule {
 
