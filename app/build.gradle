@@ -140,14 +140,13 @@ dependencies {
 
     // unit test
     testImplementation "junit:junit:$versions.junitVersion"
-    testImplementation "org.robolectric:robolectric:$versions.robolectricVersion"
     testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$versions.mockitoKotlinVersion"
     testImplementation "org.mockito:mockito-inline:$versions.mockitoInlineVersion"
-    androidTestImplementation "androidx.test.ext:junit:1.1.2-rc01"
-    androidTestImplementation 'com.android.support.test:runner:1.3.0-beta01'
     androidTestImplementation "androidx.test:core:$versions.androidxTest"
-    androidTestImplementation "androidx.test.espresso:espresso-core:3.2.0"
-    androidTestImplementation "com.google.truth:truth:1.0.1"
+    androidTestImplementation "com.google.truth:truth:$versions.truthVersion"
+    androidTestImplementation "androidx.test.ext:junit:$versions.androidxTestJunit"
+    androidTestImplementation "com.android.support.test:runner:$versions.androidTestRunner"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$versions.espressoVersion"
 }
 
 apply from: '../spotless.gradle'
