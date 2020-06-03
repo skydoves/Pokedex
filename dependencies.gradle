@@ -80,8 +80,7 @@ ext.versions = [
 
     // unit test
     junitVersion            : '4.12',
-    androidxTest            : '1.2.0',
-    unitTestCoreVersion     : '1.2.0',
+    androidxTest            : '1.1.0',
     robolectricVersion      : '4.3',
     androidxTestRules       : '1.2.0-alpha04',
     mockWebServerVersion    : '4.6.0',

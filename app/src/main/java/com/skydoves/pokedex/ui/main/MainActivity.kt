@@ -18,6 +18,7 @@ package com.skydoves.pokedex.ui.main
 
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.annotation.VisibleForTesting
 import com.skydoves.pokedex.R
 import com.skydoves.pokedex.base.DataBindingActivity
 import com.skydoves.pokedex.databinding.ActivityMainBinding
@@ -29,7 +30,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : DataBindingActivity() {
 
   private val binding: ActivityMainBinding by binding(R.layout.activity_main)
-  private val viewModel by viewModels<MainViewModel>()
+  @VisibleForTesting val viewModel by viewModels<MainViewModel>()
 
   override fun onCreate(savedInstanceState: Bundle?) {
     onTransformationStartContainer()
