@@ -50,13 +50,6 @@ fun bindToast(view: View, text: LiveData<String>) {
   }
 }
 
-@BindingAdapter("loadImage")
-fun bindLoadImage(view: AppCompatImageView, url: String) {
-  Glide.with(view.context)
-    .load(url)
-    .into(view)
-}
-
 @BindingAdapter("paletteImage", "paletteCard")
 fun bindLoadImagePalette(view: AppCompatImageView, url: String, paletteCard: MaterialCardView) {
   Glide.with(view.context)
