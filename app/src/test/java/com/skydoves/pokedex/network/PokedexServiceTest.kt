@@ -18,6 +18,7 @@ package com.skydoves.pokedex.network
 
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
+import com.skydoves.pokedex.model.PokemonInfo
 import com.skydoves.pokedex.model.PokemonResponse
 import com.skydoves.sandwich.ApiResponse
 import java.io.IOException
@@ -64,5 +65,37 @@ class PokedexServiceTest : ApiAbstract<PokedexService>() {
     }
 
     client.fetchPokemonList(page = 0, onResult = onResult)
+  }
+
+  @Throws(IOException::class)
+  @Test
+  fun fetchPokemonInfoFromNetworkTest() {
+    enqueueResponse("/Bulbasaur.json")
+
+    val responseBody = requireNotNull(service.fetchPokemonInfo("bulbasaur").execute().body())
+    mockWebServer.takeRequest()
+
+    assertThat(responseBody.id, `is`(1))
+    assertThat(responseBody.name, `is`("bulbasaur"))
+    assertThat(responseBody.height, `is`(7))
+    assertThat(responseBody.weight, `is`(69))
+    assertThat(responseBody.experience, `is`(64))
+
+    val onResult: (response: ApiResponse<PokemonInfo>) -> Unit = {
+      assertThat(it, instanceOf(ApiResponse.Success::class.java))
+      val response: PokemonInfo = requireNotNull((it as ApiResponse.Success).data)
+      assertThat(response.id, `is`(1))
+      assertThat(response.name, `is`("bulbasaur"))
+      assertThat(response.height, `is`(7))
+      assertThat(response.weight, `is`(69))
+      assertThat(response.experience, `is`(64))
+    }
+
+    whenever(client.fetchPokemonInfo("bulbasaur", onResult)).thenAnswer {
+      val response: (response: ApiResponse<PokemonInfo>) -> Unit = it.getArgument(1)
+      response(ApiResponse.Success(Response.success(responseBody)))
+    }
+
+    client.fetchPokemonInfo(name = "bulbasaur", onResult = onResult)
   }
 }
