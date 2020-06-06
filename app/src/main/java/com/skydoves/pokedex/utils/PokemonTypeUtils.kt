@@ -16,12 +16,11 @@
 
 package com.skydoves.pokedex.utils
 
-import android.content.Context
 import com.skydoves.pokedex.R
 
 object PokemonTypeUtils {
 
-  fun getTypeColor(type: String, context: Context): Int {
+  fun getTypeColor(type: String): Int {
     return when (type) {
       "fighting" -> R.color.fighting
       "flying" -> R.color.flying

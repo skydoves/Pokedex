@@ -130,7 +130,7 @@ fun bindPokemonTypes(recyclerView: RibbonRecyclerView, types: List<PokemonInfo.T
             setRibbonRadius(120f)
             setTextStyle(Typeface.BOLD)
             setRibbonBackgroundColorResource(
-              PokemonTypeUtils.getTypeColor(type.type.name, recyclerView.context))
+              PokemonTypeUtils.getTypeColor(type.type.name))
           }.apply { width = 380 }
         )
         addItemDecoration(SpacesItemDecoration())
