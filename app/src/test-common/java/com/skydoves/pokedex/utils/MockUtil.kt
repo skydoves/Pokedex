@@ -17,6 +17,7 @@
 package com.skydoves.pokedex.utils
 
 import com.skydoves.pokedex.model.Pokemon
+import com.skydoves.pokedex.model.PokemonInfo
 
 object MockUtil {
 
@@ -27,4 +28,13 @@ object MockUtil {
   )
 
   fun mockPokemonList() = listOf(mockPokemon())
+
+  fun mockPokemonInfo() = PokemonInfo(
+    id = 1,
+    name = "bulbasaur",
+    height = 7,
+    weight = 69,
+    experience = 60,
+    types = emptyList()
+  )
 }
