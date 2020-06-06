@@ -123,22 +123,25 @@ fun bindOnBackPressed(view: View, finish: Boolean) {
 fun bindPokemonTypes(recyclerView: RibbonRecyclerView, types: List<PokemonInfo.TypeResponse>?) {
   types.whatIfNotNullOrEmpty {
     for (type in it) {
-      recyclerView.addRibbon(
-        ribbonView(recyclerView.context) {
-          setText(type.type.name)
-          setTextColor(Color.WHITE)
-          setPaddingLeft(84f)
-          setPaddingRight(84f)
-          setPaddingTop(2f)
-          setPaddingBottom(10f)
-          setTextSize(16f)
-          setRibbonRadius(120f)
-          setTextStyle(Typeface.BOLD)
-          setRibbonBackgroundColorResource(
-            PokemonTypeUtils.getTypeColor(type.type.name, recyclerView.context))
-        }.apply { width = 380 }
-      )
-      recyclerView.addItemDecoration(SpacesItemDecoration())
+      with(recyclerView) {
+        clear()
+        addRibbon(
+          ribbonView(recyclerView.context) {
+            setText(type.type.name)
+            setTextColor(Color.WHITE)
+            setPaddingLeft(84f)
+            setPaddingRight(84f)
+            setPaddingTop(2f)
+            setPaddingBottom(10f)
+            setTextSize(16f)
+            setRibbonRadius(120f)
+            setTextStyle(Typeface.BOLD)
+            setRibbonBackgroundColorResource(
+              PokemonTypeUtils.getTypeColor(type.type.name, recyclerView.context))
+          }.apply { width = 380 }
+        )
+        addItemDecoration(SpacesItemDecoration())
+      }
     }
   }
 }
