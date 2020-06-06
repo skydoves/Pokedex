@@ -13,6 +13,8 @@
 // * See the License for the specific language governing permissions and
 // * limitations under the License.
 // */
+apply from: './versionsPlugin.gradle'
+
 buildscript {
     apply from: './dependencies.gradle'
     repositories {
@@ -27,6 +29,7 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
         classpath "com.google.dagger:hilt-android-gradle-plugin:$versions.daggerHiltAndroidVersion"
         classpath "com.diffplug.spotless:spotless-plugin-gradle:$versions.spotlessGradle"
+        classpath "com.github.ben-manes:gradle-versions-plugin:$versions.versionPlugin"
     }
 }
 
