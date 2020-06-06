@@ -17,6 +17,7 @@
 package com.skydoves.pokedex.network
 
 import okhttp3.Request
+import okio.Timeout
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -31,5 +32,6 @@ object ApiUtil {
     override fun cancel() = Unit
     override fun request(): Request = Request.Builder().build()
     override fun execute(): Response<T> = Response.success(data)
+    override fun timeout(): Timeout = Timeout.NONE
   }
 }
