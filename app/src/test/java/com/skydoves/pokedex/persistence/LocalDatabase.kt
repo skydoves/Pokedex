@@ -16,18 +16,28 @@
 
 package com.skydoves.pokedex.persistence
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
-import com.skydoves.pokedex.model.Pokemon
+import androidx.room.Room
+import androidx.test.core.app.ApplicationProvider.getApplicationContext
+import org.junit.After
+import org.junit.Before
+import org.junit.runner.RunWith
+import org.robolectric.RobolectricTestRunner
+import org.robolectric.annotation.Config
 
-@Dao
-interface PokemonDao {
+@RunWith(RobolectricTestRunner::class)
+@Config(sdk = [21])
+abstract class LocalDatabase {
+  lateinit var db: AppDatabase
 
-  @Insert(onConflict = OnConflictStrategy.REPLACE)
-  fun insertPokemonList(pokemonList: List<Pokemon>)
+  @Before
+  fun initDB() {
+    db = Room.inMemoryDatabaseBuilder(getApplicationContext(), AppDatabase::class.java)
+      .allowMainThreadQueries()
+      .build()
+  }
 
-  @Query("SELECT * FROM Pokemon WHERE page = :page_")
-  fun getPokemonList(page_: Int): List<Pokemon>
+  @After
+  fun closeDB() {
+    db.close()
+  }
 }
