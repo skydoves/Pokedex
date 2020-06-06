@@ -33,7 +33,4 @@ interface PokedexService {
 
   @GET("pokemon/{name}")
   fun fetchPokemonInfo(@Path("name") name: String): Call<PokemonInfo>
-
-//  @GET("evolution-chain/{id}")
-//  fun fetchPokemonEvolution(@Path("id") id: Int)
 }
