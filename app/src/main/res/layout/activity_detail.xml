@@ -129,7 +129,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/name"
         app:ribbon_recycler_orientation="horizontal"
-        app:singleLine="false"
         tools:listitem="@layout/item_ribbon" />
 
       <ProgressBar

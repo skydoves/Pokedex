@@ -115,11 +115,11 @@ fun bindOnBackPressed(view: View, finish: Boolean) {
 @BindingAdapter("bindPokemonTypes")
 fun bindPokemonTypes(recyclerView: RibbonRecyclerView, types: List<PokemonInfo.TypeResponse>?) {
   types.whatIfNotNullOrEmpty {
+    recyclerView.clear()
     for (type in it) {
       with(recyclerView) {
-        clear()
         addRibbon(
-          ribbonView(recyclerView.context) {
+          ribbonView(context) {
             setText(type.type.name)
             setTextColor(Color.WHITE)
             setPaddingLeft(84f)
