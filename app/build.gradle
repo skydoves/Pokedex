@@ -86,6 +86,9 @@ dependencies {
     kapt "androidx.room:room-compiler:$versions.roomVersion"
     testImplementation "androidx.arch.core:core-testing:$versions.archCompomentVersion"
 
+    // startup
+    implementation "androidx.startup:startup-runtime:$versions.startupVersion"
+
     // dagger
     implementation "com.google.dagger:dagger:$versions.dagger"
     implementation "com.google.dagger:hilt-android:$versions.daggerHiltAndroidVersion"

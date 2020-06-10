@@ -37,6 +37,9 @@ ext.versions = [
     roomVersion             : '2.2.5',
     archCompomentVersion    : '2.1.0',
 
+    // startup
+    startupVersion          : '1.0.0-SNAPSHOT',
+
     // di
     daggerVersion           : '2.28',
     daggerHiltAndroidVersion: '2.28-alpha',
