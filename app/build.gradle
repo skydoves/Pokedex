@@ -44,6 +44,9 @@ android {
     androidExtensions {
         experimental = true
     }
+    lintOptions {
+        abortOnError false
+    }
     sourceSets {
         androidTest.java.srcDirs += "src/test-common/java"
         test.java.srcDirs += "src/test-common/java"
