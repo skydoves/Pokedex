@@ -40,9 +40,6 @@ allprojects {
         maven {
             url "https://oss.sonatype.org/content/repositories/snapshots/"
         }
-        maven {
-            url "https://androidx.dev/snapshots/builds/6518514/artifacts/repository/"
-        }
     }
 }
 
