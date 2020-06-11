@@ -27,6 +27,16 @@
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
-  </application>
 
+    <provider
+      android:name="androidx.startup.InitializationProvider"
+      android:authorities="com.skydoves.pokedex.androidx-startup"
+      android:exported="false"
+      tools:node="merge">
+
+      <meta-data
+        android:name="com.skydoves.pokedex.initializer.TimberInitializer"
+        android:value="androidx.startup" />
+    </provider>
+  </application>
 </manifest>

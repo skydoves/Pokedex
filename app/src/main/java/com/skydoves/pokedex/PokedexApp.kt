@@ -17,16 +17,7 @@
 package com.skydoves.pokedex
 
 import android.app.Application
-import androidx.startup.AppInitializer
-import com.skydoves.pokedex.initializer.TimberInitializer
 import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
-class PokedexApp : Application() {
-
-  override fun onCreate() {
-    super.onCreate()
-
-    AppInitializer.getInstance(this).initializeComponent(TimberInitializer::class.java)
-  }
-}
+class PokedexApp : Application()
