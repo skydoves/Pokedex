@@ -19,6 +19,7 @@ package com.skydoves.pokedex.binding
 import android.app.Activity
 import android.graphics.Color
 import android.graphics.Typeface
+import android.view.Gravity
 import android.view.View
 import android.view.WindowManager
 import android.widget.Toast
@@ -131,7 +132,10 @@ fun bindPokemonTypes(recyclerView: RibbonRecyclerView, types: List<PokemonInfo.T
             setTextStyle(Typeface.BOLD)
             setRibbonBackgroundColorResource(
               PokemonTypeUtils.getTypeColor(type.type.name))
-          }.apply { width = 380 }
+          }.apply {
+            maxLines = 1
+            gravity = Gravity.CENTER
+          }
         )
         addItemDecoration(SpacesItemDecoration())
       }
