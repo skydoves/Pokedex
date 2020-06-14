@@ -16,7 +16,8 @@
     tools:ignore="AllowBackup">
     <activity
       android:name=".ui.details.DetailActivity"
-      android:launchMode="singleTop" />
+      android:launchMode="singleTop"
+      android:screenOrientation="portrait" />
     <activity
       android:name=".ui.main.MainActivity"
       android:launchMode="singleTop"
