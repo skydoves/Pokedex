@@ -25,9 +25,9 @@ import com.skydoves.sandwich.onError
 import com.skydoves.sandwich.onException
 import com.skydoves.sandwich.onSuccess
 import com.skydoves.whatif.whatIfNotNull
-import javax.inject.Inject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
 class DetailRepository @Inject constructor(
   private val pokedexClient: PokedexClient,
@@ -61,6 +61,8 @@ class DetailRepository @Inject constructor(
             onError(message())
           }
       }
+    } else {
+      onSuccess()
     }
     liveData.apply { postValue(pokemonInfo) }
   }
