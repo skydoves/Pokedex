@@ -32,6 +32,7 @@ import com.skydoves.pokedex.network.PokedexClient
 import com.skydoves.pokedex.network.PokedexService
 import com.skydoves.pokedex.persistence.PokemonInfoDao
 import com.skydoves.pokedex.utils.MockUtil.mockPokemonInfo
+import com.skydoves.sandwich.ResponseDataSource
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
@@ -63,10 +64,12 @@ class DetailRepositoryTest {
   @Test
   fun fetchPokemonInfoFromNetwork() = runBlocking {
     val mockData = mockPokemonInfo()
+    val dataSourceCall =
+      ResponseDataSource<PokemonInfo>().combine(getCall(mockData)) {}
     whenever(pokemonInfoDao.getPokemonInfo(name_ = "bulbasaur")).thenReturn(null)
-    whenever(service.fetchPokemonInfo(name = "bulbasaur")).thenReturn(getCall(mockData))
+    whenever(service.fetchPokemonInfo(name = "bulbasaur")).thenReturn(dataSourceCall)
 
-    val loadData = repository.fetchPokemonInfo(name = "bulbasaur") { }
+    val loadData = repository.fetchPokemonInfo(name = "bulbasaur", onSuccess = {}, onError = {})
     verify(pokemonInfoDao, atLeastOnce()).getPokemonInfo(name_ = "bulbasaur")
     verify(service, atLeastOnce()).fetchPokemonInfo(name = "bulbasaur")
 
@@ -84,10 +87,12 @@ class DetailRepositoryTest {
   @Test
   fun fetchPokemonInfoFromDatabase() = runBlocking {
     val mockData = mockPokemonInfo()
+    val dataSourceCall =
+      ResponseDataSource<PokemonInfo>().combine(getCall(mockData)) {}
     whenever(pokemonInfoDao.getPokemonInfo(name_ = "bulbasaur")).thenReturn(mockData)
-    whenever(service.fetchPokemonInfo(name = "bulbasaur")).thenReturn(getCall(mockData))
+    whenever(service.fetchPokemonInfo(name = "bulbasaur")).thenReturn(dataSourceCall)
 
-    val loadData = repository.fetchPokemonInfo(name = "bulbasaur") { }
+    val loadData = repository.fetchPokemonInfo(name = "bulbasaur", onSuccess = {}, onError = {})
     verify(pokemonInfoDao, atLeastOnce()).getPokemonInfo(name_ = "bulbasaur")
     verifyNoMoreInteractions(service)
 

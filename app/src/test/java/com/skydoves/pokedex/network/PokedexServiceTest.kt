@@ -21,6 +21,7 @@ import com.nhaarman.mockitokotlin2.whenever
 import com.skydoves.pokedex.model.PokemonInfo
 import com.skydoves.pokedex.model.PokemonResponse
 import com.skydoves.sandwich.ApiResponse
+import com.skydoves.sandwich.toResponseDataSource
 import java.io.IOException
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.CoreMatchers.instanceOf
@@ -44,7 +45,8 @@ class PokedexServiceTest : ApiAbstract<PokedexService>() {
   fun fetchPokemonListFromNetworkTest() {
     enqueueResponse("/PokemonResponse.json")
 
-    val responseBody = requireNotNull(service.fetchPokemonList().execute().body())
+    val dataSourceCall = requireNotNull(service.fetchPokemonList().toResponseDataSource().call)
+    val responseBody = requireNotNull(dataSourceCall.execute().body())
     mockWebServer.takeRequest()
 
     assertThat(responseBody.count, `is`(964))
@@ -72,7 +74,8 @@ class PokedexServiceTest : ApiAbstract<PokedexService>() {
   fun fetchPokemonInfoFromNetworkTest() {
     enqueueResponse("/Bulbasaur.json")
 
-    val responseBody = requireNotNull(service.fetchPokemonInfo("bulbasaur").execute().body())
+    val dataSourceCall = requireNotNull(service.fetchPokemonInfo("bulbasaur").toResponseDataSource().call)
+    val responseBody = requireNotNull(dataSourceCall.execute().body())
     mockWebServer.takeRequest()
 
     assertThat(responseBody.id, `is`(1))

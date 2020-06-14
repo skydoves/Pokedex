@@ -33,6 +33,7 @@ import com.skydoves.pokedex.network.PokedexClient
 import com.skydoves.pokedex.network.PokedexService
 import com.skydoves.pokedex.persistence.PokemonDao
 import com.skydoves.pokedex.utils.MockUtil.mockPokemonList
+import com.skydoves.sandwich.ResponseDataSource
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
@@ -64,10 +65,12 @@ class MainRepositoryTest {
   @Test
   fun fetchPokemonListFromNetwork() = runBlocking {
     val mockData = PokemonResponse(count = 984, next = null, previous = null, results = mockPokemonList())
+    val dataSourceCall =
+      ResponseDataSource<PokemonResponse>().combine(getCall(mockData)) {}
     whenever(pokemonDao.getPokemonList(page_ = 0)).thenReturn(emptyList())
-    whenever(service.fetchPokemonList()).thenReturn(getCall(mockData))
+    whenever(service.fetchPokemonList()).thenReturn(dataSourceCall)
 
-    val loadData = repository.fetchPokemonList(page = 0) { }
+    val loadData = repository.fetchPokemonList(page = 0, onSuccess = {}, onError = {})
     verify(pokemonDao, atLeastOnce()).getPokemonList(page_ = 0)
     verify(service, atLeastOnce()).fetchPokemonList()
 
@@ -85,10 +88,12 @@ class MainRepositoryTest {
   @Test
   fun fetchPokemonListFromDatabase() = runBlocking {
     val mockData = PokemonResponse(count = 984, next = null, previous = null, results = mockPokemonList())
+    val dataSourceCall =
+      ResponseDataSource<PokemonResponse>().combine(getCall(mockData)) {}
     whenever(pokemonDao.getPokemonList(page_ = 0)).thenReturn(mockData.results)
-    whenever(service.fetchPokemonList()).thenReturn(getCall(mockData))
+    whenever(service.fetchPokemonList()).thenReturn(dataSourceCall)
 
-    val loadData = repository.fetchPokemonList(page = 0) { }
+    val loadData = repository.fetchPokemonList(page = 0, onSuccess = {}, onError = {})
     verify(pokemonDao, atLeastOnce()).getPokemonList(page_ = 0)
     verifyNoMoreInteractions(service)
 
