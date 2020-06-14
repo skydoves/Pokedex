@@ -32,14 +32,20 @@ class DetailViewModel @ViewModelInject constructor(
 
   private var pokemonFetchingLiveData: MutableLiveData<String> = MutableLiveData()
   val pokemonInfoLiveData: LiveData<PokemonInfo>
+
+  val isLoading: ObservableBoolean = ObservableBoolean(false)
   val toastLiveData: MutableLiveData<String> = MutableLiveData()
 
   init {
     Timber.d("init DetailViewModel")
 
     pokemonInfoLiveData = pokemonFetchingLiveData.switchMap {
+      isLoading.set(true)
       launchOnViewModelScope {
-        this.detailRepository.fetchPokemonInfo(it) { this.toastLiveData.postValue(it) }
+        this.detailRepository.fetchPokemonInfo(
+          name = it,
+          onSuccess = { isLoading.set(false) },
+          onError = { toastLiveData.postValue(it) })
       }
     }
   }
@@ -47,6 +53,4 @@ class DetailViewModel @ViewModelInject constructor(
   fun fetchPokemonInfo(name: String) {
     pokemonFetchingLiveData.value = name
   }
-
-  fun isLoading(): ObservableBoolean = detailRepository.isLoading
 }

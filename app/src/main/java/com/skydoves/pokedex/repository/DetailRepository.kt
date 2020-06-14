@@ -16,7 +16,6 @@
 
 package com.skydoves.pokedex.repository
 
-import androidx.databinding.ObservableBoolean
 import androidx.lifecycle.MutableLiveData
 import com.skydoves.pokedex.model.PokemonInfo
 import com.skydoves.pokedex.network.PokedexClient
@@ -35,30 +34,31 @@ class DetailRepository @Inject constructor(
   private val pokemonInfoDao: PokemonInfoDao
 ) : Repository {
 
-  override var isLoading: ObservableBoolean = ObservableBoolean(false)
-
-  suspend fun fetchPokemonInfo(name: String, error: (String) -> Unit) = withContext(Dispatchers.IO) {
+  suspend fun fetchPokemonInfo(
+    name: String,
+    onSuccess: () -> Unit,
+    onError: (String) -> Unit
+  ) = withContext(Dispatchers.IO) {
     val liveData = MutableLiveData<PokemonInfo>()
     val pokemonInfo = pokemonInfoDao.getPokemonInfo(name)
     if (pokemonInfo == null) {
-      isLoading.set(true)
       pokedexClient.fetchPokemonInfo(name = name) {
-        isLoading.set(false)
         it.onSuccess {
           data.whatIfNotNull { response ->
             liveData.postValue(response)
             pokemonInfoDao.insertPokemonInfo(response)
+            onSuccess()
           }
         }
           // handle the case when the API request gets a error response.
           // e.g. internal server error.
           .onError {
-            error(message())
+            onError(message())
           }
           // handle the case when the API request gets a exception response.
           // e.g. network connection error.
           .onException {
-            error(message())
+            onError(message())
           }
       }
     }
