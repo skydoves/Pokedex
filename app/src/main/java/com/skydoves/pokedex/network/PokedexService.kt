@@ -18,7 +18,7 @@ package com.skydoves.pokedex.network
 
 import com.skydoves.pokedex.model.PokemonInfo
 import com.skydoves.pokedex.model.PokemonResponse
-import retrofit2.Call
+import com.skydoves.sandwich.DataSource
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -29,8 +29,8 @@ interface PokedexService {
   fun fetchPokemonList(
     @Query("limit") limit: Int = 20,
     @Query("offset") offset: Int = 0
-  ): Call<PokemonResponse>
+  ): DataSource<PokemonResponse>
 
   @GET("pokemon/{name}")
-  fun fetchPokemonInfo(@Path("name") name: String): Call<PokemonInfo>
+  fun fetchPokemonInfo(@Path("name") name: String): DataSource<PokemonInfo>
 }

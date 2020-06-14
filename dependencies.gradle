@@ -21,7 +21,7 @@ ext.versions = [
 
     // gradle plugins
     gradleBuildTool         : '4.0.0',
-    spotlessGradle          : '4.0.1',
+    spotlessGradle          : '4.3.0',
     versionPlugin           : '0.28.0',
 
     // kotlin
@@ -48,7 +48,7 @@ ext.versions = [
     // network
     retrofitVersion         : '2.9.0',
     okhttpVersion           : '4.7.2',
-    sandwichVersion         : '1.0.1',
+    sandwichVersion         : '1.0.2',
 
     // moshi
     moshiVersion            : '1.9.2',

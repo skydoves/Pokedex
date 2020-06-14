@@ -19,7 +19,7 @@ package com.skydoves.pokedex.network
 import com.skydoves.pokedex.model.PokemonInfo
 import com.skydoves.pokedex.model.PokemonResponse
 import com.skydoves.sandwich.ApiResponse
-import com.skydoves.sandwich.request
+import com.skydoves.sandwich.toResponseDataSource
 import javax.inject.Inject
 
 class PokedexClient @Inject constructor(
@@ -33,14 +33,24 @@ class PokedexClient @Inject constructor(
     pokedexService.fetchPokemonList(
       limit = pagingSize,
       offset = page * pagingSize
-    ).request(onResult)
+    ).toResponseDataSource()
+      // retry fetching data 3 times with 7000L interval when the request gets failure.
+      .retry(3, 7000L)
+      // request API network call asynchronously.
+      .request(onResult)
   }
 
   fun fetchPokemonInfo(
     name: String,
     onResult: (response: ApiResponse<PokemonInfo>) -> Unit
   ) {
-    pokedexService.fetchPokemonInfo(name).request(onResult)
+    pokedexService.fetchPokemonInfo(
+      name = name
+    ).toResponseDataSource()
+      // retry fetching data 3 times with 7000L interval when the request gets failure.
+      .retry(3, 7000L)
+      // request API network call asynchronously.
+      .request(onResult)
   }
 
   companion object {
