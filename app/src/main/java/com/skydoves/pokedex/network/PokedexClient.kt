@@ -31,11 +31,11 @@ class PokedexClient @Inject constructor(
     onResult: (response: ApiResponse<PokemonResponse>) -> Unit
   ) {
     pokedexService.fetchPokemonList(
-      limit = pagingSize,
-      offset = page * pagingSize
+      limit = PAGING_SIZE,
+      offset = page * PAGING_SIZE
     ).toResponseDataSource()
       // retry fetching data 3 times with 7000L interval when the request gets failure.
-      .retry(3, 7000L)
+      .retry(RETRY_COUNT, RETRY_DELAY)
       // request API network call asynchronously.
       .request(onResult)
   }
@@ -48,12 +48,14 @@ class PokedexClient @Inject constructor(
       name = name
     ).toResponseDataSource()
       // retry fetching data 3 times with 7000L interval when the request gets failure.
-      .retry(3, 7000L)
+      .retry(RETRY_COUNT, RETRY_DELAY)
       // request API network call asynchronously.
       .request(onResult)
   }
 
   companion object {
-    private const val pagingSize = 20
+    private const val PAGING_SIZE = 20
+    private const val RETRY_COUNT = 3
+    private const val RETRY_DELAY = 7000L
   }
 }
