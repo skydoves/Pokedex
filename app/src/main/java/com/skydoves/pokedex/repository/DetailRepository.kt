@@ -39,14 +39,13 @@ class DetailRepository @Inject constructor(
 
   suspend fun fetchPokemonInfo(name: String, error: (String) -> Unit) = withContext(Dispatchers.IO) {
     val liveData = MutableLiveData<PokemonInfo>()
-    var pokemonInfo = pokemonInfoDao.getPokemonInfo(name)
+    val pokemonInfo = pokemonInfoDao.getPokemonInfo(name)
     if (pokemonInfo == null) {
       isLoading.set(true)
       pokedexClient.fetchPokemonInfo(name = name) {
         isLoading.set(false)
         it.onSuccess {
           data.whatIfNotNull { response ->
-            pokemonInfo = response
             liveData.postValue(response)
             pokemonInfoDao.insertPokemonInfo(response)
           }
