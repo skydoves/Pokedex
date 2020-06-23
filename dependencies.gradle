@@ -42,7 +42,7 @@ ext.versions = [
 
     // di
     daggerVersion           : '2.28',
-    daggerHiltAndroidVersion: '2.28-alpha',
+    daggerHiltAndroidVersion: '2.28.1-alpha',
     daggerHiltVersion       : '1.0.0-alpha01',
 
     // network
