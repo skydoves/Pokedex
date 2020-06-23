@@ -18,22 +18,32 @@ package com.skydoves.pokedex.network
 
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever
+import com.skydoves.pokedex.MainCoroutinesRule
 import com.skydoves.pokedex.model.PokemonInfo
 import com.skydoves.pokedex.model.PokemonResponse
 import com.skydoves.sandwich.ApiResponse
 import com.skydoves.sandwich.toResponseDataSource
-import java.io.IOException
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.runBlocking
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.CoreMatchers.instanceOf
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import retrofit2.Response
+import retrofit2.awaitResponse
+import java.io.IOException
 
+@ExperimentalCoroutinesApi
 class PokedexServiceTest : ApiAbstract<PokedexService>() {
 
   private lateinit var service: PokedexService
   private val client: PokedexClient = mock()
+
+  @ExperimentalCoroutinesApi
+  @get:Rule
+  var coroutinesRule = MainCoroutinesRule()
 
   @Before
   fun initService() {
@@ -42,11 +52,14 @@ class PokedexServiceTest : ApiAbstract<PokedexService>() {
 
   @Throws(IOException::class)
   @Test
-  fun fetchPokemonListFromNetworkTest() {
+  fun fetchPokemonListFromNetworkTest() = runBlocking {
     enqueueResponse("/PokemonResponse.json")
+    val dataSource = requireNotNull(service.fetchPokemonList().toResponseDataSource())
+    mockWebServer.takeRequest()
 
-    val dataSourceCall = requireNotNull(service.fetchPokemonList().toResponseDataSource().call)
-    val responseBody = requireNotNull(dataSourceCall.execute().body())
+    val call = requireNotNull(dataSource.call?.clone())
+    enqueueResponse("/PokemonResponse.json")
+    val responseBody = requireNotNull(call.execute().body())
     mockWebServer.takeRequest()
 
     assertThat(responseBody.count, `is`(964))
@@ -71,11 +84,14 @@ class PokedexServiceTest : ApiAbstract<PokedexService>() {
 
   @Throws(IOException::class)
   @Test
-  fun fetchPokemonInfoFromNetworkTest() {
+  fun fetchPokemonInfoFromNetworkTest() = runBlocking {
     enqueueResponse("/Bulbasaur.json")
+    val dataSource = requireNotNull(service.fetchPokemonInfo("bulbasaur")).toResponseDataSource()
+    mockWebServer.takeRequest()
 
-    val dataSourceCall = requireNotNull(service.fetchPokemonInfo("bulbasaur").toResponseDataSource().call)
-    val responseBody = requireNotNull(dataSourceCall.execute().body())
+    val call = requireNotNull(dataSource.call?.clone())
+    enqueueResponse("/Bulbasaur.json")
+    val responseBody = requireNotNull(call.execute().body())
     mockWebServer.takeRequest()
 
     assertThat(responseBody.id, `is`(1))
