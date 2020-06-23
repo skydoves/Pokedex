@@ -26,7 +26,7 @@ class PokedexClient @Inject constructor(
   private val pokedexService: PokedexService
 ) {
 
-  fun fetchPokemonList(
+  suspend fun fetchPokemonList(
     page: Int,
     onResult: (response: ApiResponse<PokemonResponse>) -> Unit
   ) {
@@ -40,7 +40,7 @@ class PokedexClient @Inject constructor(
       .request(onResult)
   }
 
-  fun fetchPokemonInfo(
+  suspend fun fetchPokemonInfo(
     name: String,
     onResult: (response: ApiResponse<PokemonInfo>) -> Unit
   ) {

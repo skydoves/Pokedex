@@ -26,11 +26,11 @@ import retrofit2.http.Query
 interface PokedexService {
 
   @GET("pokemon")
-  fun fetchPokemonList(
+  suspend fun fetchPokemonList(
     @Query("limit") limit: Int = 20,
     @Query("offset") offset: Int = 0
   ): DataSource<PokemonResponse>
 
   @GET("pokemon/{name}")
-  fun fetchPokemonInfo(@Path("name") name: String): DataSource<PokemonInfo>
+  suspend fun fetchPokemonInfo(@Path("name") name: String): DataSource<PokemonInfo>
 }
