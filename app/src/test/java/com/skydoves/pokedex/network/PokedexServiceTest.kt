@@ -23,6 +23,7 @@ import com.skydoves.pokedex.model.PokemonInfo
 import com.skydoves.pokedex.model.PokemonResponse
 import com.skydoves.sandwich.ApiResponse
 import com.skydoves.sandwich.toResponseDataSource
+import java.io.IOException
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import org.hamcrest.CoreMatchers.`is`
@@ -32,8 +33,6 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import retrofit2.Response
-import retrofit2.awaitResponse
-import java.io.IOException
 
 @ExperimentalCoroutinesApi
 class PokedexServiceTest : ApiAbstract<PokedexService>() {
