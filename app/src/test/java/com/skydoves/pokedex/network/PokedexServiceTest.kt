@@ -54,11 +54,7 @@ class PokedexServiceTest : ApiAbstract<PokedexService>() {
   fun fetchPokemonListFromNetworkTest() = runBlocking {
     enqueueResponse("/PokemonResponse.json")
     val dataSource = requireNotNull(service.fetchPokemonList().toResponseDataSource())
-    mockWebServer.takeRequest()
-
-    val call = requireNotNull(dataSource.call?.clone())
-    enqueueResponse("/PokemonResponse.json")
-    val responseBody = requireNotNull(call.execute().body())
+    val responseBody = requireNotNull(dataSource.call?.execute()?.body())
     mockWebServer.takeRequest()
 
     assertThat(responseBody.count, `is`(964))
@@ -86,11 +82,7 @@ class PokedexServiceTest : ApiAbstract<PokedexService>() {
   fun fetchPokemonInfoFromNetworkTest() = runBlocking {
     enqueueResponse("/Bulbasaur.json")
     val dataSource = requireNotNull(service.fetchPokemonInfo("bulbasaur")).toResponseDataSource()
-    mockWebServer.takeRequest()
-
-    val call = requireNotNull(dataSource.call?.clone())
-    enqueueResponse("/Bulbasaur.json")
-    val responseBody = requireNotNull(call.execute().body())
+    val responseBody = requireNotNull(dataSource.call?.execute()?.body())
     mockWebServer.takeRequest()
 
     assertThat(responseBody.id, `is`(1))
