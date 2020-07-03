@@ -53,12 +53,12 @@ class MainRepository @Inject constructor(
             onSuccess()
           }
         }
-          // handle the case when the API request gets a error response.
+          // handle the case when the API request gets an error response.
           // e.g. internal server error.
           .onError {
             onError(message())
           }
-          // handle the case when the API request gets a exception response.
+          // handle the case when the API request gets an exception response.
           // e.g. network connection error.
           .onException {
             onError(message())
