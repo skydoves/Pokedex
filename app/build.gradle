@@ -30,6 +30,11 @@ android {
         versionName versions.versionName
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "com.skydoves.pokedex.AppTestRunner"
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
+            }
+        }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
