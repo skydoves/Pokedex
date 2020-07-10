@@ -19,18 +19,17 @@ package com.skydoves.pokedex.viewmodel
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
-import androidx.lifecycle.SavedStateHandle
 import com.nhaarman.mockitokotlin2.atLeastOnce
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
 import com.skydoves.pokedex.MainCoroutinesRule
-import com.skydoves.pokedex.model.Pokemon
+import com.skydoves.pokedex.model.PokemonInfo
 import com.skydoves.pokedex.network.PokedexClient
 import com.skydoves.pokedex.network.PokedexService
-import com.skydoves.pokedex.persistence.PokemonDao
-import com.skydoves.pokedex.repository.MainRepository
-import com.skydoves.pokedex.ui.main.MainViewModel
+import com.skydoves.pokedex.persistence.PokemonInfoDao
+import com.skydoves.pokedex.repository.DetailRepository
+import com.skydoves.pokedex.ui.details.DetailViewModel
 import com.skydoves.pokedex.utils.MockUtil
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
@@ -39,13 +38,13 @@ import org.junit.Rule
 import org.junit.Test
 
 @ExperimentalCoroutinesApi
-class MainViewModelTest {
+class DetailViewModelTest {
 
-  private lateinit var viewModel: MainViewModel
-  private lateinit var mainRepository: MainRepository
+  private lateinit var viewModel: DetailViewModel
+  private lateinit var detailRepository: DetailRepository
   private val pokedexService: PokedexService = mock()
   private val pokdexClient: PokedexClient = PokedexClient(pokedexService)
-  private val pokemonDao: PokemonDao = mock()
+  private val pokemonInfoDao: PokemonInfoDao = mock()
 
   @ExperimentalCoroutinesApi
   @get:Rule
@@ -57,26 +56,26 @@ class MainViewModelTest {
   @ExperimentalCoroutinesApi
   @Before
   fun setup() {
-    mainRepository = MainRepository(pokdexClient, pokemonDao)
-    viewModel = MainViewModel(mainRepository, SavedStateHandle())
+    detailRepository = DetailRepository(pokdexClient, pokemonInfoDao)
+    viewModel = DetailViewModel(detailRepository)
   }
 
   @Test
-  fun fetchPokemonListTest() = runBlocking {
-    val mockData = MockUtil.mockPokemonList()
-    whenever(pokemonDao.getPokemonList(page_ = 0)).thenReturn(mockData)
+  fun fetchPokemonInfoTest() = runBlocking {
+    val mockData = MockUtil.mockPokemonInfo()
+    whenever(pokemonInfoDao.getPokemonInfo(name_ = "skydoves")).thenReturn(mockData)
 
-    val observer: Observer<List<Pokemon>> = mock()
-    val fetchedData: LiveData<List<Pokemon>> =
-      mainRepository.fetchPokemonList(
-        page = 0,
+    val observer: Observer<PokemonInfo> = mock()
+    val fetchedData: LiveData<PokemonInfo> =
+      detailRepository.fetchPokemonInfo(
+        name = "skydoves",
         onSuccess = {},
         onError = {})
     fetchedData.observeForever(observer)
 
-    viewModel.fetchPokemonList(page = 0)
+    viewModel.fetchPokemonInfo(name = "skydoves")
 
-    verify(pokemonDao, atLeastOnce()).getPokemonList(page_ = 0)
+    verify(pokemonInfoDao, atLeastOnce()).getPokemonInfo(name_ = "skydoves")
     verify(observer).onChanged(mockData)
     fetchedData.removeObserver(observer)
   }
