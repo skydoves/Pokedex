@@ -20,6 +20,7 @@ import androidx.databinding.ObservableBoolean
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.switchMap
 import com.skydoves.pokedex.base.LiveCoroutinesViewModel
 import com.skydoves.pokedex.model.PokemonInfo
@@ -31,7 +32,7 @@ class DetailViewModel @ViewModelInject constructor(
 ) : LiveCoroutinesViewModel() {
 
   private var pokemonFetchingLiveData: MutableLiveData<String> = MutableLiveData()
-  val pokemonInfoLiveData: LiveData<PokemonInfo>
+  val pokemonInfoLiveData: LiveData<PokemonInfo?>
 
   val isLoading: ObservableBoolean = ObservableBoolean(false)
   val toastLiveData: MutableLiveData<String> = MutableLiveData()
@@ -45,7 +46,8 @@ class DetailViewModel @ViewModelInject constructor(
         this.detailRepository.fetchPokemonInfo(
           name = it,
           onSuccess = { isLoading.set(false) },
-          onError = { toastLiveData.postValue(it) })
+          onError = { toastLiveData.postValue(it) }
+        ).asLiveData()
       }
     }
   }

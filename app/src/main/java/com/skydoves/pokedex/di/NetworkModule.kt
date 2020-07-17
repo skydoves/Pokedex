@@ -19,15 +19,15 @@ package com.skydoves.pokedex.di
 import com.skydoves.pokedex.network.HttpRequestInterceptor
 import com.skydoves.pokedex.network.PokedexClient
 import com.skydoves.pokedex.network.PokedexService
-import com.skydoves.sandwich.coroutines.CoroutinesDataSourceCallAdapterFactory
+import com.skydoves.sandwich.coroutines.CoroutinesResponseCallAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
-import javax.inject.Singleton
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import javax.inject.Singleton
 
 @Module
 @InstallIn(ApplicationComponent::class)
@@ -48,7 +48,7 @@ object NetworkModule {
       .client(okHttpClient)
       .baseUrl("https://pokeapi.co/api/v2/")
       .addConverterFactory(MoshiConverterFactory.create())
-      .addCallAdapterFactory(CoroutinesDataSourceCallAdapterFactory())
+      .addCallAdapterFactory(CoroutinesResponseCallAdapterFactory())
       .build()
   }
 

@@ -16,10 +16,6 @@
 
 package com.skydoves.pokedex.network
 
-import com.skydoves.pokedex.model.PokemonInfo
-import com.skydoves.pokedex.model.PokemonResponse
-import com.skydoves.sandwich.ApiResponse
-import com.skydoves.sandwich.toResponseDataSource
 import javax.inject.Inject
 
 class PokedexClient @Inject constructor(
@@ -27,35 +23,19 @@ class PokedexClient @Inject constructor(
 ) {
 
   suspend fun fetchPokemonList(
-    page: Int,
-    onResult: (response: ApiResponse<PokemonResponse>) -> Unit
-  ) {
-    pokedexService.fetchPokemonList(
-      limit = PAGING_SIZE,
-      offset = page * PAGING_SIZE
-    ).toResponseDataSource()
-      // retry fetching data 3 times with 7000L interval when the request gets failure.
-      .retry(RETRY_COUNT, RETRY_DELAY)
-      // request API network call asynchronously.
-      .request(onResult)
-  }
+    page: Int
+  ) = pokedexService.fetchPokemonList(
+    limit = PAGING_SIZE,
+    offset = page * PAGING_SIZE
+  )
 
   suspend fun fetchPokemonInfo(
-    name: String,
-    onResult: (response: ApiResponse<PokemonInfo>) -> Unit
-  ) {
-    pokedexService.fetchPokemonInfo(
-      name = name
-    ).toResponseDataSource()
-      // retry fetching data 3 times with 7000L interval when the request gets failure.
-      .retry(RETRY_COUNT, RETRY_DELAY)
-      // request API network call asynchronously.
-      .request(onResult)
-  }
+    name: String
+  ) = pokedexService.fetchPokemonInfo(
+    name = name
+  )
 
   companion object {
     private const val PAGING_SIZE = 20
-    private const val RETRY_COUNT = 3
-    private const val RETRY_DELAY = 7000L
   }
 }

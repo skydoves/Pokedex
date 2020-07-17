@@ -22,6 +22,7 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.switchMap
 import com.skydoves.pokedex.base.LiveCoroutinesViewModel
 import com.skydoves.pokedex.model.Pokemon
@@ -48,7 +49,8 @@ class MainViewModel @ViewModelInject constructor(
         this.mainRepository.fetchPokemonList(
           page = it,
           onSuccess = { isLoading.set(false) },
-          onError = { toastLiveData.postValue(it) })
+          onError = { toastLiveData.postValue(it) }
+        ).asLiveData()
       }
     }
   }

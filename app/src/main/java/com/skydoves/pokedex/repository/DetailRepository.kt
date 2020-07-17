@@ -16,18 +16,16 @@
 
 package com.skydoves.pokedex.repository
 
-import androidx.lifecycle.MutableLiveData
 import com.skydoves.pokedex.model.PokemonInfo
 import com.skydoves.pokedex.network.PokedexClient
 import com.skydoves.pokedex.persistence.PokemonInfoDao
 import com.skydoves.sandwich.message
 import com.skydoves.sandwich.onError
 import com.skydoves.sandwich.onException
-import com.skydoves.sandwich.onSuccess
+import com.skydoves.sandwich.suspendOnSuccess
 import com.skydoves.whatif.whatIfNotNull
+import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 
 class DetailRepository @Inject constructor(
   private val pokedexClient: PokedexClient,
@@ -38,32 +36,30 @@ class DetailRepository @Inject constructor(
     name: String,
     onSuccess: () -> Unit,
     onError: (String) -> Unit
-  ) = withContext(Dispatchers.IO) {
-    val liveData = MutableLiveData<PokemonInfo>()
+  ) = flow<PokemonInfo?> {
     val pokemonInfo = pokemonInfoDao.getPokemonInfo(name)
     if (pokemonInfo == null) {
-      pokedexClient.fetchPokemonInfo(name = name) {
-        it.onSuccess {
-          data.whatIfNotNull { response ->
-            liveData.postValue(response)
-            pokemonInfoDao.insertPokemonInfo(response)
-            onSuccess()
-          }
+      val response = pokedexClient.fetchPokemonInfo(name = name)
+      response.suspendOnSuccess {
+        data.whatIfNotNull { response ->
+          pokemonInfoDao.insertPokemonInfo(response)
+          emit(response)
+          onSuccess()
         }
-          // handle the case when the API request gets an error response.
-          // e.g. internal server error.
-          .onError {
-            onError(message())
-          }
-          // handle the case when the API request gets an exception response.
-          // e.g. network connection error.
-          .onException {
-            onError(message())
-          }
       }
+        // handle the case when the API request gets an error response.
+        // e.g. internal server error.
+        .onError {
+          onError(message())
+        }
+        // handle the case when the API request gets an exception response.
+        // e.g. network connection error.
+        .onException {
+          onError(message())
+        }
     } else {
+      emit(pokemonInfo)
       onSuccess()
     }
-    liveData.apply { postValue(pokemonInfo) }
   }
 }

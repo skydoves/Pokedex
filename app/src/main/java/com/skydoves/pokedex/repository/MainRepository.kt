@@ -16,18 +16,17 @@
 
 package com.skydoves.pokedex.repository
 
-import androidx.lifecycle.MutableLiveData
-import com.skydoves.pokedex.model.Pokemon
 import com.skydoves.pokedex.network.PokedexClient
 import com.skydoves.pokedex.persistence.PokemonDao
 import com.skydoves.sandwich.message
 import com.skydoves.sandwich.onError
 import com.skydoves.sandwich.onException
-import com.skydoves.sandwich.onSuccess
+import com.skydoves.sandwich.suspendOnSuccess
 import com.skydoves.whatif.whatIfNotNull
-import javax.inject.Inject
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
+import javax.inject.Inject
 
 class MainRepository @Inject constructor(
   private val pokedexClient: PokedexClient,
@@ -38,35 +37,32 @@ class MainRepository @Inject constructor(
     page: Int,
     onSuccess: () -> Unit,
     onError: (String) -> Unit
-  ) = withContext(Dispatchers.IO) {
-    val liveData = MutableLiveData<List<Pokemon>>()
-    var pokemonList = pokemonDao.getPokemonList(page)
-    if (pokemonList.isEmpty()) {
-      pokedexClient.fetchPokemonList(page = page) {
-        // handle the case when the API request gets a success response.
-        it.onSuccess {
-          data.whatIfNotNull { response ->
-            pokemonList = response.results
-            pokemonList.forEach { pokemon -> pokemon.page = page }
-            liveData.postValue(pokemonList)
-            pokemonDao.insertPokemonList(pokemonList)
-            onSuccess()
-          }
+  ) = flow {
+    var pokemons = pokemonDao.getPokemonList(page)
+    if (pokemons.isEmpty()) {
+      val response = pokedexClient.fetchPokemonList(page = page)
+      response.suspendOnSuccess {
+        data.whatIfNotNull { response ->
+          pokemons = response.results
+          pokemons.forEach { pokemon -> pokemon.page = page }
+          pokemonDao.insertPokemonList(pokemons)
+          emit(pokemons)
+          onSuccess()
         }
-          // handle the case when the API request gets an error response.
-          // e.g. internal server error.
-          .onError {
-            onError(message())
-          }
-          // handle the case when the API request gets an exception response.
-          // e.g. network connection error.
-          .onException {
-            onError(message())
-          }
       }
+        // handle the case when the API request gets an error response.
+        // e.g. internal server error.
+        .onError {
+          onError(message())
+        }
+        // handle the case when the API request gets an exception response.
+        // e.g. network connection error.
+        .onException {
+          onError(message())
+        }
     } else {
+      emit(pokemons)
       onSuccess()
     }
-    liveData.apply { postValue(pokemonList) }
-  }
+  }.flowOn(Dispatchers.IO)
 }
