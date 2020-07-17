@@ -18,6 +18,7 @@ package com.skydoves.pokedex.persistence
 
 import com.skydoves.pokedex.utils.MockUtil.mockPokemon
 import com.skydoves.pokedex.utils.MockUtil.mockPokemonList
+import kotlinx.coroutines.runBlocking
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.core.Is.`is`
 import org.junit.Before
@@ -38,7 +39,7 @@ class PokemonDaoTest : LocalDatabase() {
   }
 
   @Test
-  fun insertAndLoadPokemonListTest() {
+  fun insertAndLoadPokemonListTest() = runBlocking {
     val mockDataList = mockPokemonList()
     pokemonDao.insertPokemonList(mockDataList)
 

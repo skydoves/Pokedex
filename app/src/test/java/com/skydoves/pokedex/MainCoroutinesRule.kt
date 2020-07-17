@@ -37,6 +37,7 @@ class MainCoroutinesRule : TestRule, TestCoroutineScope by TestCoroutineScope() 
     override fun evaluate() {
       Dispatchers.setMain(testCoroutinesDispatcher)
       base?.evaluate()
+      cleanupTestCoroutines()
       Dispatchers.resetMain()
     }
   }

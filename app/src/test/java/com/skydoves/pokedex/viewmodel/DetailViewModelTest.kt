@@ -19,6 +19,7 @@ package com.skydoves.pokedex.viewmodel
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
+import androidx.lifecycle.asLiveData
 import com.nhaarman.mockitokotlin2.atLeastOnce
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
@@ -32,7 +33,8 @@ import com.skydoves.pokedex.repository.DetailRepository
 import com.skydoves.pokedex.ui.details.DetailViewModel
 import com.skydoves.pokedex.utils.MockUtil
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -61,22 +63,26 @@ class DetailViewModelTest {
   }
 
   @Test
-  fun fetchPokemonInfoTest() = runBlocking {
+  fun fetchPokemonInfoTest() = coroutinesRule.runBlockingTest {
     val mockData = MockUtil.mockPokemonInfo()
     whenever(pokemonInfoDao.getPokemonInfo(name_ = "skydoves")).thenReturn(mockData)
 
-    val observer: Observer<PokemonInfo> = mock()
-    val fetchedData: LiveData<PokemonInfo> =
+    val observer: Observer<PokemonInfo?> = mock()
+    val fetchedData: LiveData<PokemonInfo?> =
       detailRepository.fetchPokemonInfo(
         name = "skydoves",
         onSuccess = {},
-        onError = {})
+        onError = {}
+      ).asLiveData()
     fetchedData.observeForever(observer)
 
     viewModel.fetchPokemonInfo(name = "skydoves")
+    delay(500L)
 
     verify(pokemonInfoDao, atLeastOnce()).getPokemonInfo(name_ = "skydoves")
     verify(observer).onChanged(mockData)
     fetchedData.removeObserver(observer)
+
+    cleanupTestCoroutines()
   }
 }

@@ -19,25 +19,26 @@
 package com.skydoves.pokedex.repository
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import androidx.lifecycle.Observer
 import com.nhaarman.mockitokotlin2.atLeastOnce
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.verifyNoMoreInteractions
 import com.nhaarman.mockitokotlin2.whenever
 import com.skydoves.pokedex.MainCoroutinesRule
-import com.skydoves.pokedex.model.PokemonInfo
-import com.skydoves.pokedex.network.ApiUtil.getCall
 import com.skydoves.pokedex.network.PokedexClient
 import com.skydoves.pokedex.network.PokedexService
 import com.skydoves.pokedex.persistence.PokemonInfoDao
 import com.skydoves.pokedex.utils.MockUtil.mockPokemonInfo
-import com.skydoves.sandwich.ResponseDataSource
+import com.skydoves.sandwich.ApiResponse
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.runBlocking
+import org.hamcrest.MatcherAssert.assertThat
+import org.hamcrest.core.Is.`is`
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import retrofit2.Response
 
 @ExperimentalCoroutinesApi
 class DetailRepositoryTest {
@@ -64,46 +65,33 @@ class DetailRepositoryTest {
   @Test
   fun fetchPokemonInfoFromNetwork() = runBlocking {
     val mockData = mockPokemonInfo()
-    val dataSourceCall =
-      ResponseDataSource<PokemonInfo>().combine(getCall(mockData)) {}
     whenever(pokemonInfoDao.getPokemonInfo(name_ = "bulbasaur")).thenReturn(null)
-    whenever(service.fetchPokemonInfo(name = "bulbasaur")).thenReturn(dataSourceCall)
+    whenever(service.fetchPokemonInfo(name = "bulbasaur")).thenReturn(ApiResponse.of { Response.success(mockData) })
 
-    val loadData = repository.fetchPokemonInfo(name = "bulbasaur", onSuccess = {}, onError = {})
+    repository.fetchPokemonInfo(name = "bulbasaur", onSuccess = {}, onError = {}).collect { pokemonInfo ->
+      assertThat(pokemonInfo?.id, `is`(mockData.id))
+      assertThat(pokemonInfo?.name, `is`(mockData.name))
+      assertThat(pokemonInfo, `is`(mockData))
+    }
+
     verify(pokemonInfoDao, atLeastOnce()).getPokemonInfo(name_ = "bulbasaur")
     verify(service, atLeastOnce()).fetchPokemonInfo(name = "bulbasaur")
-
-    val observer: Observer<PokemonInfo> = mock()
-    loadData.observeForever(observer)
-
-    val updatedData = mockPokemonInfo()
-    whenever(pokemonInfoDao.getPokemonInfo(name_ = "bulbasaur")).thenReturn(updatedData)
-
-    loadData.postValue(updatedData)
-    verify(observer).onChanged(updatedData)
-    loadData.removeObserver(observer)
+    verify(pokemonInfoDao, atLeastOnce()).insertPokemonInfo(mockData)
   }
 
   @Test
   fun fetchPokemonInfoFromDatabase() = runBlocking {
     val mockData = mockPokemonInfo()
-    val dataSourceCall =
-      ResponseDataSource<PokemonInfo>().combine(getCall(mockData)) {}
     whenever(pokemonInfoDao.getPokemonInfo(name_ = "bulbasaur")).thenReturn(mockData)
-    whenever(service.fetchPokemonInfo(name = "bulbasaur")).thenReturn(dataSourceCall)
+    whenever(service.fetchPokemonInfo(name = "bulbasaur")).thenReturn(ApiResponse.of { Response.success(mockData) })
 
-    val loadData = repository.fetchPokemonInfo(name = "bulbasaur", onSuccess = {}, onError = {})
+    repository.fetchPokemonInfo(name = "bulbasaur", onSuccess = {}, onError = {}).collect { pokemonInfo ->
+      assertThat(pokemonInfo?.id, `is`(mockData.id))
+      assertThat(pokemonInfo?.name, `is`(mockData.name))
+      assertThat(pokemonInfo, `is`(mockData))
+    }
+
     verify(pokemonInfoDao, atLeastOnce()).getPokemonInfo(name_ = "bulbasaur")
     verifyNoMoreInteractions(service)
-
-    val observer: Observer<PokemonInfo> = mock()
-    loadData.observeForever(observer)
-
-    val updatedData = mockPokemonInfo()
-    whenever(pokemonInfoDao.getPokemonInfo(name_ = "bulbasaur")).thenReturn(updatedData)
-
-    loadData.postValue(updatedData)
-    verify(observer).onChanged(updatedData)
-    loadData.removeObserver(observer)
   }
 }

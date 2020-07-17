@@ -17,22 +17,16 @@
 package com.skydoves.pokedex.network
 
 import com.nhaarman.mockitokotlin2.mock
-import com.nhaarman.mockitokotlin2.whenever
 import com.skydoves.pokedex.MainCoroutinesRule
-import com.skydoves.pokedex.model.PokemonInfo
-import com.skydoves.pokedex.model.PokemonResponse
 import com.skydoves.sandwich.ApiResponse
-import com.skydoves.sandwich.toResponseDataSource
 import java.io.IOException
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import org.hamcrest.CoreMatchers.`is`
-import org.hamcrest.CoreMatchers.instanceOf
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import retrofit2.Response
 
 @ExperimentalCoroutinesApi
 class PokedexServiceTest : ApiAbstract<PokedexService>() {
@@ -53,59 +47,29 @@ class PokedexServiceTest : ApiAbstract<PokedexService>() {
   @Test
   fun fetchPokemonListFromNetworkTest() = runBlocking {
     enqueueResponse("/PokemonResponse.json")
-    val dataSource = requireNotNull(service.fetchPokemonList().toResponseDataSource())
-    val responseBody = requireNotNull(dataSource.call?.execute()?.body())
+    val response = requireNotNull(service.fetchPokemonList())
+    val responseBody = requireNotNull((response as ApiResponse.Success).data)
     mockWebServer.takeRequest()
 
+    client.fetchPokemonList(page = 0)
     assertThat(responseBody.count, `is`(964))
     assertThat(responseBody.results[0].name, `is`("bulbasaur"))
     assertThat(responseBody.results[0].url, `is`("https://pokeapi.co/api/v2/pokemon/1/"))
-
-    val onResult: (response: ApiResponse<PokemonResponse>) -> Unit = {
-      assertThat(it, instanceOf(ApiResponse.Success::class.java))
-      val response: PokemonResponse = requireNotNull((it as ApiResponse.Success).data)
-      assertThat(response.count, `is`(964))
-      assertThat(response.results[0].name, `is`("bulbasaur"))
-      assertThat(response.results[0].url, `is`("https://pokeapi.co/api/v2/pokemon/1/"))
-    }
-
-    whenever(client.fetchPokemonList(0, onResult)).thenAnswer {
-      val response: (response: ApiResponse<PokemonResponse>) -> Unit = it.getArgument(1)
-      response(ApiResponse.Success(Response.success(responseBody)))
-    }
-
-    client.fetchPokemonList(page = 0, onResult = onResult)
   }
 
   @Throws(IOException::class)
   @Test
   fun fetchPokemonInfoFromNetworkTest() = runBlocking {
     enqueueResponse("/Bulbasaur.json")
-    val dataSource = requireNotNull(service.fetchPokemonInfo("bulbasaur")).toResponseDataSource()
-    val responseBody = requireNotNull(dataSource.call?.execute()?.body())
+    val response = requireNotNull(service.fetchPokemonInfo("bulbasaur"))
+    val responseBody = requireNotNull((response as ApiResponse.Success).data)
     mockWebServer.takeRequest()
 
+    client.fetchPokemonInfo(name = "bulbasaur")
     assertThat(responseBody.id, `is`(1))
     assertThat(responseBody.name, `is`("bulbasaur"))
     assertThat(responseBody.height, `is`(7))
     assertThat(responseBody.weight, `is`(69))
     assertThat(responseBody.experience, `is`(64))
-
-    val onResult: (response: ApiResponse<PokemonInfo>) -> Unit = {
-      assertThat(it, instanceOf(ApiResponse.Success::class.java))
-      val response: PokemonInfo = requireNotNull((it as ApiResponse.Success).data)
-      assertThat(response.id, `is`(1))
-      assertThat(response.name, `is`("bulbasaur"))
-      assertThat(response.height, `is`(7))
-      assertThat(response.weight, `is`(69))
-      assertThat(response.experience, `is`(64))
-    }
-
-    whenever(client.fetchPokemonInfo("bulbasaur", onResult)).thenAnswer {
-      val response: (response: ApiResponse<PokemonInfo>) -> Unit = it.getArgument(1)
-      response(ApiResponse.Success(Response.success(responseBody)))
-    }
-
-    client.fetchPokemonInfo(name = "bulbasaur", onResult = onResult)
   }
 }

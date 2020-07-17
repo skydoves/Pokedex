@@ -20,6 +20,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.SavedStateHandle
+import androidx.lifecycle.asLiveData
 import com.nhaarman.mockitokotlin2.atLeastOnce
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
@@ -33,6 +34,7 @@ import com.skydoves.pokedex.repository.MainRepository
 import com.skydoves.pokedex.ui.main.MainViewModel
 import com.skydoves.pokedex.utils.MockUtil
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Rule
@@ -71,10 +73,12 @@ class MainViewModelTest {
       mainRepository.fetchPokemonList(
         page = 0,
         onSuccess = {},
-        onError = {})
+        onError = {}
+      ).asLiveData()
     fetchedData.observeForever(observer)
 
     viewModel.fetchPokemonList(page = 0)
+    delay(500L)
 
     verify(pokemonDao, atLeastOnce()).getPokemonList(page_ = 0)
     verify(observer).onChanged(mockData)
