@@ -26,8 +26,8 @@ import com.skydoves.pokedex.model.Pokemon
 interface PokemonDao {
 
   @Insert(onConflict = OnConflictStrategy.REPLACE)
-  fun insertPokemonList(pokemonList: List<Pokemon>)
+  suspend fun insertPokemonList(pokemonList: List<Pokemon>)
 
   @Query("SELECT * FROM Pokemon WHERE page = :page_")
-  fun getPokemonList(page_: Int): List<Pokemon>
+  suspend fun getPokemonList(page_: Int): List<Pokemon>
 }

@@ -26,8 +26,8 @@ import com.skydoves.pokedex.model.PokemonInfo
 interface PokemonInfoDao {
 
   @Insert(onConflict = OnConflictStrategy.REPLACE)
-  fun insertPokemonInfo(pokemonInfo: PokemonInfo)
+  suspend fun insertPokemonInfo(pokemonInfo: PokemonInfo)
 
   @Query("SELECT * FROM PokemonInfo WHERE name = :name_")
-  fun getPokemonInfo(name_: String): PokemonInfo?
+  suspend fun getPokemonInfo(name_: String): PokemonInfo?
 }
