@@ -25,7 +25,9 @@ import com.skydoves.sandwich.onException
 import com.skydoves.sandwich.suspendOnSuccess
 import com.skydoves.whatif.whatIfNotNull
 import javax.inject.Inject
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
 
 class DetailRepository @Inject constructor(
   private val pokedexClient: PokedexClient,
@@ -61,5 +63,5 @@ class DetailRepository @Inject constructor(
       emit(pokemonInfo)
       onSuccess()
     }
-  }
+  }.flowOn(Dispatchers.IO)
 }
