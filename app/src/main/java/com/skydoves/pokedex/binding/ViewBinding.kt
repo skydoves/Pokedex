@@ -93,8 +93,7 @@ fun bindLoadImagePaletteView(view: AppCompatImageView, url: String, paletteView:
             }
           }
         }
-      }
-      .crossfade(true))
+      }.crossfade(true))
     .into(view)
 }
 

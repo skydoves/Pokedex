@@ -99,12 +99,10 @@ dependencies {
     implementation "androidx.startup:startup-runtime:$versions.startupVersion"
 
     // dagger
-    implementation "com.google.dagger:dagger:$versions.dagger"
     implementation "com.google.dagger:hilt-android:$versions.daggerHiltAndroidVersion"
     implementation "com.google.dagger:hilt-android-testing:$versions.daggerHiltAndroidVersion"
     implementation "androidx.hilt:hilt-common:$versions.daggerHiltVersion"
     implementation "androidx.hilt:hilt-lifecycle-viewmodel:$versions.daggerHiltVersion"
-    kapt "com.google.dagger:dagger-compiler:$versions.dagger"
     kapt "com.google.dagger:hilt-android-compiler:$versions.daggerHiltAndroidVersion"
     kapt "androidx.hilt:hilt-compiler:$versions.daggerHiltVersion"
     androidTestImplementation "com.google.dagger:hilt-android-testing:$versions.daggerHiltAndroidVersion"
