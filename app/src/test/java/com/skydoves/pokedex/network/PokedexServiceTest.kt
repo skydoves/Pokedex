@@ -47,7 +47,7 @@ class PokedexServiceTest : ApiAbstract<PokedexService>() {
   @Test
   fun fetchPokemonListFromNetworkTest() = runBlocking {
     enqueueResponse("/PokemonResponse.json")
-    val response = requireNotNull(service.fetchPokemonList())
+    val response = service.fetchPokemonList()
     val responseBody = requireNotNull((response as ApiResponse.Success).data)
     mockWebServer.takeRequest()
 
@@ -61,7 +61,7 @@ class PokedexServiceTest : ApiAbstract<PokedexService>() {
   @Test
   fun fetchPokemonInfoFromNetworkTest() = runBlocking {
     enqueueResponse("/Bulbasaur.json")
-    val response = requireNotNull(service.fetchPokemonInfo("bulbasaur"))
+    val response = service.fetchPokemonInfo("bulbasaur")
     val responseBody = requireNotNull((response as ApiResponse.Success).data)
     mockWebServer.takeRequest()
 
