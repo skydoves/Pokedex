@@ -34,7 +34,7 @@ import com.skydoves.pokedex.ui.details.DetailViewModel
 import com.skydoves.pokedex.utils.MockUtil
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.test.runBlockingTest
+import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -63,7 +63,7 @@ class DetailViewModelTest {
   }
 
   @Test
-  fun fetchPokemonInfoTest() = coroutinesRule.runBlockingTest {
+  fun fetchPokemonInfoTest() = runBlocking {
     val mockData = MockUtil.mockPokemonInfo()
     whenever(pokemonInfoDao.getPokemonInfo(name_ = "skydoves")).thenReturn(mockData)
 
@@ -82,7 +82,5 @@ class DetailViewModelTest {
     verify(pokemonInfoDao, atLeastOnce()).getPokemonInfo(name_ = "skydoves")
     verify(observer).onChanged(mockData)
     fetchedData.removeObserver(observer)
-
-    cleanupTestCoroutines()
   }
 }
