@@ -19,6 +19,7 @@
 package com.skydoves.pokedex.repository
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import app.cash.turbine.test
 import com.nhaarman.mockitokotlin2.atLeastOnce
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
@@ -32,10 +33,8 @@ import com.skydoves.pokedex.persistence.PokemonDao
 import com.skydoves.pokedex.utils.MockUtil.mockPokemonList
 import com.skydoves.sandwich.ApiResponse
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.runBlocking
-import org.hamcrest.MatcherAssert.assertThat
-import org.hamcrest.core.Is.`is`
+import org.junit.Assert
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -73,10 +72,11 @@ class MainRepositoryTest {
       page = 0,
       onSuccess = {},
       onError = {}
-    ).collect {
-      assertThat(it[0].page, `is`(0))
-      assertThat(it[0].name, `is`("bulbasaur"))
-      assertThat(it, `is`(mockPokemonList()))
+    ).test {
+      Assert.assertEquals(expectItem()[0].page, 0)
+      Assert.assertEquals(expectItem()[0].name, "bulbasaur")
+      Assert.assertEquals(expectItem(), mockPokemonList())
+      expectComplete()
     }
 
     verify(pokemonDao, atLeastOnce()).getPokemonList(page_ = 0)
@@ -94,10 +94,11 @@ class MainRepositoryTest {
       page = 0,
       onSuccess = {},
       onError = {}
-    ).collect {
-      assertThat(it[0].page, `is`(0))
-      assertThat(it[0].name, `is`("bulbasaur"))
-      assertThat(it, `is`(mockPokemonList()))
+    ).test {
+      Assert.assertEquals(expectItem()[0].page, 0)
+      Assert.assertEquals(expectItem()[0].name, "bulbasaur")
+      Assert.assertEquals(expectItem(), mockPokemonList())
+      expectComplete()
     }
 
     verify(pokemonDao, atLeastOnce()).getPokemonList(page_ = 0)

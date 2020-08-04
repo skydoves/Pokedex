@@ -19,6 +19,7 @@
 package com.skydoves.pokedex.repository
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import app.cash.turbine.test
 import com.nhaarman.mockitokotlin2.atLeastOnce
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
@@ -31,10 +32,8 @@ import com.skydoves.pokedex.persistence.PokemonInfoDao
 import com.skydoves.pokedex.utils.MockUtil.mockPokemonInfo
 import com.skydoves.sandwich.ApiResponse
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.runBlocking
-import org.hamcrest.MatcherAssert.assertThat
-import org.hamcrest.core.Is.`is`
+import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -68,10 +67,11 @@ class DetailRepositoryTest {
     whenever(pokemonInfoDao.getPokemonInfo(name_ = "bulbasaur")).thenReturn(null)
     whenever(service.fetchPokemonInfo(name = "bulbasaur")).thenReturn(ApiResponse.of { Response.success(mockData) })
 
-    repository.fetchPokemonInfo(name = "bulbasaur", onSuccess = {}, onError = {}).collect { pokemonInfo ->
-      assertThat(pokemonInfo?.id, `is`(mockData.id))
-      assertThat(pokemonInfo?.name, `is`(mockData.name))
-      assertThat(pokemonInfo, `is`(mockData))
+    repository.fetchPokemonInfo(name = "bulbasaur", onSuccess = {}, onError = {}).test {
+      assertEquals(expectItem()?.id, mockData.id)
+      assertEquals(expectItem()?.name, mockData.name)
+      assertEquals(expectItem(), mockData)
+      expectComplete()
     }
 
     verify(pokemonInfoDao, atLeastOnce()).getPokemonInfo(name_ = "bulbasaur")
@@ -85,10 +85,11 @@ class DetailRepositoryTest {
     whenever(pokemonInfoDao.getPokemonInfo(name_ = "bulbasaur")).thenReturn(mockData)
     whenever(service.fetchPokemonInfo(name = "bulbasaur")).thenReturn(ApiResponse.of { Response.success(mockData) })
 
-    repository.fetchPokemonInfo(name = "bulbasaur", onSuccess = {}, onError = {}).collect { pokemonInfo ->
-      assertThat(pokemonInfo?.id, `is`(mockData.id))
-      assertThat(pokemonInfo?.name, `is`(mockData.name))
-      assertThat(pokemonInfo, `is`(mockData))
+    repository.fetchPokemonInfo(name = "bulbasaur", onSuccess = {}, onError = {}).test {
+      assertEquals(expectItem()?.id, mockData.id)
+      assertEquals(expectItem()?.name, mockData.name)
+      assertEquals(expectItem(), mockData)
+      expectComplete()
     }
 
     verify(pokemonInfoDao, atLeastOnce()).getPokemonInfo(name_ = "bulbasaur")
