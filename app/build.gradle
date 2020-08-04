@@ -74,6 +74,10 @@ android {
         exclude 'META-INF/ASL2.0'
         exclude("META-INF/*.kotlin_module")
     }
+    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+        kotlinOptions.freeCompilerArgs += ["-Xopt-in=kotlin.time.ExperimentalTime"]
+        kotlinOptions.freeCompilerArgs += ["-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi"]
+    }
 }
 
 dependencies {
@@ -152,6 +156,7 @@ dependencies {
     testImplementation "junit:junit:$versions.junitVersion"
     testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$versions.mockitoKotlinVersion"
     testImplementation "org.mockito:mockito-inline:$versions.mockitoInlineVersion"
+    testImplementation "app.cash.turbine:turbine:$versions.turbineVersion"
     testImplementation "org.robolectric:robolectric:$versions.robolectricVersion"
     androidTestImplementation "androidx.test:core:$versions.androidxTest"
     androidTestImplementation "com.google.truth:truth:$versions.truthVersion"
