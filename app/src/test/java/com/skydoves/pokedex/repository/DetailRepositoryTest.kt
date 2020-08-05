@@ -62,7 +62,7 @@ class DetailRepositoryTest {
   }
 
   @Test
-  fun fetchPokemonInfoFromNetwork() = runBlocking {
+  fun fetchPokemonInfoFromNetworkTest() = runBlocking {
     val mockData = mockPokemonInfo()
     whenever(pokemonInfoDao.getPokemonInfo(name_ = "bulbasaur")).thenReturn(null)
     whenever(service.fetchPokemonInfo(name = "bulbasaur")).thenReturn(ApiResponse.of { Response.success(mockData) })
@@ -80,7 +80,7 @@ class DetailRepositoryTest {
   }
 
   @Test
-  fun fetchPokemonInfoFromDatabase() = runBlocking {
+  fun fetchPokemonInfoFromDatabaseTest() = runBlocking {
     val mockData = mockPokemonInfo()
     whenever(pokemonInfoDao.getPokemonInfo(name_ = "bulbasaur")).thenReturn(mockData)
     whenever(service.fetchPokemonInfo(name = "bulbasaur")).thenReturn(ApiResponse.of { Response.success(mockData) })

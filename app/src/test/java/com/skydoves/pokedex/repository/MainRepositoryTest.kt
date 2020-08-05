@@ -34,7 +34,7 @@ import com.skydoves.pokedex.utils.MockUtil.mockPokemonList
 import com.skydoves.sandwich.ApiResponse
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
-import org.junit.Assert
+import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -63,7 +63,7 @@ class MainRepositoryTest {
   }
 
   @Test
-  fun fetchPokemonListFromNetwork() = runBlocking {
+  fun fetchPokemonListFromNetworkTest() = runBlocking {
     val mockData = PokemonResponse(count = 984, next = null, previous = null, results = mockPokemonList())
     whenever(pokemonDao.getPokemonList(page_ = 0)).thenReturn(emptyList())
     whenever(service.fetchPokemonList()).thenReturn(ApiResponse.of { Response.success(mockData) })
@@ -73,9 +73,9 @@ class MainRepositoryTest {
       onSuccess = {},
       onError = {}
     ).test {
-      Assert.assertEquals(expectItem()[0].page, 0)
-      Assert.assertEquals(expectItem()[0].name, "bulbasaur")
-      Assert.assertEquals(expectItem(), mockPokemonList())
+      assertEquals(expectItem()[0].page, 0)
+      assertEquals(expectItem()[0].name, "bulbasaur")
+      assertEquals(expectItem(), mockPokemonList())
       expectComplete()
     }
 
@@ -85,7 +85,7 @@ class MainRepositoryTest {
   }
 
   @Test
-  fun fetchPokemonListFromDatabase() = runBlocking {
+  fun fetchPokemonListFromDatabaseTest() = runBlocking {
     val mockData = PokemonResponse(count = 984, next = null, previous = null, results = mockPokemonList())
     whenever(pokemonDao.getPokemonList(page_ = 0)).thenReturn(mockData.results)
     whenever(service.fetchPokemonList()).thenReturn(ApiResponse.of { Response.success(mockData) })
@@ -95,9 +95,9 @@ class MainRepositoryTest {
       onSuccess = {},
       onError = {}
     ).test {
-      Assert.assertEquals(expectItem()[0].page, 0)
-      Assert.assertEquals(expectItem()[0].name, "bulbasaur")
-      Assert.assertEquals(expectItem(), mockPokemonList())
+      assertEquals(expectItem()[0].page, 0)
+      assertEquals(expectItem()[0].name, "bulbasaur")
+      assertEquals(expectItem(), mockPokemonList())
       expectComplete()
     }
 
