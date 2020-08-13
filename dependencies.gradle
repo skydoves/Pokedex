@@ -15,7 +15,7 @@
 // */
 ext.versions = [
     minSdk                  : 21,
-    compileSdk              : 29,
+    compileSdk              : 30,
     versionCode             : 2,
     versionName             : '1.0.1',
 
@@ -42,7 +42,7 @@ ext.versions = [
 
     // di
     daggerHiltAndroidVersion: '2.28.3-alpha',
-    daggerHiltVersion       : '1.0.0-alpha01',
+    daggerHiltVersion       : '1.0.0-alpha02',
 
     // network
     retrofitVersion         : '2.9.0',
