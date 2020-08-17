@@ -30,7 +30,7 @@ import org.junit.runner.RunWith
 
 @HiltAndroidTest
 @RunWith(AndroidJUnit4::class)
-class ActivityInjectionTest {
+class MainActivityInjectionTest {
 
   @get:Rule
   var hiltRule = HiltAndroidRule(this)

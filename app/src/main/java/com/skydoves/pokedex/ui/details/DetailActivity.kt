@@ -20,6 +20,7 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
+import androidx.annotation.VisibleForTesting
 import com.skydoves.pokedex.R
 import com.skydoves.pokedex.base.DataBindingActivity
 import com.skydoves.pokedex.databinding.ActivityDetailBinding
@@ -32,8 +33,8 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class DetailActivity : DataBindingActivity() {
 
+  @VisibleForTesting val viewModel: DetailViewModel by viewModels()
   private val binding: ActivityDetailBinding by binding(R.layout.activity_detail)
-  private val viewModel: DetailViewModel by viewModels()
 
   override fun onCreate(savedInstanceState: Bundle?) {
     onTransformationEndContainerApplyParams()
@@ -48,7 +49,7 @@ class DetailActivity : DataBindingActivity() {
 
   companion object {
 
-    private const val EXTRA_POKEMON = "EXTRA_POKEMON"
+    @VisibleForTesting const val EXTRA_POKEMON = "EXTRA_POKEMON"
 
     fun startActivity(transformationLayout: TransformationLayout, pokemon: Pokemon) {
       val context = transformationLayout.context
