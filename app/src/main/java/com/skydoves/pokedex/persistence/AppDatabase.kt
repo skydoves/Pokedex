@@ -21,11 +21,9 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.skydoves.pokedex.model.Pokemon
 import com.skydoves.pokedex.model.PokemonInfo
-import com.skydoves.pokedex.persistence.converters.InfoTypeConverter
-import com.skydoves.pokedex.persistence.converters.InfoTypeResponseConverter
 
 @Database(entities = [Pokemon::class, PokemonInfo::class], version = 1, exportSchema = true)
-@TypeConverters(value = [InfoTypeConverter::class, InfoTypeResponseConverter::class])
+@TypeConverters(value = [TypeResponseConverter::class])
 abstract class AppDatabase : RoomDatabase() {
 
   abstract fun pokemonDao(): PokemonDao
