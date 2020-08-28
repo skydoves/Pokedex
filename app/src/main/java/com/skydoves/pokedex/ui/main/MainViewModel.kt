@@ -16,6 +16,7 @@
 
 package com.skydoves.pokedex.ui.main
 
+import androidx.annotation.MainThread
 import androidx.databinding.ObservableBoolean
 import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
@@ -55,6 +56,7 @@ class MainViewModel @ViewModelInject constructor(
     }
   }
 
+  @MainThread
   fun fetchPokemonList(page: Int) {
     pokemonFetchingLiveData.value = page
   }
