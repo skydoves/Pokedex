@@ -16,6 +16,7 @@
 
 package com.skydoves.pokedex.repository
 
+import androidx.annotation.WorkerThread
 import com.skydoves.pokedex.network.PokedexClient
 import com.skydoves.pokedex.persistence.PokemonDao
 import com.skydoves.sandwich.message
@@ -33,6 +34,7 @@ class MainRepository @Inject constructor(
   private val pokemonDao: PokemonDao
 ) : Repository {
 
+  @WorkerThread
   suspend fun fetchPokemonList(
     page: Int,
     onSuccess: () -> Unit,

@@ -16,6 +16,7 @@
 
 package com.skydoves.pokedex.repository
 
+import androidx.annotation.WorkerThread
 import com.skydoves.pokedex.model.PokemonInfo
 import com.skydoves.pokedex.network.PokedexClient
 import com.skydoves.pokedex.persistence.PokemonInfoDao
@@ -34,6 +35,7 @@ class DetailRepository @Inject constructor(
   private val pokemonInfoDao: PokemonInfoDao
 ) : Repository {
 
+  @WorkerThread
   suspend fun fetchPokemonInfo(
     name: String,
     onSuccess: () -> Unit,
