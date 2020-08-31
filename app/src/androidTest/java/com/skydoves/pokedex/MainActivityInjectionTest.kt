@@ -17,7 +17,6 @@
 package com.skydoves.pokedex
 
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.Observer
 import androidx.test.core.app.ActivityScenario
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.google.common.truth.Truth.assertThat
@@ -43,7 +42,7 @@ class MainActivityInjectionTest {
         assertThat(activity.viewModel).isNotNull()
         activity.viewModel.pokemonListLiveData.observe(
           activity,
-          Observer { pokemonList ->
+          { pokemonList ->
             assertThat(pokemonList).isNotNull()
           }
         )
