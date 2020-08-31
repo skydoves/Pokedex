@@ -18,8 +18,6 @@ package com.skydoves.pokedex.network
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.skydoves.sandwich.coroutines.CoroutinesResponseCallAdapterFactory
-import java.io.IOException
-import java.nio.charset.StandardCharsets
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import okio.buffer
@@ -31,6 +29,8 @@ import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import java.io.IOException
+import java.nio.charset.StandardCharsets
 
 @RunWith(JUnit4::class)
 abstract class ApiAbstract<T> {

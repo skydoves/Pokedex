@@ -41,9 +41,12 @@ class MainActivityInjectionTest {
       it.moveToState(Lifecycle.State.CREATED)
       it.onActivity { activity ->
         assertThat(activity.viewModel).isNotNull()
-        activity.viewModel.pokemonListLiveData.observe(activity, Observer { pokemonList ->
-          assertThat(pokemonList).isNotNull()
-        })
+        activity.viewModel.pokemonListLiveData.observe(
+          activity,
+          Observer { pokemonList ->
+            assertThat(pokemonList).isNotNull()
+          }
+        )
       }
     }
   }

@@ -55,16 +55,16 @@ fun bindToast(view: View, text: LiveData<String>) {
 fun bindLoadImagePalette(view: AppCompatImageView, url: String, paletteCard: MaterialCardView) {
   Glide.with(view.context)
     .load(url)
-    .listener(GlidePalette.with(url)
-      .use(BitmapPalette.Profile.MUTED_LIGHT)
-      .intoCallBack { palette ->
-        val rgb = palette?.dominantSwatch?.rgb
-        if (rgb != null) {
-          paletteCard.setCardBackgroundColor(rgb)
-        }
-      }
-      .crossfade(true))
-    .into(view)
+    .listener(
+      GlidePalette.with(url)
+        .use(BitmapPalette.Profile.MUTED_LIGHT)
+        .intoCallBack { palette ->
+          val rgb = palette?.dominantSwatch?.rgb
+          if (rgb != null) {
+            paletteCard.setCardBackgroundColor(rgb)
+          }
+        }.crossfade(true)
+    ).into(view)
 }
 
 @BindingAdapter("paletteImage", "paletteView")
@@ -72,29 +72,30 @@ fun bindLoadImagePaletteView(view: AppCompatImageView, url: String, paletteView:
   val context = view.context
   Glide.with(context)
     .load(url)
-    .listener(GlidePalette.with(url)
-      .use(BitmapPalette.Profile.MUTED_LIGHT)
-      .intoCallBack { palette ->
-        val light = palette?.lightVibrantSwatch?.rgb
-        val domain = palette?.dominantSwatch?.rgb
-        if (domain != null) {
-          if (light != null) {
-            Rainbow(paletteView).palette {
-              +color(domain)
-              +color(light)
-            }.background(orientation = RainbowOrientation.TOP_BOTTOM)
-          } else {
-            paletteView.setBackgroundColor(domain)
-          }
-          if (context is AppCompatActivity) {
-            context.window.apply {
-              addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-              statusBarColor = domain
+    .listener(
+      GlidePalette.with(url)
+        .use(BitmapPalette.Profile.MUTED_LIGHT)
+        .intoCallBack { palette ->
+          val light = palette?.lightVibrantSwatch?.rgb
+          val domain = palette?.dominantSwatch?.rgb
+          if (domain != null) {
+            if (light != null) {
+              Rainbow(paletteView).palette {
+                +color(domain)
+                +color(light)
+              }.background(orientation = RainbowOrientation.TOP_BOTTOM)
+            } else {
+              paletteView.setBackgroundColor(domain)
+            }
+            if (context is AppCompatActivity) {
+              context.window.apply {
+                addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+                statusBarColor = domain
+              }
             }
           }
-        }
-      }.crossfade(true))
-    .into(view)
+        }.crossfade(true)
+    ).into(view)
 }
 
 @BindingAdapter("gone")
@@ -130,7 +131,8 @@ fun bindPokemonTypes(recyclerView: RibbonRecyclerView, types: List<PokemonInfo.T
             setRibbonRadius(120f)
             setTextStyle(Typeface.BOLD)
             setRibbonBackgroundColorResource(
-              PokemonTypeUtils.getTypeColor(type.type.name))
+              PokemonTypeUtils.getTypeColor(type.type.name)
+            )
           }.apply {
             maxLines = 1
             gravity = Gravity.CENTER
