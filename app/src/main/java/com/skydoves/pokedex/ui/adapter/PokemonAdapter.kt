@@ -20,6 +20,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.NO_POSITION
 import com.skydoves.pokedex.R
 import com.skydoves.pokedex.databinding.ItemPokemonBinding
 import com.skydoves.pokedex.model.Pokemon
@@ -34,7 +35,17 @@ class PokemonAdapter : RecyclerView.Adapter<PokemonAdapter.PokemonViewHolder>() 
     val inflater = LayoutInflater.from(parent.context)
     val binding =
       DataBindingUtil.inflate<ItemPokemonBinding>(inflater, R.layout.item_pokemon, parent, false)
-    return PokemonViewHolder(binding)
+    return PokemonViewHolder(binding).apply {
+      binding.root.setOnClickListener {
+        val position = adapterPosition.takeIf { it != NO_POSITION }
+          ?: return@setOnClickListener
+        val currentTime = System.currentTimeMillis()
+        if (currentTime - onClickedTime > binding.transformationLayout.duration) {
+          DetailActivity.startActivity(binding.transformationLayout, items[position])
+          onClickedTime = currentTime
+        }
+      }
+    }
   }
 
   fun addPokemonList(pokemonList: List<Pokemon>) {
@@ -43,17 +54,9 @@ class PokemonAdapter : RecyclerView.Adapter<PokemonAdapter.PokemonViewHolder>() 
   }
 
   override fun onBindViewHolder(holder: PokemonViewHolder, position: Int) {
-    val item = items[position]
     holder.binding.apply {
-      pokemon = item
+      pokemon = items[position]
       executePendingBindings()
-      root.setOnClickListener {
-        val currentTime = System.currentTimeMillis()
-        if (currentTime - onClickedTime > transformationLayout.duration) {
-          onClickedTime = currentTime
-          DetailActivity.startActivity(transformationLayout, item)
-        }
-      }
     }
   }
 
