@@ -49,8 +49,9 @@ class PokemonAdapter : RecyclerView.Adapter<PokemonAdapter.PokemonViewHolder>() 
   }
 
   fun addPokemonList(pokemonList: List<Pokemon>) {
+    val previous = items.size
     items.addAll(pokemonList)
-    notifyDataSetChanged()
+    notifyItemRangeChanged(previous, pokemonList.size)
   }
 
   override fun onBindViewHolder(holder: PokemonViewHolder, position: Int) {
