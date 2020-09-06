@@ -19,7 +19,7 @@ Also fetching data from the network and integrating persisted data in the databa
 </p>
 
 ## Download
-Go to the [Releases](https://github.com/skydoves/Pokedex/releases) to download the lastest APK.
+Go to the [Releases](https://github.com/skydoves/Pokedex/releases) to download the latest APK.
 
 
 <img src="/previews/preview.gif" align="right" width="32%"/>
