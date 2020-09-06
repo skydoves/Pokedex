@@ -26,7 +26,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.databinding.BindingAdapter
-import androidx.lifecycle.LiveData
 import com.bumptech.glide.Glide
 import com.github.florent37.glidepalette.BitmapPalette
 import com.github.florent37.glidepalette.GlidePalette
@@ -41,12 +40,11 @@ import com.skydoves.progressview.ProgressView
 import com.skydoves.rainbow.Rainbow
 import com.skydoves.rainbow.RainbowOrientation
 import com.skydoves.rainbow.color
-import com.skydoves.whatif.whatIfNotNull
 import com.skydoves.whatif.whatIfNotNullOrEmpty
 
 @BindingAdapter("toast")
-fun bindToast(view: View, text: LiveData<String>) {
-  text.value.whatIfNotNull {
+fun bindToast(view: View, text: String?) {
+  text.whatIfNotNullOrEmpty {
     Toast.makeText(view.context, it, Toast.LENGTH_SHORT).show()
   }
 }

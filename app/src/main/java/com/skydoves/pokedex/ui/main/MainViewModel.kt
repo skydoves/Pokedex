@@ -38,8 +38,10 @@ class MainViewModel @ViewModelInject constructor(
   private var pokemonFetchingLiveData: MutableLiveData<Int> = MutableLiveData()
   val pokemonListLiveData: LiveData<List<Pokemon>>
 
+  private val _toastLiveData: MutableLiveData<String> = MutableLiveData()
+  val toastLiveData: LiveData<String> get() = _toastLiveData
+
   val isLoading: ObservableBoolean = ObservableBoolean(false)
-  val toastLiveData: MutableLiveData<String> = MutableLiveData()
 
   init {
     Timber.d("init MainViewModel")
@@ -50,7 +52,7 @@ class MainViewModel @ViewModelInject constructor(
         this.mainRepository.fetchPokemonList(
           page = it,
           onSuccess = { isLoading.set(false) },
-          onError = { toastLiveData.postValue(it) }
+          onError = { _toastLiveData.postValue(it) }
         ).asLiveData()
       }
     }
