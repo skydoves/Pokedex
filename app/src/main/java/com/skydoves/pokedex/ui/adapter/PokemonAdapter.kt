@@ -16,6 +16,7 @@
 
 package com.skydoves.pokedex.ui.adapter
 
+import android.os.SystemClock
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -29,7 +30,7 @@ import com.skydoves.pokedex.ui.details.DetailActivity
 class PokemonAdapter : RecyclerView.Adapter<PokemonAdapter.PokemonViewHolder>() {
 
   private val items: MutableList<Pokemon> = mutableListOf()
-  private var onClickedTime = System.currentTimeMillis()
+  private var onClickedAt = 0L
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PokemonViewHolder {
     val inflater = LayoutInflater.from(parent.context)
@@ -39,10 +40,10 @@ class PokemonAdapter : RecyclerView.Adapter<PokemonAdapter.PokemonViewHolder>() 
       binding.root.setOnClickListener {
         val position = adapterPosition.takeIf { it != NO_POSITION }
           ?: return@setOnClickListener
-        val currentTime = System.currentTimeMillis()
-        if (currentTime - onClickedTime > binding.transformationLayout.duration) {
+        val currentClickedAt = SystemClock.elapsedRealtime()
+        if (currentClickedAt - onClickedAt > binding.transformationLayout.duration) {
           DetailActivity.startActivity(binding.transformationLayout, items[position])
-          onClickedTime = currentTime
+          onClickedAt = currentClickedAt
         }
       }
     }
