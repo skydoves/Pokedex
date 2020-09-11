@@ -27,7 +27,7 @@ buildscript {
     dependencies {
         classpath "com.android.tools.build:gradle:$versions.gradleBuildTool"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
-        classpath "com.google.dagger:hilt-android-gradle-plugin:$versions.daggerHiltAndroidVersion"
+        classpath "com.google.dagger:hilt-android-gradle-plugin:$versions.daggerHiltCoreVersion"
         classpath "com.diffplug.spotless:spotless-plugin-gradle:$versions.spotlessGradle"
         classpath "com.github.ben-manes:gradle-versions-plugin:$versions.versionPlugin"
     }

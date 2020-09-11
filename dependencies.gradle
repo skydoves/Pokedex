@@ -14,82 +14,82 @@
 // * limitations under the License.
 // */
 ext.versions = [
-    minSdk                  : 21,
-    compileSdk              : 30,
-    versionCode             : 3,
-    versionName             : '1.0.2',
+    minSdk               : 21,
+    compileSdk           : 30,
+    versionCode          : 3,
+    versionName          : '1.0.2',
 
     // gradle plugins
-    gradleBuildTool         : '4.0.1',
-    spotlessGradle          : '5.2.0',
-    versionPlugin           : '0.28.0',
+    gradleBuildTool      : '4.0.1',
+    spotlessGradle       : '5.2.0',
+    versionPlugin        : '0.28.0',
 
     // kotlin
-    kotlin                  : '1.4.0',
+    kotlin               : '1.4.0',
 
     // support library
-    materialVersion         : '1.2.0-alpha06',
-    constraintVersion       : '1.1.3',
+    materialVersion      : '1.2.0-alpha06',
+    constraintVersion    : '1.1.3',
 
     // architecture components
-    fragmentVersion         : '1.2.5',
-    lifecycleVersion        : '2.2.0',
-    roomVersion             : '2.2.5',
-    archCompomentVersion    : '2.1.0',
+    fragmentVersion      : '1.2.5',
+    lifecycleVersion     : '2.2.0',
+    roomVersion          : '2.2.5',
+    archCompomentVersion : '2.1.0',
 
     // startup
-    startupVersion          : '1.0.0-alpha03',
+    startupVersion       : '1.0.0-alpha03',
 
     // di
-    daggerHiltAndroidVersion: '2.28.3-alpha',
-    daggerHiltVersion       : '1.0.0-alpha02',
+    daggerHiltCoreVersion: '2.29.1-alpha',
+    daggerHiltVersion    : '1.0.0-alpha02',
 
     // network
-    retrofitVersion         : '2.9.0',
-    okhttpVersion           : '4.7.2',
-    sandwichVersion         : '1.0.4',
+    retrofitVersion      : '2.9.0',
+    okhttpVersion        : '4.7.2',
+    sandwichVersion      : '1.0.4',
 
     // moshi
-    moshiVersion            : '1.9.2',
-    moshiConverterVersion   : '2.7.2',
+    moshiVersion         : '1.9.2',
+    moshiConverterVersion: '2.7.2',
 
     // coroutines
-    coroutinesVersion       : '1.3.9',
+    coroutinesVersion    : '1.3.9',
 
     // glide
-    glideVersion            : '4.11.0',
-    glidePaletteVersion     : '2.1.2',
+    glideVersion         : '4.11.0',
+    glidePaletteVersion  : '2.1.2',
 
     // transformation
-    transformationLayout    : '1.0.4',
+    transformationLayout : '1.0.4',
 
     // adapter
-    baseAdapter             : '0.1.3',
+    baseAdapter          : '0.1.3',
 
     // whatIf
-    whatIfVersion           : '1.0.6',
+    whatIfVersion        : '1.0.6',
 
     // android ribbon
-    androidRibbonVersion    : '1.0.2',
+    androidRibbonVersion : '1.0.2',
 
     // progress view
-    progressViewVersion     : '1.0.9',
+    progressViewVersion  : '1.0.9',
 
     // rainbow
-    rainbowVersion          : '1.0.2',
+    rainbowVersion       : '1.0.2',
 
     // debugging
-    timberVersion           : '4.7.1',
+    timberVersion        : '4.7.1',
 
     // unit test
-    truthVersion            : '1.0.1',
-    junitVersion            : '4.12',
-    turbineVersion          : '0.2.0',
-    robolectricVersion      : '4.3.1',
-    androidxTest            : '1.1.0',
-    androidxTestJunit       : '1.1.2-rc01',
-    androidTestRunner       : '1.3.0-beta01',
-    espressoVersion         : '3.2.0',
-    mockitoKotlinVersion    : '2.2.0',
-    mockitoInlineVersion    : '3.3.3'
+    truthVersion         : '1.0.1',
+    junitVersion         : '4.12',
+    turbineVersion       : '0.2.0',
+    robolectricVersion   : '4.3.1',
+    androidxTest         : '1.1.0',
+    androidxTestJunit    : '1.1.2-rc01',
+    androidTestRunner    : '1.3.0-beta01',
+    espressoVersion      : '3.2.0',
+    mockitoKotlinVersion : '2.2.0',
+    mockitoInlineVersion : '3.3.3'
 ]

@@ -100,14 +100,13 @@ dependencies {
     implementation "androidx.startup:startup-runtime:$versions.startupVersion"
 
     // dagger
-    implementation "com.google.dagger:hilt-android:$versions.daggerHiltAndroidVersion"
-    implementation "com.google.dagger:hilt-android-testing:$versions.daggerHiltAndroidVersion"
+    implementation "com.google.dagger:hilt-android:$versions.daggerHiltCoreVersion"
     implementation "androidx.hilt:hilt-common:$versions.daggerHiltVersion"
     implementation "androidx.hilt:hilt-lifecycle-viewmodel:$versions.daggerHiltVersion"
-    kapt "com.google.dagger:hilt-android-compiler:$versions.daggerHiltAndroidVersion"
+    kapt "com.google.dagger:hilt-compiler:$versions.daggerHiltCoreVersion"
     kapt "androidx.hilt:hilt-compiler:$versions.daggerHiltVersion"
-    androidTestImplementation "com.google.dagger:hilt-android-testing:$versions.daggerHiltAndroidVersion"
-    kaptAndroidTest "com.google.dagger:hilt-android-compiler:$versions.daggerHiltAndroidVersion"
+    androidTestImplementation "com.google.dagger:hilt-android-testing:$versions.daggerHiltCoreVersion"
+    kaptAndroidTest "com.google.dagger:hilt-compiler:$versions.daggerHiltCoreVersion"
 
     // network
     implementation "com.github.skydoves:sandwich:$versions.sandwichVersion"
