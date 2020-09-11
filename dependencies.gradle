@@ -29,7 +29,7 @@ ext.versions = [
 
     // support library
     materialVersion      : '1.2.0-alpha06',
-    constraintVersion    : '1.1.3',
+    constraintVersion    : '2.0.1',
 
     // architecture components
     fragmentVersion      : '1.2.5',
