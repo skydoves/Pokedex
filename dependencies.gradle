@@ -25,7 +25,7 @@ ext.versions = [
     versionPlugin        : '0.28.0',
 
     // kotlin
-    kotlin               : '1.4.0',
+    kotlin               : '1.4.10',
 
     // support library
     materialVersion      : '1.2.0-alpha06',
