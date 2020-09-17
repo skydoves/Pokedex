@@ -38,7 +38,7 @@ ext.versions = [
     archCompomentVersion : '2.1.0',
 
     // startup
-    startupVersion       : '1.0.0-alpha03',
+    startupVersion       : '1.0.0-beta01',
 
     // di
     daggerHiltCoreVersion: '2.29.1-alpha',
