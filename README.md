@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">  
-Pokedex is a small demo application based on modern Android application tech-stacks and MVVM architecture.<br>This project is for focusing especially on the new library Dagger-Hilt of implementing dependency injection.<br>
+Pokedex is a small demo application based on modern Android application tech-stacks and MVVM architecture.<br>This project is for focusing especially on the new library Hilt of implementing dependency injection.<br>
 Also fetching data from the network and integrating persisted data in the database via repository pattern.
 </p>
 </br>
@@ -27,7 +27,7 @@ Go to the [Releases](https://github.com/skydoves/Pokedex/releases) to download t
 ## Tech stack & Open-source libraries
 - Minimum SDK level 21
 - [Kotlin](https://kotlinlang.org/) based, [Coroutines](https://github.com/Kotlin/kotlinx.coroutines) + [Flow](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/) for asynchronous.
-- Dagger-Hilt (alpha) for dependency injection.
+- Hilt (alpha) for dependency injection.
 - JetPack
   - LiveData - notify domain layer data to views.
   - Lifecycle - dispose of observing data when lifecycle state changes.
