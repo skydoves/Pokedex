@@ -33,7 +33,6 @@ import com.skydoves.pokedex.repository.DetailRepository
 import com.skydoves.pokedex.ui.details.DetailViewModel
 import com.skydoves.pokedex.utils.MockUtil
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Rule
@@ -59,7 +58,7 @@ class DetailViewModelTest {
   @Before
   fun setup() {
     detailRepository = DetailRepository(pokdexClient, pokemonInfoDao)
-    viewModel = DetailViewModel(detailRepository,"skydoves")
+    viewModel = DetailViewModel(detailRepository, "skydoves")
   }
 
   @Test

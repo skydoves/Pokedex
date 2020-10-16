@@ -40,8 +40,8 @@ class DetailActivity : DataBindingActivity() {
   @VisibleForTesting
   val viewModel: DetailViewModel by viewModels {
     DetailViewModel.provideFactory(
-            detailViewModelFactory,
-            pokemonItem.name
+      detailViewModelFactory,
+      pokemonItem.name
     )
   }
 
