@@ -16,45 +16,50 @@
 
 package com.skydoves.pokedex.ui.details
 
-import androidx.annotation.MainThread
 import androidx.databinding.ObservableBoolean
-import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.asLiveData
-import androidx.lifecycle.switchMap
+import androidx.lifecycle.*
 import com.skydoves.pokedex.base.LiveCoroutinesViewModel
 import com.skydoves.pokedex.model.PokemonInfo
 import com.skydoves.pokedex.repository.DetailRepository
+import com.squareup.inject.assisted.Assisted
+import com.squareup.inject.assisted.AssistedInject
 import timber.log.Timber
 
-class DetailViewModel @ViewModelInject constructor(
-  private val detailRepository: DetailRepository
+class DetailViewModel @AssistedInject constructor(
+        private val detailRepository: DetailRepository,
+        @Assisted private val pokemonName: String
 ) : LiveCoroutinesViewModel() {
 
-  private var pokemonFetchingLiveData: MutableLiveData<String> = MutableLiveData()
-  val pokemonInfoLiveData: LiveData<PokemonInfo?>
-
-  val isLoading: ObservableBoolean = ObservableBoolean(false)
-  val toastLiveData: MutableLiveData<String> = MutableLiveData()
-
-  init {
-    Timber.d("init DetailViewModel")
-
-    pokemonInfoLiveData = pokemonFetchingLiveData.switchMap {
-      isLoading.set(true)
-      launchOnViewModelScope {
-        this.detailRepository.fetchPokemonInfo(
-          name = it,
-          onSuccess = { isLoading.set(false) },
-          onError = { toastLiveData.postValue(it) }
+    val isLoading: ObservableBoolean = ObservableBoolean(false)
+    val toastLiveData: MutableLiveData<String> = MutableLiveData()
+    val pokemonInfoLiveData: LiveData<PokemonInfo?> = launchOnViewModelScope(block = {
+        isLoading.set(true)
+        detailRepository.fetchPokemonInfo(
+                name = pokemonName,
+                onSuccess = { isLoading.set(false) },
+                onError = { toastLiveData.postValue(it) }
         ).asLiveData()
-      }
-    }
-  }
+    })
 
-  @MainThread
-  fun fetchPokemonInfo(name: String) {
-    pokemonFetchingLiveData.value = name
-  }
+    init {
+        Timber.d("init DetailViewModel")
+    }
+
+    @AssistedInject.Factory
+    interface AssistedFactory {
+        fun create(pokemonName: String): DetailViewModel
+    }
+
+    companion object {
+        fun provideFactory(
+                assistedFactory: AssistedFactory,
+                pokemonName: String
+        ): ViewModelProvider.Factory = object : ViewModelProvider.Factory {
+            @Suppress("UNCHECKED_CAST")
+            override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+                return assistedFactory.create(pokemonName) as T
+            }
+        }
+    }
 }
+

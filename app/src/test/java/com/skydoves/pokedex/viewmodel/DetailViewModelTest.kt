@@ -59,7 +59,7 @@ class DetailViewModelTest {
   @Before
   fun setup() {
     detailRepository = DetailRepository(pokdexClient, pokemonInfoDao)
-    viewModel = DetailViewModel(detailRepository)
+    viewModel = DetailViewModel(detailRepository,"skydoves")
   }
 
   @Test
@@ -75,9 +75,6 @@ class DetailViewModelTest {
         onError = {}
       ).asLiveData()
     fetchedData.observeForever(observer)
-
-    viewModel.fetchPokemonInfo(name = "skydoves")
-    delay(500L)
 
     verify(pokemonInfoDao, atLeastOnce()).getPokemonInfo(name_ = "skydoves")
     verify(observer).onChanged(mockData)
