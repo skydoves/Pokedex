@@ -41,19 +41,18 @@ class DetailActivity : DataBindingActivity() {
   val viewModel: DetailViewModel by viewModels {
     DetailViewModel.provideFactory(
             detailViewModelFactory,
-            pokemonName
+            pokemonItem.name
     )
   }
 
   private val binding: ActivityDetailBinding by binding(R.layout.activity_detail)
-  private var pokemonName: String = ""
+
+  private val pokemonItem: Pokemon
+    get() = requireNotNull(intent.getParcelableExtra(EXTRA_POKEMON))
 
   override fun onCreate(savedInstanceState: Bundle?) {
     onTransformationEndContainerApplyParams()
     super.onCreate(savedInstanceState)
-    val pokemonItem: Pokemon = requireNotNull(intent.getParcelableExtra(EXTRA_POKEMON))
-    pokemonName = pokemonItem.name
-
     binding.apply {
       pokemon = pokemonItem
       lifecycleOwner = this@DetailActivity
