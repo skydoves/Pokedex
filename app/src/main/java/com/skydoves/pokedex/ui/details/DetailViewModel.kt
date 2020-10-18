@@ -34,21 +34,24 @@ class DetailViewModel @AssistedInject constructor(
   @Assisted private val pokemonName: String
 ) : LiveCoroutinesViewModel() {
 
+  val pokemonInfoLiveData: LiveData<PokemonInfo?>
+
+  private val _toastLiveData: MutableLiveData<String> = MutableLiveData()
+  val toastLiveData: LiveData<String> get() = _toastLiveData
+
   val isLoading: ObservableBoolean = ObservableBoolean(false)
-  val toastLiveData: MutableLiveData<String> = MutableLiveData()
-  val pokemonInfoLiveData: LiveData<PokemonInfo?> = launchOnViewModelScope(
-    block = {
+
+  init {
+    Timber.d("init DetailViewModel")
+
+    pokemonInfoLiveData = launchOnViewModelScope {
       isLoading.set(true)
       detailRepository.fetchPokemonInfo(
         name = pokemonName,
         onSuccess = { isLoading.set(false) },
-        onError = { toastLiveData.postValue(it) }
+        onError = { _toastLiveData.postValue(it) }
       ).asLiveData()
     }
-  )
-
-  init {
-    Timber.d("init DetailViewModel")
   }
 
   @AssistedInject.Factory

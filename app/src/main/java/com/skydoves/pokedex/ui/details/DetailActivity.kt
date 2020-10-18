@@ -61,7 +61,6 @@ class DetailActivity : DataBindingActivity() {
   }
 
   companion object {
-
     @VisibleForTesting const val EXTRA_POKEMON = "EXTRA_POKEMON"
 
     fun startActivity(transformationLayout: TransformationLayout, pokemon: Pokemon) {
