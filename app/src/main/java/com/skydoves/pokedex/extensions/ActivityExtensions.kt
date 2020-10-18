@@ -16,9 +16,17 @@
 
 package com.skydoves.pokedex.extensions
 
-import androidx.appcompat.app.AppCompatActivity
+import android.os.Parcelable
+import androidx.activity.ComponentActivity
+import com.skydoves.transformationlayout.TransformationLayout
 import com.skydoves.transformationlayout.onTransformationEndContainer
 
-fun AppCompatActivity.onTransformationEndContainerApplyParams() {
+/** apply [TransformationLayout.Params] to an activity. */
+fun ComponentActivity.onTransformationEndContainerApplyParams() {
   onTransformationEndContainer(intent.getParcelableExtra("com.skydoves.transformationlayout"))
+}
+
+/** initialize a parcelable argument lazily. */
+fun <T : Parcelable> ComponentActivity.argument(key: String): Lazy<T> {
+  return lazy { requireNotNull(intent.getParcelableExtra<T>(key)) }
 }
