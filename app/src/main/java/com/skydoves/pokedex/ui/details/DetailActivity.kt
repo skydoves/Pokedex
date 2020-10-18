@@ -29,21 +29,34 @@ import com.skydoves.pokedex.model.Pokemon
 import com.skydoves.transformationlayout.TransformationCompat
 import com.skydoves.transformationlayout.TransformationLayout
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class DetailActivity : DataBindingActivity() {
 
-  @VisibleForTesting val viewModel: DetailViewModel by viewModels()
+  @Inject
+  lateinit var detailViewModelFactory: DetailViewModel.AssistedFactory
+
+  @VisibleForTesting
+  val viewModel: DetailViewModel by viewModels {
+    DetailViewModel.provideFactory(
+      detailViewModelFactory,
+      pokemonItem.name
+    )
+  }
+
   private val binding: ActivityDetailBinding by binding(R.layout.activity_detail)
+
+  private val pokemonItem: Pokemon
+    get() = requireNotNull(intent.getParcelableExtra(EXTRA_POKEMON))
 
   override fun onCreate(savedInstanceState: Bundle?) {
     onTransformationEndContainerApplyParams()
     super.onCreate(savedInstanceState)
-    val pokemonItem: Pokemon = requireNotNull(intent.getParcelableExtra(EXTRA_POKEMON))
     binding.apply {
       pokemon = pokemonItem
       lifecycleOwner = this@DetailActivity
-      vm = viewModel.apply { fetchPokemonInfo(pokemonItem.name) }
+      vm = viewModel
     }
   }
 
