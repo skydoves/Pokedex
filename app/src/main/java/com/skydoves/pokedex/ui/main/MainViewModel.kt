@@ -35,7 +35,7 @@ class MainViewModel @ViewModelInject constructor(
   @Assisted private val savedStateHandle: SavedStateHandle
 ) : LiveCoroutinesViewModel() {
 
-  private var pokemonFetchingLiveData: MutableLiveData<Int> = MutableLiveData()
+  private var pokemonFetchingLiveData: MutableLiveData<Int> = MutableLiveData(0)
   val pokemonListLiveData: LiveData<List<Pokemon>>
 
   private val _toastLiveData: MutableLiveData<String> = MutableLiveData()
@@ -45,7 +45,6 @@ class MainViewModel @ViewModelInject constructor(
 
   init {
     Timber.d("init MainViewModel")
-
     pokemonListLiveData = pokemonFetchingLiveData.switchMap {
       isLoading.set(true)
       launchOnViewModelScope {

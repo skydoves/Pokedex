@@ -38,7 +38,7 @@ class MainActivity : DataBindingActivity() {
     binding.apply {
       lifecycleOwner = this@MainActivity
       adapter = PokemonAdapter()
-      vm = viewModel.apply { fetchPokemonList(0) }
+      vm = viewModel
     }
   }
 }
