@@ -45,6 +45,7 @@ class MainViewModel @ViewModelInject constructor(
 
   init {
     Timber.d("init MainViewModel")
+
     pokemonListLiveData = pokemonFetchingLiveData.switchMap {
       isLoading.set(true)
       launchOnViewModelScope {
