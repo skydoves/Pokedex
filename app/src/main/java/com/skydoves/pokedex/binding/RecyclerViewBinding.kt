@@ -24,26 +24,32 @@ import com.skydoves.pokedex.ui.adapter.PokemonAdapter
 import com.skydoves.pokedex.ui.main.MainViewModel
 import com.skydoves.whatif.whatIfNotNullOrEmpty
 
-@BindingAdapter("adapter")
-fun bindAdapter(view: RecyclerView, adapter: RecyclerView.Adapter<*>) {
-  view.adapter = adapter
-}
+object RecyclerViewBinding {
 
-@BindingAdapter("paginationPokemonList")
-fun paginationPokemonList(view: RecyclerView, viewModel: MainViewModel) {
-  RecyclerViewPaginator(
-    recyclerView = view,
-    isLoading = { viewModel.isLoading.get() },
-    loadMore = { viewModel.fetchPokemonList(it) },
-    onLast = { false }
-  ).run {
-    threshold = 8
+  @JvmStatic
+  @BindingAdapter("adapter")
+  fun bindAdapter(view: RecyclerView, adapter: RecyclerView.Adapter<*>) {
+    view.adapter = adapter
   }
-}
 
-@BindingAdapter("adapterPokemonList")
-fun bindAdapterPokemonList(view: RecyclerView, pokemonList: List<Pokemon>?) {
-  pokemonList.whatIfNotNullOrEmpty {
-    (view.adapter as? PokemonAdapter)?.addPokemonList(it)
+  @JvmStatic
+  @BindingAdapter("paginationPokemonList")
+  fun paginationPokemonList(view: RecyclerView, viewModel: MainViewModel) {
+    RecyclerViewPaginator(
+      recyclerView = view,
+      isLoading = { viewModel.isLoading.get() },
+      loadMore = { viewModel.fetchPokemonList(it) },
+      onLast = { false }
+    ).run {
+      threshold = 8
+    }
+  }
+
+  @JvmStatic
+  @BindingAdapter("adapterPokemonList")
+  fun bindAdapterPokemonList(view: RecyclerView, pokemonList: List<Pokemon>?) {
+    pokemonList.whatIfNotNullOrEmpty {
+      (view.adapter as? PokemonAdapter)?.addPokemonList(it)
+    }
   }
 }
