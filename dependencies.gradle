@@ -20,12 +20,12 @@ ext.versions = [
     versionName          : '1.0.2',
 
     // gradle plugins
-    gradleBuildTool      : '4.1.0',
-    spotlessGradle       : '5.8.0',
+    gradleBuildTool      : '4.1.1',
+    spotlessGradle       : '5.8.2',
     versionPlugin        : '0.28.0',
 
     // kotlin
-    kotlin               : '1.4.10',
+    kotlin               : '1.4.20',
 
     // support library
     materialVersion      : '1.2.0-alpha06',
