@@ -15,9 +15,9 @@
 // */
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'dagger.hilt.android.plugin'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'org.jetbrains.kotlin.plugin.parcelize'
 apply from: '../dependencies.gradle'
 
 android {
@@ -49,10 +49,7 @@ android {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
     buildFeatures {
-        dataBinding = true
-    }
-    androidExtensions {
-        experimental = true
+        dataBinding true
     }
     lintOptions {
         abortOnError false
