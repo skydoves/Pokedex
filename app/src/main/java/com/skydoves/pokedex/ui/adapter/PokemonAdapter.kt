@@ -49,7 +49,7 @@ class PokemonAdapter : RecyclerView.Adapter<PokemonAdapter.PokemonViewHolder>() 
     }
   }
 
-  fun addPokemonList(pokemonList: List<Pokemon>) {
+  fun setPokemonList(pokemonList: List<Pokemon>) {
     val previousItemSize = items.size
     items.clear()
     items.addAll(pokemonList)

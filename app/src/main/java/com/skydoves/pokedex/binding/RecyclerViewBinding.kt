@@ -53,7 +53,7 @@ object RecyclerViewBinding {
   fun bindAdapterPokemonList(view: RecyclerView, pokemonList: List<Pokemon>?) {
     pokemonList.whatIfNotNullOrEmpty { itemList ->
       view.adapter.whatIfNotNullAs<PokemonAdapter> { adapter ->
-        adapter.addPokemonList(itemList)
+        adapter.setPokemonList(itemList)
       }
     }
   }
