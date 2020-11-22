@@ -48,7 +48,7 @@ class MainRepository @Inject constructor(
           pokemons = response.results
           pokemons.forEach { pokemon -> pokemon.page = page }
           pokemonDao.insertPokemonList(pokemons)
-          emit(pokemons)
+          emit(pokemonDao.getAllPokemonList(page))
           onSuccess()
         }
       }
@@ -63,7 +63,7 @@ class MainRepository @Inject constructor(
           onError(message())
         }
     } else {
-      emit(pokemons)
+      emit(pokemonDao.getAllPokemonList(page))
       onSuccess()
     }
   }.flowOn(Dispatchers.IO)
