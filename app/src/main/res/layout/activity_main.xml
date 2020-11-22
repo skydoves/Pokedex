@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   Designed and developed by 2020 skydoves (Jaewoong Eum)
 
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -50,6 +49,7 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.recyclerview.widget.RecyclerView
+      android:id="@+id/recyclerView"
       android:layout_width="match_parent"
       android:layout_height="0dp"
       android:clipToPadding="false"
@@ -63,13 +63,14 @@
       app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
+      app:layout_constraintTop_toBottomOf="@id/appBarLayout"
       app:paginationPokemonList="@{vm}"
       app:spanCount="2"
       app:toast="@{vm.toastLiveData}"
       tools:listitem="@layout/item_pokemon" />
 
     <ProgressBar
+      android:id="@+id/progressbar"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       app:gone="@{!vm.loading}"

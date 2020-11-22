@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   Designed and developed by 2020 skydoves (Jaewoong Eum)
 
   Licensed under the Apache License, Version 2.0 (the "License");
@@ -47,6 +46,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:foreground="?attr/selectableItemBackground"
+        tools:background="@color/background800"
         tools:ignore="UnusedAttribute">
 
         <androidx.appcompat.widget.AppCompatImageView

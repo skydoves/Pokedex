@@ -28,6 +28,7 @@ import androidx.lifecycle.switchMap
 import com.skydoves.pokedex.base.LiveCoroutinesViewModel
 import com.skydoves.pokedex.model.Pokemon
 import com.skydoves.pokedex.repository.MainRepository
+import kotlinx.coroutines.flow.MutableStateFlow
 import timber.log.Timber
 
 class MainViewModel @ViewModelInject constructor(
@@ -35,7 +36,7 @@ class MainViewModel @ViewModelInject constructor(
   @Assisted private val savedStateHandle: SavedStateHandle
 ) : LiveCoroutinesViewModel() {
 
-  private var pokemonFetchingLiveData: MutableLiveData<Int> = MutableLiveData(0)
+  private val pokemonFetchingIndex: MutableStateFlow<Int> = MutableStateFlow(0)
   val pokemonListLiveData: LiveData<List<Pokemon>>
 
   private val _toastLiveData: MutableLiveData<String> = MutableLiveData()
@@ -46,7 +47,7 @@ class MainViewModel @ViewModelInject constructor(
   init {
     Timber.d("init MainViewModel")
 
-    pokemonListLiveData = pokemonFetchingLiveData.switchMap {
+    pokemonListLiveData = pokemonFetchingIndex.asLiveData().switchMap {
       isLoading.set(true)
       launchOnViewModelScope {
         this.mainRepository.fetchPokemonList(
@@ -59,7 +60,7 @@ class MainViewModel @ViewModelInject constructor(
   }
 
   @MainThread
-  fun fetchPokemonList(page: Int) {
-    pokemonFetchingLiveData.value = page
+  fun fetchPokemonList() {
+    pokemonFetchingIndex.value++
   }
 }

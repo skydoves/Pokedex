@@ -136,7 +136,8 @@ dependencies {
     // transformation
     implementation "com.github.skydoves:transformationlayout:$versions.transformationLayout"
 
-    // adapter
+    // recyclerView
+    implementation "androidx.recyclerview:recyclerview:$versions.recyclerView"
     implementation "com.github.skydoves:baserecyclerviewadapter:$versions.baseAdapter"
 
     // whatIf
