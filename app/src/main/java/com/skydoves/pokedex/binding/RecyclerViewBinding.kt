@@ -22,6 +22,7 @@ import com.skydoves.baserecyclerviewadapter.RecyclerViewPaginator
 import com.skydoves.pokedex.model.Pokemon
 import com.skydoves.pokedex.ui.adapter.PokemonAdapter
 import com.skydoves.pokedex.ui.main.MainViewModel
+import com.skydoves.whatif.whatIfNotNullAs
 import com.skydoves.whatif.whatIfNotNullOrEmpty
 
 object RecyclerViewBinding {
@@ -29,7 +30,9 @@ object RecyclerViewBinding {
   @JvmStatic
   @BindingAdapter("adapter")
   fun bindAdapter(view: RecyclerView, adapter: RecyclerView.Adapter<*>) {
-    view.adapter = adapter
+    view.adapter = adapter.apply {
+      stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
+    }
   }
 
   @JvmStatic
@@ -38,7 +41,7 @@ object RecyclerViewBinding {
     RecyclerViewPaginator(
       recyclerView = view,
       isLoading = { viewModel.isLoading.get() },
-      loadMore = { viewModel.fetchPokemonList(it) },
+      loadMore = { viewModel.fetchPokemonList() },
       onLast = { false }
     ).run {
       threshold = 8
@@ -48,8 +51,10 @@ object RecyclerViewBinding {
   @JvmStatic
   @BindingAdapter("adapterPokemonList")
   fun bindAdapterPokemonList(view: RecyclerView, pokemonList: List<Pokemon>?) {
-    pokemonList.whatIfNotNullOrEmpty {
-      (view.adapter as? PokemonAdapter)?.addPokemonList(it)
+    pokemonList.whatIfNotNullOrEmpty { itemList ->
+      view.adapter.whatIfNotNullAs<PokemonAdapter> { adapter ->
+        adapter.addPokemonList(itemList)
+      }
     }
   }
 }
