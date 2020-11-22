@@ -38,7 +38,7 @@ class PokemonAdapter : RecyclerView.Adapter<PokemonAdapter.PokemonViewHolder>() 
       DataBindingUtil.inflate<ItemPokemonBinding>(inflater, R.layout.item_pokemon, parent, false)
     return PokemonViewHolder(binding).apply {
       binding.root.setOnClickListener {
-        val position = adapterPosition.takeIf { it != NO_POSITION }
+        val position = bindingAdapterPosition.takeIf { it != NO_POSITION }
           ?: return@setOnClickListener
         val currentClickedAt = SystemClock.elapsedRealtime()
         if (currentClickedAt - onClickedAt > binding.transformationLayout.duration) {
@@ -50,9 +50,10 @@ class PokemonAdapter : RecyclerView.Adapter<PokemonAdapter.PokemonViewHolder>() 
   }
 
   fun addPokemonList(pokemonList: List<Pokemon>) {
-    val previous = items.size
+    val previousItemSize = items.size
+    items.clear()
     items.addAll(pokemonList)
-    notifyItemRangeChanged(previous, pokemonList.size)
+    notifyItemRangeChanged(previousItemSize, pokemonList.size)
   }
 
   override fun onBindViewHolder(holder: PokemonViewHolder, position: Int) {
