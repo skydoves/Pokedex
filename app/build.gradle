@@ -15,9 +15,9 @@
 // */
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
-apply plugin: 'dagger.hilt.android.plugin'
+apply plugin: 'kotlin-parcelize'
 apply plugin: 'kotlin-kapt'
-apply plugin: 'org.jetbrains.kotlin.plugin.parcelize'
+apply plugin: 'dagger.hilt.android.plugin'
 apply from: '../dependencies.gradle'
 
 android {
