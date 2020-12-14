@@ -46,6 +46,10 @@ class DetailRepository @Inject constructor(
   ) = flow<PokemonInfo?> {
     val pokemonInfo = pokemonInfoDao.getPokemonInfo(name)
     if (pokemonInfo == null) {
+      /**
+       * fetches a [PokemonInfo] from the network and getting [ApiResponse] asynchronously.
+       * @see [suspendOnSuccess](https://github.com/skydoves/sandwich#suspendonsuccess-suspendonerror-suspendonexception)
+       */
       val response = pokedexClient.fetchPokemonInfo(name = name)
       response.suspendOnSuccess {
         data.whatIfNotNull { response ->
@@ -54,13 +58,13 @@ class DetailRepository @Inject constructor(
           onSuccess()
         }
       }
-        // handle the case when the API request gets an error response.
+        // handles the case when the API request gets an error response.
         // e.g., internal server error.
         .onError {
           /** maps the [ApiResponse.Failure.Error] to the [PokemonErrorResponse] using the mapper. */
           map(ErrorResponseMapper) { onError("[Code: $code]: $message") }
         }
-        // handle the case when the API request gets an exception response.
+        // handles the case when the API request gets an exception response.
         // e.g., network connection error.
         .onException { onError(message) }
     } else {
