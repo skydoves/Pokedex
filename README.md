@@ -42,6 +42,7 @@ Go to the [Releases](https://github.com/skydoves/Pokedex/releases) to download t
 - [Glide](https://github.com/bumptech/glide), [GlidePalette](https://github.com/florent37/GlidePalette) - loading images.
 - [TransformationLayout](https://github.com/skydoves/transformationlayout) - implementing transformation motion animations.
 - [WhatIf](https://github.com/skydoves/whatif) - checking nullable object and empty collections more fluently.
+- [Bundler](https://github.com/skydoves/bundler) - Android Intent & Bundle extensions that insert and retrieve values elegantly.
 - [Timber](https://github.com/JakeWharton/timber) - logging.
 - [Material-Components](https://github.com/material-components/material-components-android) - Material design components like ripple animation, cardView.
 - Custom Views
