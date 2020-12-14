@@ -17,9 +17,12 @@
 package com.skydoves.pokedex.repository
 
 import androidx.annotation.WorkerThread
+import com.skydoves.pokedex.mapper.ErrorResponseMapper
+import com.skydoves.pokedex.model.PokemonErrorResponse
 import com.skydoves.pokedex.network.PokedexClient
 import com.skydoves.pokedex.persistence.PokemonDao
-import com.skydoves.sandwich.message
+import com.skydoves.sandwich.ApiResponse
+import com.skydoves.sandwich.map
 import com.skydoves.sandwich.onError
 import com.skydoves.sandwich.onException
 import com.skydoves.sandwich.suspendOnSuccess
@@ -38,7 +41,7 @@ class MainRepository @Inject constructor(
   suspend fun fetchPokemonList(
     page: Int,
     onSuccess: () -> Unit,
-    onError: (String) -> Unit
+    onError: (String?) -> Unit
   ) = flow {
     var pokemons = pokemonDao.getPokemonList(page)
     if (pokemons.isEmpty()) {
@@ -53,15 +56,14 @@ class MainRepository @Inject constructor(
         }
       }
         // handle the case when the API request gets an error response.
-        // e.g. internal server error.
+        // e.g., internal server error.
         .onError {
-          onError(message())
+          /** maps the [ApiResponse.Failure.Error] to the [PokemonErrorResponse] using the mapper. */
+          map(ErrorResponseMapper) { onError("[Code: $code]: $message") }
         }
         // handle the case when the API request gets an exception response.
-        // e.g. network connection error.
-        .onException {
-          onError(message())
-        }
+        // e.g., network connection error.
+        .onException { onError(message) }
     } else {
       emit(pokemonDao.getAllPokemonList(page))
       onSuccess()

@@ -16,6 +16,9 @@
 
 package com.skydoves.pokedex.network
 
+import com.skydoves.pokedex.model.PokemonInfo
+import com.skydoves.pokedex.model.PokemonResponse
+import com.skydoves.sandwich.ApiResponse
 import javax.inject.Inject
 
 class PokedexClient @Inject constructor(
@@ -24,16 +27,18 @@ class PokedexClient @Inject constructor(
 
   suspend fun fetchPokemonList(
     page: Int
-  ) = pokedexService.fetchPokemonList(
-    limit = PAGING_SIZE,
-    offset = page * PAGING_SIZE
-  )
+  ): ApiResponse<PokemonResponse> =
+    pokedexService.fetchPokemonList(
+      limit = PAGING_SIZE,
+      offset = page * PAGING_SIZE
+    )
 
   suspend fun fetchPokemonInfo(
     name: String
-  ) = pokedexService.fetchPokemonInfo(
-    name = name
-  )
+  ): ApiResponse<PokemonInfo> =
+    pokedexService.fetchPokemonInfo(
+      name = name
+    )
 
   companion object {
     private const val PAGING_SIZE = 20
