@@ -128,10 +128,16 @@ dependencies {
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.coroutinesVersion"
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$versions.coroutinesVersion"
 
+    // whatIf
+    implementation "com.github.skydoves:whatif:$versions.whatIfVersion"
+
     // glide
     implementation "com.github.bumptech.glide:glide:$versions.glideVersion"
     implementation "com.github.florent37:glidepalette:$versions.glidePaletteVersion"
     kapt "com.github.bumptech.glide:compiler:$versions.glideVersion"
+
+    // bundler
+    implementation "com.github.skydoves:bundler:$versions.bundlerVersion"
 
     // transformation
     implementation "com.github.skydoves:transformationlayout:$versions.transformationLayout"
@@ -139,9 +145,6 @@ dependencies {
     // recyclerView
     implementation "androidx.recyclerview:recyclerview:$versions.recyclerView"
     implementation "com.github.skydoves:baserecyclerviewadapter:$versions.baseAdapter"
-
-    // whatIf
-    implementation "com.github.skydoves:whatif:$versions.whatIfVersion"
 
     // gradation
     implementation "com.github.skydoves:rainbow:$versions.rainbowVersion"
