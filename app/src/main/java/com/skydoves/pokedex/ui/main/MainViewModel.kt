@@ -60,7 +60,5 @@ class MainViewModel @ViewModelInject constructor(
   }
 
   @MainThread
-  fun fetchPokemonList() {
-    pokemonFetchingIndex.value++
-  }
+  fun fetchPokemonList() = pokemonFetchingIndex.value++
 }

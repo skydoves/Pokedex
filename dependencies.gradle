@@ -57,9 +57,15 @@ ext.versions = [
     // coroutines
     coroutinesVersion    : '1.4.1',
 
+    // whatIf
+    whatIfVersion        : '1.0.9',
+
     // glide
     glideVersion         : '4.11.0',
     glidePaletteVersion  : '2.1.2',
+
+    // bundler
+    bundlerVersion       : '1.0.3',
 
     // transformation
     transformationLayout : '1.0.4',
@@ -67,9 +73,6 @@ ext.versions = [
     // adapter
     recyclerView         : '1.2.0-alpha06',
     baseAdapter          : '0.1.3',
-
-    // whatIf
-    whatIfVersion        : '1.0.8',
 
     // android ribbon
     androidRibbonVersion : '1.0.3',
