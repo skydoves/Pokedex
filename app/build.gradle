@@ -18,7 +18,8 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-parcelize'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'dagger.hilt.android.plugin'
-apply from: '../dependencies.gradle'
+
+apply from: "$rootDir/dependencies.gradle"
 
 android {
     compileSdkVersion versions.compileSdk
@@ -169,4 +170,4 @@ dependencies {
     androidTestImplementation "androidx.test.espresso:espresso-core:$versions.espressoVersion"
 }
 
-apply from: '../spotless.gradle'
+apply from: "$rootDir/spotless.gradle"

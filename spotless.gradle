@@ -18,7 +18,7 @@ spotless {
     kotlin {
         target "**/*.kt"
         ktlint('0.39.0').userData(['indent_size': '2', 'continuation_indent_size': '2'])
-        licenseHeaderFile '../spotless.license.kt'
+        licenseHeaderFile "$rootDir/spotless.license.kt"
         trimTrailingWhitespace()
         endWithNewline()
     }
