@@ -21,8 +21,9 @@ ext.versions = [
 
     // gradle plugins
     gradleBuildTool      : '4.1.1',
-    spotlessGradle       : '5.8.2',
+    spotlessGradle       : '5.9.0',
     versionPlugin        : '0.28.0',
+    ktlint               : '0.40.0',
 
     // kotlin
     kotlin               : '1.4.20',
