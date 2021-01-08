@@ -39,7 +39,7 @@ class MainRepository @Inject constructor(
 ) : Repository {
 
   @WorkerThread
-  suspend fun fetchPokemonList(
+  fun fetchPokemonList(
     page: Int,
     onSuccess: () -> Unit,
     onError: (String?) -> Unit

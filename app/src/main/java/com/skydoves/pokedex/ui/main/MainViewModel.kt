@@ -47,15 +47,13 @@ class MainViewModel @ViewModelInject constructor(
   init {
     Timber.d("init MainViewModel")
 
-    pokemonListLiveData = pokemonFetchingIndex.asLiveData().switchMap {
+    pokemonListLiveData = pokemonFetchingIndex.asLiveData().switchMap { page ->
       isLoading.set(true)
-      launchOnViewModelScope {
-        this.mainRepository.fetchPokemonList(
-          page = it,
-          onSuccess = { isLoading.set(false) },
-          onError = { _toastLiveData.postValue(it) }
-        ).asLiveData()
-      }
+      mainRepository.fetchPokemonList(
+        page = page,
+        onSuccess = { isLoading.set(false) },
+        onError = { _toastLiveData.postValue(it) }
+      ).asLiveDataOnViewModelScope()
     }
   }
 

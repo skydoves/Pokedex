@@ -39,7 +39,7 @@ class DetailRepository @Inject constructor(
 ) : Repository {
 
   @WorkerThread
-  suspend fun fetchPokemonInfo(
+  fun fetchPokemonInfo(
     name: String,
     onSuccess: () -> Unit,
     onError: (String?) -> Unit

@@ -21,7 +21,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.asLiveData
 import com.skydoves.pokedex.base.LiveCoroutinesViewModel
 import com.skydoves.pokedex.model.PokemonInfo
 import com.skydoves.pokedex.repository.DetailRepository
@@ -30,7 +29,7 @@ import com.squareup.inject.assisted.AssistedInject
 import timber.log.Timber
 
 class DetailViewModel @AssistedInject constructor(
-  private val detailRepository: DetailRepository,
+  detailRepository: DetailRepository,
   @Assisted private val pokemonName: String
 ) : LiveCoroutinesViewModel() {
 
@@ -39,19 +38,16 @@ class DetailViewModel @AssistedInject constructor(
   private val _toastLiveData: MutableLiveData<String> = MutableLiveData()
   val toastLiveData: LiveData<String> get() = _toastLiveData
 
-  val isLoading: ObservableBoolean = ObservableBoolean(false)
+  val isLoading: ObservableBoolean = ObservableBoolean(true)
 
   init {
     Timber.d("init DetailViewModel")
 
-    pokemonInfoLiveData = launchOnViewModelScope {
-      isLoading.set(true)
-      detailRepository.fetchPokemonInfo(
-        name = pokemonName,
-        onSuccess = { isLoading.set(false) },
-        onError = { _toastLiveData.postValue(it) }
-      ).asLiveData()
-    }
+    pokemonInfoLiveData = detailRepository.fetchPokemonInfo(
+      name = pokemonName,
+      onSuccess = { isLoading.set(false) },
+      onError = { _toastLiveData.postValue(it) }
+    ).asLiveDataOnViewModelScope()
   }
 
   @AssistedInject.Factory
