@@ -16,7 +16,6 @@
 
 package com.skydoves.pokedex.network
 
-import com.nhaarman.mockitokotlin2.mock
 import com.skydoves.pokedex.MainCoroutinesRule
 import com.skydoves.sandwich.ApiResponse
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -32,7 +31,6 @@ import java.io.IOException
 class PokedexServiceTest : ApiAbstract<PokedexService>() {
 
   private lateinit var service: PokedexService
-  private val client: PokedexClient = mock()
 
   @ExperimentalCoroutinesApi
   @get:Rule
@@ -51,7 +49,6 @@ class PokedexServiceTest : ApiAbstract<PokedexService>() {
     val responseBody = requireNotNull((response as ApiResponse.Success).data)
     mockWebServer.takeRequest()
 
-    client.fetchPokemonList(page = 0)
     assertThat(responseBody.count, `is`(964))
     assertThat(responseBody.results[0].name, `is`("bulbasaur"))
     assertThat(responseBody.results[0].url, `is`("https://pokeapi.co/api/v2/pokemon/1/"))
@@ -65,7 +62,6 @@ class PokedexServiceTest : ApiAbstract<PokedexService>() {
     val responseBody = requireNotNull((response as ApiResponse.Success).data)
     mockWebServer.takeRequest()
 
-    client.fetchPokemonInfo(name = "bulbasaur")
     assertThat(responseBody.id, `is`(1))
     assertThat(responseBody.name, `is`("bulbasaur"))
     assertThat(responseBody.height, `is`(7))
