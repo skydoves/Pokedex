@@ -76,6 +76,7 @@ class DetailRepositoryTest {
 
     verify(pokemonInfoDao, atLeastOnce()).getPokemonInfo(name_ = "bulbasaur")
     verify(service, atLeastOnce()).fetchPokemonInfo(name = "bulbasaur")
+    verify(client, atLeastOnce()).fetchPokemonInfo(name = "bulbasaur")
     verify(pokemonInfoDao, atLeastOnce()).insertPokemonInfo(mockData)
   }
 

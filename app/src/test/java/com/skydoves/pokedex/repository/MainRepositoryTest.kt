@@ -81,6 +81,7 @@ class MainRepositoryTest {
 
     verify(pokemonDao, atLeastOnce()).getPokemonList(page_ = 0)
     verify(service, atLeastOnce()).fetchPokemonList()
+    verify(client, atLeastOnce()).fetchPokemonList(page = 0)
     verify(pokemonDao, atLeastOnce()).insertPokemonList(mockData.results)
   }
 
