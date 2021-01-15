@@ -44,7 +44,6 @@ ext.versions = [
     // di
     hiltCoreVersion      : '2.31-alpha',
     hiltVersion          : '1.0.0-alpha02',
-    assistedInjectVersion: '0.5.2',
 
     // network
     retrofitVersion      : '2.9.0',
