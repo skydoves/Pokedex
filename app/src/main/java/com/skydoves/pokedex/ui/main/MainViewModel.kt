@@ -18,8 +18,6 @@ package com.skydoves.pokedex.ui.main
 
 import androidx.annotation.MainThread
 import androidx.databinding.ObservableBoolean
-import androidx.hilt.Assisted
-import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
@@ -28,12 +26,15 @@ import androidx.lifecycle.switchMap
 import com.skydoves.pokedex.base.LiveCoroutinesViewModel
 import com.skydoves.pokedex.model.Pokemon
 import com.skydoves.pokedex.repository.MainRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import timber.log.Timber
+import javax.inject.Inject
 
-class MainViewModel @ViewModelInject constructor(
+@HiltViewModel
+class MainViewModel @Inject constructor(
   private val mainRepository: MainRepository,
-  @Assisted private val savedStateHandle: SavedStateHandle
+  private val savedStateHandle: SavedStateHandle
 ) : LiveCoroutinesViewModel() {
 
   private val pokemonFetchingIndex: MutableStateFlow<Int> = MutableStateFlow(0)
