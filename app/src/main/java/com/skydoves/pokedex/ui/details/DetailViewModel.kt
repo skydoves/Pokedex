@@ -24,8 +24,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.skydoves.pokedex.base.LiveCoroutinesViewModel
 import com.skydoves.pokedex.model.PokemonInfo
 import com.skydoves.pokedex.repository.DetailRepository
-import com.squareup.inject.assisted.Assisted
-import com.squareup.inject.assisted.AssistedInject
+import dagger.assisted.Assisted
+import dagger.assisted.AssistedInject
 import timber.log.Timber
 
 class DetailViewModel @AssistedInject constructor(
@@ -50,7 +50,7 @@ class DetailViewModel @AssistedInject constructor(
     ).asLiveDataOnViewModelScope()
   }
 
-  @AssistedInject.Factory
+  @dagger.assisted.AssistedFactory
   interface AssistedFactory {
     fun create(pokemonName: String): DetailViewModel
   }

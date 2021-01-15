@@ -24,15 +24,15 @@ import com.skydoves.pokedex.repository.MainRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ActivityRetainedComponent
-import dagger.hilt.android.scopes.ActivityRetainedScoped
+import dagger.hilt.android.components.ViewModelComponent
+import dagger.hilt.android.scopes.ViewModelScoped
 
 @Module
-@InstallIn(ActivityRetainedComponent::class)
+@InstallIn(ViewModelComponent::class)
 object RepositoryModule {
 
   @Provides
-  @ActivityRetainedScoped
+  @ViewModelScoped
   fun provideMainRepository(
     pokedexClient: PokedexClient,
     pokemonDao: PokemonDao
@@ -41,7 +41,7 @@ object RepositoryModule {
   }
 
   @Provides
-  @ActivityRetainedScoped
+  @ViewModelScoped
   fun provideDetailRepository(
     pokedexClient: PokedexClient,
     pokemonInfoDao: PokemonInfoDao

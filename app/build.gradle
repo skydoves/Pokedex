@@ -106,8 +106,6 @@ dependencies {
     implementation "com.google.dagger:hilt-android:$versions.hiltCoreVersion"
     implementation "androidx.hilt:hilt-common:$versions.hiltVersion"
     implementation "androidx.hilt:hilt-lifecycle-viewmodel:$versions.hiltVersion"
-    compileOnly "com.squareup.inject:assisted-inject-annotations-dagger2:$versions.assistedInjectVersion"
-    kapt "com.squareup.inject:assisted-inject-processor-dagger2:$versions.assistedInjectVersion"
     kapt "com.google.dagger:hilt-compiler:$versions.hiltCoreVersion"
     kapt "androidx.hilt:hilt-compiler:$versions.hiltVersion"
     androidTestImplementation "com.google.dagger:hilt-android-testing:$versions.hiltCoreVersion"
