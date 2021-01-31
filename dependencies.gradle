@@ -43,7 +43,7 @@ ext.versions = [
 
     // di
     hiltCoreVersion      : '2.31-alpha',
-    hiltVersion          : '1.0.0-alpha02',
+    hiltVersion          : '1.0.0-alpha03',
 
     // network
     retrofitVersion      : '2.9.0',
@@ -61,7 +61,7 @@ ext.versions = [
     whatIfVersion        : '1.0.9',
 
     // glide
-    glideVersion         : '4.11.0',
+    glideVersion         : '4.12.0',
     glidePaletteVersion  : '2.1.2',
 
     // bundler
