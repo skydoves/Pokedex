@@ -19,6 +19,7 @@ buildscript {
     apply from: "$rootDir/dependencies.gradle"
     repositories {
         google()
+        mavenCentral()
         jcenter()
         maven {
             url "https://oss.sonatype.org/content/repositories/snapshots/"
@@ -36,6 +37,7 @@ buildscript {
 allprojects {
     repositories {
         google()
+        mavenCentral()
         jcenter()
         maven {
             url "https://oss.sonatype.org/content/repositories/snapshots/"
