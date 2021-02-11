@@ -19,10 +19,10 @@ package com.skydoves.pokedex.ui.details
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.annotation.VisibleForTesting
+import com.skydoves.bindables.BindingActivity
 import com.skydoves.bundler.bundleNonNull
 import com.skydoves.bundler.intentOf
 import com.skydoves.pokedex.R
-import com.skydoves.pokedex.base.DataBindingActivity
 import com.skydoves.pokedex.databinding.ActivityDetailBinding
 import com.skydoves.pokedex.extensions.onTransformationEndContainerApplyParams
 import com.skydoves.pokedex.model.Pokemon
@@ -32,7 +32,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class DetailActivity : DataBindingActivity() {
+class DetailActivity : BindingActivity<ActivityDetailBinding>(R.layout.activity_detail) {
 
   @Inject
   lateinit var detailViewModelFactory: DetailViewModel.AssistedFactory
@@ -42,13 +42,12 @@ class DetailActivity : DataBindingActivity() {
     DetailViewModel.provideFactory(detailViewModelFactory, pokemonItem.name)
   }
 
-  private val binding: ActivityDetailBinding by binding(R.layout.activity_detail)
   private val pokemonItem: Pokemon by bundleNonNull(EXTRA_POKEMON)
 
   override fun onCreate(savedInstanceState: Bundle?) {
     onTransformationEndContainerApplyParams()
     super.onCreate(savedInstanceState)
-    binding.apply {
+    binding {
       lifecycleOwner = this@DetailActivity
       pokemon = pokemonItem
       vm = viewModel

@@ -40,7 +40,7 @@ object RecyclerViewBinding {
   fun paginationPokemonList(view: RecyclerView, viewModel: MainViewModel) {
     RecyclerViewPaginator(
       recyclerView = view,
-      isLoading = { viewModel.isLoading.get() },
+      isLoading = { viewModel.isLoading },
       loadMore = { viewModel.fetchPokemonList() },
       onLast = { false }
     ).run {

@@ -16,11 +16,11 @@
 
 package com.skydoves.pokedex.ui.details
 
-import androidx.databinding.ObservableBoolean
+import androidx.databinding.Bindable
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.skydoves.bindables.bindingProperty
 import com.skydoves.pokedex.base.LiveCoroutinesViewModel
 import com.skydoves.pokedex.model.PokemonInfo
 import com.skydoves.pokedex.repository.DetailRepository
@@ -35,18 +35,21 @@ class DetailViewModel @AssistedInject constructor(
 
   val pokemonInfoLiveData: LiveData<PokemonInfo?>
 
-  private val _toastLiveData: MutableLiveData<String> = MutableLiveData()
-  val toastLiveData: LiveData<String> get() = _toastLiveData
+  @get:Bindable
+  var toastMessage: String? by bindingProperty(null)
+    private set
 
-  val isLoading: ObservableBoolean = ObservableBoolean(true)
+  @get:Bindable
+  var isLoading: Boolean by bindingProperty(true)
+    private set
 
   init {
     Timber.d("init DetailViewModel")
 
     pokemonInfoLiveData = detailRepository.fetchPokemonInfo(
       name = pokemonName,
-      onSuccess = { isLoading.set(false) },
-      onError = { _toastLiveData.postValue(it) }
+      onSuccess = { isLoading = false },
+      onError = { toastMessage = it }
     ).asLiveDataOnViewModelScope()
   }
 

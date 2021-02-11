@@ -19,23 +19,23 @@ package com.skydoves.pokedex.ui.main
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.annotation.VisibleForTesting
+import com.skydoves.bindables.BindingActivity
 import com.skydoves.pokedex.R
-import com.skydoves.pokedex.base.DataBindingActivity
 import com.skydoves.pokedex.databinding.ActivityMainBinding
 import com.skydoves.pokedex.ui.adapter.PokemonAdapter
 import com.skydoves.transformationlayout.onTransformationStartContainer
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainActivity : DataBindingActivity() {
+class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main) {
 
-  @VisibleForTesting val viewModel: MainViewModel by viewModels()
-  private val binding: ActivityMainBinding by binding(R.layout.activity_main)
+  @VisibleForTesting
+  val viewModel: MainViewModel by viewModels()
 
   override fun onCreate(savedInstanceState: Bundle?) {
     onTransformationStartContainer()
     super.onCreate(savedInstanceState)
-    binding.apply {
+    binding {
       lifecycleOwner = this@MainActivity
       adapter = PokemonAdapter()
       vm = viewModel
