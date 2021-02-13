@@ -39,13 +39,13 @@ ext.versions = [
     archCompomentVersion : '2.1.0',
 
     // binding
-    bindablesVersion     : '1.0.0',
+    bindablesVersion     : '1.0.1',
 
     // startup
     startupVersion       : '1.0.0',
 
     // di
-    hiltCoreVersion      : '2.31-alpha',
+    hiltCoreVersion      : '2.32-alpha',
     hiltVersion          : '1.0.0-alpha03',
 
     // network
