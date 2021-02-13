@@ -70,6 +70,7 @@ class MainRepositoryTest {
 
     repository.fetchPokemonList(
       page = 0,
+      onStart = {},
       onSuccess = {},
       onError = {}
     ).test {
@@ -93,6 +94,7 @@ class MainRepositoryTest {
 
     repository.fetchPokemonList(
       page = 0,
+      onStart = {},
       onSuccess = {},
       onError = {}
     ).test {

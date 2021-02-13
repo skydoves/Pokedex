@@ -72,6 +72,7 @@ class MainViewModelTest {
     val fetchedData: LiveData<List<Pokemon>> =
       mainRepository.fetchPokemonList(
         page = 0,
+        onStart = {},
         onSuccess = {},
         onError = {}
       ).asLiveData()
