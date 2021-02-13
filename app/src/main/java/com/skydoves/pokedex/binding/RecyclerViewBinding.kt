@@ -41,7 +41,7 @@ object RecyclerViewBinding {
     RecyclerViewPaginator(
       recyclerView = view,
       isLoading = { viewModel.isLoading },
-      loadMore = { viewModel.fetchPokemonList() },
+      loadMore = { viewModel.fetchNextPokemonList() },
       onLast = { false }
     ).run {
       threshold = 8

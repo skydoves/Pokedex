@@ -31,6 +31,7 @@ import com.skydoves.whatif.whatIfNotNull
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.onStart
 import javax.inject.Inject
 
 class MainRepository @Inject constructor(
@@ -41,6 +42,7 @@ class MainRepository @Inject constructor(
   @WorkerThread
   fun fetchPokemonList(
     page: Int,
+    onStart: () -> Unit,
     onSuccess: () -> Unit,
     onError: (String?) -> Unit
   ) = flow {
@@ -73,5 +75,5 @@ class MainRepository @Inject constructor(
       emit(pokemonDao.getAllPokemonList(page))
       onSuccess()
     }
-  }.flowOn(Dispatchers.IO)
+  }.onStart { onStart() }.flowOn(Dispatchers.IO)
 }

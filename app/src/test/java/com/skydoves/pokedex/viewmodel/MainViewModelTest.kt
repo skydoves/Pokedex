@@ -77,7 +77,7 @@ class MainViewModelTest {
       ).asLiveData()
     fetchedData.observeForever(observer)
 
-    viewModel.fetchPokemonList()
+    viewModel.fetchNextPokemonList()
     delay(500L)
 
     verify(pokemonDao, atLeastOnce()).getPokemonList(page_ = 0)

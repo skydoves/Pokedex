@@ -52,9 +52,9 @@ class MainViewModel @Inject constructor(
     Timber.d("init MainViewModel")
 
     pokemonListLiveData = pokemonFetchingIndex.asLiveData().switchMap { page ->
-      isLoading = true
       mainRepository.fetchPokemonList(
         page = page,
+        onStart = { isLoading = true },
         onSuccess = { isLoading = false },
         onError = { toastMessage = it }
       ).asLiveDataOnViewModelScope()
@@ -62,5 +62,9 @@ class MainViewModel @Inject constructor(
   }
 
   @MainThread
-  fun fetchPokemonList() = pokemonFetchingIndex.value++
+  fun fetchNextPokemonList() {
+    if (!isLoading) {
+      pokemonFetchingIndex.value++
+    }
+  }
 }
