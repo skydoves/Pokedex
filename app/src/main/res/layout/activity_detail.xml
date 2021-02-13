@@ -118,7 +118,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:paletteImage="@{pokemon.imageUrl}"
         app:paletteView="@{header}"
-        app:toast="@{vm.toastLiveData}" />
+        app:toast="@{vm.toastMessage}" />
 
       <com.skydoves.androidribbon.RibbonRecyclerView
         android:id="@+id/ribbonRecyclerView"

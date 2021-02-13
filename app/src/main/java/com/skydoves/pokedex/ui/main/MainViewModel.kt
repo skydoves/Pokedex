@@ -17,12 +17,12 @@
 package com.skydoves.pokedex.ui.main
 
 import androidx.annotation.MainThread
-import androidx.databinding.ObservableBoolean
+import androidx.databinding.Bindable
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.switchMap
+import com.skydoves.bindables.bindingProperty
 import com.skydoves.pokedex.base.LiveCoroutinesViewModel
 import com.skydoves.pokedex.model.Pokemon
 import com.skydoves.pokedex.repository.MainRepository
@@ -40,20 +40,23 @@ class MainViewModel @Inject constructor(
   private val pokemonFetchingIndex: MutableStateFlow<Int> = MutableStateFlow(0)
   val pokemonListLiveData: LiveData<List<Pokemon>>
 
-  private val _toastLiveData: MutableLiveData<String> = MutableLiveData()
-  val toastLiveData: LiveData<String> get() = _toastLiveData
+  @get:Bindable
+  var toastMessage: String? by bindingProperty(null)
+    private set
 
-  val isLoading: ObservableBoolean = ObservableBoolean(false)
+  @get:Bindable
+  var isLoading: Boolean by bindingProperty(false)
+    private set
 
   init {
     Timber.d("init MainViewModel")
 
     pokemonListLiveData = pokemonFetchingIndex.asLiveData().switchMap { page ->
-      isLoading.set(true)
+      isLoading = true
       mainRepository.fetchPokemonList(
         page = page,
-        onSuccess = { isLoading.set(false) },
-        onError = { _toastLiveData.postValue(it) }
+        onSuccess = { isLoading = false },
+        onError = { toastMessage = it }
       ).asLiveDataOnViewModelScope()
     }
   }

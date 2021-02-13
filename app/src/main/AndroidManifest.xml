@@ -49,7 +49,7 @@
       tools:node="merge">
 
       <meta-data
-        android:name="com.skydoves.pokedex.initializer.TimberInitializer"
+        android:name="com.skydoves.pokedex.initializer.BindingInitializer"
         android:value="androidx.startup" />
     </provider>
   </application>

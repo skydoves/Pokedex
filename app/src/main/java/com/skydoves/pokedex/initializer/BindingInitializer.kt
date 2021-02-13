@@ -14,18 +14,20 @@
  * limitations under the License.
  */
 
-package com.skydoves.pokedex.base
+package com.skydoves.pokedex.initializer
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.asLiveData
-import androidx.lifecycle.viewModelScope
-import com.skydoves.bindables.BindingViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
+import android.content.Context
+import androidx.startup.Initializer
+import com.skydoves.bindables.BindingManager
+import com.skydoves.pokedex.BR
+import timber.log.Timber
 
-abstract class LiveCoroutinesViewModel : BindingViewModel() {
+class BindingInitializer : Initializer<Unit> {
 
-  fun <T> Flow<T>.asLiveDataOnViewModelScope(): LiveData<T> {
-    return asLiveData(viewModelScope.coroutineContext + Dispatchers.IO)
+  override fun create(context: Context) {
+    BindingManager.bind(BR::class)
+    Timber.d("BindingInitializer is initialized.")
   }
+
+  override fun dependencies(): List<Class<out Initializer<*>>> = listOf(TimberInitializer::class.java)
 }

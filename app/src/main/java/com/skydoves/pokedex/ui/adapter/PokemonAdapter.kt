@@ -17,11 +17,10 @@
 package com.skydoves.pokedex.ui.adapter
 
 import android.os.SystemClock
-import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.NO_POSITION
+import com.skydoves.bindables.binding
 import com.skydoves.pokedex.R
 import com.skydoves.pokedex.databinding.ItemPokemonBinding
 import com.skydoves.pokedex.model.Pokemon
@@ -33,9 +32,7 @@ class PokemonAdapter : RecyclerView.Adapter<PokemonAdapter.PokemonViewHolder>() 
   private var onClickedAt = 0L
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PokemonViewHolder {
-    val inflater = LayoutInflater.from(parent.context)
-    val binding =
-      DataBindingUtil.inflate<ItemPokemonBinding>(inflater, R.layout.item_pokemon, parent, false)
+    val binding = parent.binding<ItemPokemonBinding>(R.layout.item_pokemon)
     return PokemonViewHolder(binding).apply {
       binding.root.setOnClickListener {
         val position = bindingAdapterPosition.takeIf { it != NO_POSITION }

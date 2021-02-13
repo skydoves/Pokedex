@@ -99,6 +99,9 @@ dependencies {
     kapt "androidx.room:room-compiler:$versions.roomVersion"
     testImplementation "androidx.arch.core:core-testing:$versions.archCompomentVersion"
 
+    // binding
+    implementation "com.github.skydoves:bindables:$versions.bindablesVersion"
+
     // startup
     implementation "androidx.startup:startup-runtime:$versions.startupVersion"
 
