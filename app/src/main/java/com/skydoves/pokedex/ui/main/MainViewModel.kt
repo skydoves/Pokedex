@@ -53,11 +53,11 @@ class MainViewModel @Inject constructor(
 
     pokemonListLiveData = pokemonFetchingIndex.asLiveData().switchMap { page ->
       mainRepository.fetchPokemonList(
-              page = page,
-              onStart = { isLoading = true },
-              onSuccess = {},
-              onError = { toastMessage = it },
-              onDone = { isLoading = false }
+        page = page,
+        onStart = { isLoading = true },
+        onSuccess = { },
+        onError = { toastMessage = it },
+        onDone = { isLoading = false },
       ).asLiveDataOnViewModelScope()
     }
   }
