@@ -72,7 +72,8 @@ class MainRepositoryTest {
       page = 0,
       onStart = {},
       onSuccess = {},
-      onError = {}
+      onError = {},
+      onDone = {},
     ).test {
       assertEquals(expectItem()[0].page, 0)
       assertEquals(expectItem()[0].name, "bulbasaur")
@@ -96,7 +97,8 @@ class MainRepositoryTest {
       page = 0,
       onStart = {},
       onSuccess = {},
-      onError = {}
+      onError = {},
+      onDone = {},
     ).test {
       assertEquals(expectItem()[0].page, 0)
       assertEquals(expectItem()[0].name, "bulbasaur")

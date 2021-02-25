@@ -31,6 +31,7 @@ import com.skydoves.whatif.whatIfNotNull
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onStart
 import javax.inject.Inject
 
@@ -44,7 +45,8 @@ class MainRepository @Inject constructor(
     page: Int,
     onStart: () -> Unit,
     onSuccess: () -> Unit,
-    onError: (String?) -> Unit
+    onError: (String?) -> Unit,
+    onDone: () -> Unit
   ) = flow {
     var pokemons = pokemonDao.getPokemonList(page)
     if (pokemons.isEmpty()) {
@@ -75,5 +77,5 @@ class MainRepository @Inject constructor(
       emit(pokemonDao.getAllPokemonList(page))
       onSuccess()
     }
-  }.onStart { onStart() }.flowOn(Dispatchers.IO)
+  }.onStart { onStart() }.flowOn(Dispatchers.IO).onCompletion { onDone() }
 }

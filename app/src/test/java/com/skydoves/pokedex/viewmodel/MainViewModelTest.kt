@@ -74,7 +74,8 @@ class MainViewModelTest {
         page = 0,
         onStart = {},
         onSuccess = {},
-        onError = {}
+        onError = {},
+        onDone = {},
       ).asLiveData()
     fetchedData.observeForever(observer)
 
