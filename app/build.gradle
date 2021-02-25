@@ -100,7 +100,9 @@ dependencies {
     testImplementation "androidx.arch.core:core-testing:$versions.archCompomentVersion"
 
     // binding
-    implementation "com.github.skydoves:bindables:$versions.bindablesVersion"
+    implementation ("com.github.skydoves:bindables:$versions.bindablesVersion") {
+        exclude group: "com.google.android.material"
+    }
 
     // startup
     implementation "androidx.startup:startup-runtime:$versions.startupVersion"

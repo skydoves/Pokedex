@@ -71,7 +71,7 @@ ext.versions = [
     bundlerVersion       : '1.0.3',
 
     // transformation
-    transformationLayout : '1.0.7',
+    transformationLayout : '1.0.4',
 
     // adapter
     recyclerView         : '1.2.0-beta01',
