@@ -71,9 +71,8 @@ class MainRepositoryTest {
     repository.fetchPokemonList(
       page = 0,
       onStart = {},
-      onSuccess = {},
-      onError = {},
-      onDone = {},
+      onComplete = {},
+      onError = {}
     ).test {
       assertEquals(expectItem()[0].page, 0)
       assertEquals(expectItem()[0].name, "bulbasaur")
@@ -96,9 +95,8 @@ class MainRepositoryTest {
     repository.fetchPokemonList(
       page = 0,
       onStart = {},
-      onSuccess = {},
-      onError = {},
-      onDone = {},
+      onComplete = {},
+      onError = {}
     ).test {
       assertEquals(expectItem()[0].page, 0)
       assertEquals(expectItem()[0].name, "bulbasaur")

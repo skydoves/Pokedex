@@ -73,9 +73,8 @@ class MainViewModelTest {
       mainRepository.fetchPokemonList(
         page = 0,
         onStart = {},
-        onSuccess = {},
-        onError = {},
-        onDone = {},
+        onComplete = {},
+        onError = {}
       ).asLiveData()
     fetchedData.observeForever(observer)
 
