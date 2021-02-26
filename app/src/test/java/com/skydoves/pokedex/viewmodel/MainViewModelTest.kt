@@ -16,31 +16,26 @@
 
 package com.skydoves.pokedex.viewmodel
 
-import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.Observer
 import androidx.lifecycle.SavedStateHandle
-import androidx.lifecycle.asLiveData
+import app.cash.turbine.test
 import com.nhaarman.mockitokotlin2.atLeastOnce
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
 import com.skydoves.pokedex.MainCoroutinesRule
-import com.skydoves.pokedex.model.Pokemon
 import com.skydoves.pokedex.network.PokedexClient
 import com.skydoves.pokedex.network.PokedexService
 import com.skydoves.pokedex.persistence.PokemonDao
 import com.skydoves.pokedex.repository.MainRepository
 import com.skydoves.pokedex.ui.main.MainViewModel
 import com.skydoves.pokedex.utils.MockUtil
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
+import org.junit.Assert
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import kotlin.time.seconds
 
-@ExperimentalCoroutinesApi
 class MainViewModelTest {
 
   private lateinit var viewModel: MainViewModel
@@ -49,14 +44,9 @@ class MainViewModelTest {
   private val pokdexClient: PokedexClient = PokedexClient(pokedexService)
   private val pokemonDao: PokemonDao = mock()
 
-  @ExperimentalCoroutinesApi
   @get:Rule
   var coroutinesRule = MainCoroutinesRule()
 
-  @get:Rule
-  var instantExecutorRule = InstantTaskExecutorRule()
-
-  @ExperimentalCoroutinesApi
   @Before
   fun setup() {
     mainRepository = MainRepository(pokdexClient, pokemonDao)
@@ -67,22 +57,27 @@ class MainViewModelTest {
   fun fetchPokemonListTest() = runBlocking {
     val mockData = MockUtil.mockPokemonList()
     whenever(pokemonDao.getPokemonList(page_ = 0)).thenReturn(mockData)
+    whenever(pokemonDao.getAllPokemonList(page_ = 0)).thenReturn(mockData)
 
-    val observer: Observer<List<Pokemon>> = mock()
-    val fetchedData: LiveData<List<Pokemon>> =
-      mainRepository.fetchPokemonList(
-        page = 0,
-        onStart = {},
-        onSuccess = {},
-        onError = {}
-      ).asLiveData()
-    fetchedData.observeForever(observer)
+    val fetchedDataFlow = mainRepository.fetchPokemonList(
+      page = 0,
+      onStart = {},
+      onSuccess = {},
+      onError = {}
+    ).test(2.seconds) {
+      val item = expectItem()
+      Assert.assertEquals(item[0].page, 0)
+      Assert.assertEquals(item[0].name, "bulbasaur")
+      Assert.assertEquals(item, MockUtil.mockPokemonList())
+      expectComplete()
+    }
 
     viewModel.fetchNextPokemonList()
-    delay(500L)
 
     verify(pokemonDao, atLeastOnce()).getPokemonList(page_ = 0)
-    verify(observer).onChanged(mockData)
-    fetchedData.removeObserver(observer)
+
+    fetchedDataFlow.apply {
+      // runBlocking should return Unit
+    }
   }
 }

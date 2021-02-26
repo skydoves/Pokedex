@@ -18,7 +18,6 @@
 
 package com.skydoves.pokedex.repository
 
-import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import app.cash.turbine.test
 import com.nhaarman.mockitokotlin2.atLeastOnce
 import com.nhaarman.mockitokotlin2.mock
@@ -31,15 +30,14 @@ import com.skydoves.pokedex.network.PokedexService
 import com.skydoves.pokedex.persistence.PokemonInfoDao
 import com.skydoves.pokedex.utils.MockUtil.mockPokemonInfo
 import com.skydoves.sandwich.ApiResponse
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import retrofit2.Response
+import kotlin.time.seconds
 
-@ExperimentalCoroutinesApi
 class DetailRepositoryTest {
 
   private lateinit var repository: DetailRepository
@@ -47,14 +45,9 @@ class DetailRepositoryTest {
   private val service: PokedexService = mock()
   private val pokemonInfoDao: PokemonInfoDao = mock()
 
-  @ExperimentalCoroutinesApi
   @get:Rule
   var coroutinesRule = MainCoroutinesRule()
 
-  @get:Rule
-  var instantExecutorRule = InstantTaskExecutorRule()
-
-  @ExperimentalCoroutinesApi
   @Before
   fun setup() {
     client = PokedexClient(service)
@@ -68,16 +61,17 @@ class DetailRepositoryTest {
     whenever(service.fetchPokemonInfo(name = "bulbasaur")).thenReturn(ApiResponse.of { Response.success(mockData) })
 
     repository.fetchPokemonInfo(name = "bulbasaur", onSuccess = {}, onError = {}).test {
-      assertEquals(expectItem()?.id, mockData.id)
-      assertEquals(expectItem()?.name, mockData.name)
-      assertEquals(expectItem(), mockData)
+      val expectItem = requireNotNull(expectItem())
+      assertEquals(expectItem.id, mockData.id)
+      assertEquals(expectItem.name, mockData.name)
+      assertEquals(expectItem, mockData)
       expectComplete()
     }
 
     verify(pokemonInfoDao, atLeastOnce()).getPokemonInfo(name_ = "bulbasaur")
     verify(service, atLeastOnce()).fetchPokemonInfo(name = "bulbasaur")
-    verify(client, atLeastOnce()).fetchPokemonInfo(name = "bulbasaur")
     verify(pokemonInfoDao, atLeastOnce()).insertPokemonInfo(mockData)
+    verifyNoMoreInteractions(service)
   }
 
   @Test
@@ -86,10 +80,11 @@ class DetailRepositoryTest {
     whenever(pokemonInfoDao.getPokemonInfo(name_ = "bulbasaur")).thenReturn(mockData)
     whenever(service.fetchPokemonInfo(name = "bulbasaur")).thenReturn(ApiResponse.of { Response.success(mockData) })
 
-    repository.fetchPokemonInfo(name = "bulbasaur", onSuccess = {}, onError = {}).test {
-      assertEquals(expectItem()?.id, mockData.id)
-      assertEquals(expectItem()?.name, mockData.name)
-      assertEquals(expectItem(), mockData)
+    repository.fetchPokemonInfo(name = "bulbasaur", onSuccess = {}, onError = {}).test(5.seconds) {
+      val expectItem = requireNotNull(expectItem())
+      assertEquals(expectItem.id, mockData.id)
+      assertEquals(expectItem.name, mockData.name)
+      assertEquals(expectItem, mockData)
       expectComplete()
     }
 

@@ -18,7 +18,6 @@
 
 package com.skydoves.pokedex.repository
 
-import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import app.cash.turbine.test
 import com.nhaarman.mockitokotlin2.atLeastOnce
 import com.nhaarman.mockitokotlin2.mock
@@ -32,15 +31,14 @@ import com.skydoves.pokedex.network.PokedexService
 import com.skydoves.pokedex.persistence.PokemonDao
 import com.skydoves.pokedex.utils.MockUtil.mockPokemonList
 import com.skydoves.sandwich.ApiResponse
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import retrofit2.Response
+import kotlin.time.seconds
 
-@ExperimentalCoroutinesApi
 class MainRepositoryTest {
 
   private lateinit var repository: MainRepository
@@ -48,14 +46,9 @@ class MainRepositoryTest {
   private val service: PokedexService = mock()
   private val pokemonDao: PokemonDao = mock()
 
-  @ExperimentalCoroutinesApi
   @get:Rule
   var coroutinesRule = MainCoroutinesRule()
 
-  @get:Rule
-  var instantExecutorRule = InstantTaskExecutorRule()
-
-  @ExperimentalCoroutinesApi
   @Before
   fun setup() {
     client = PokedexClient(service)
@@ -66,6 +59,7 @@ class MainRepositoryTest {
   fun fetchPokemonListFromNetworkTest() = runBlocking {
     val mockData = PokemonResponse(count = 984, next = null, previous = null, results = mockPokemonList())
     whenever(pokemonDao.getPokemonList(page_ = 0)).thenReturn(emptyList())
+    whenever(pokemonDao.getAllPokemonList(page_ = 0)).thenReturn(mockData.results)
     whenever(service.fetchPokemonList()).thenReturn(ApiResponse.of { Response.success(mockData) })
 
     repository.fetchPokemonList(
@@ -73,38 +67,44 @@ class MainRepositoryTest {
       onStart = {},
       onSuccess = {},
       onError = {}
-    ).test {
-      assertEquals(expectItem()[0].page, 0)
-      assertEquals(expectItem()[0].name, "bulbasaur")
-      assertEquals(expectItem(), mockPokemonList())
+    ).test(2.seconds) {
+      val expectItem = expectItem()[0]
+      assertEquals(expectItem.page, 0)
+      assertEquals(expectItem.name, "bulbasaur")
+      assertEquals(expectItem, mockPokemonList()[0])
       expectComplete()
     }
 
     verify(pokemonDao, atLeastOnce()).getPokemonList(page_ = 0)
     verify(service, atLeastOnce()).fetchPokemonList()
-    verify(client, atLeastOnce()).fetchPokemonList(page = 0)
     verify(pokemonDao, atLeastOnce()).insertPokemonList(mockData.results)
+    verifyNoMoreInteractions(service)
   }
 
   @Test
   fun fetchPokemonListFromDatabaseTest() = runBlocking {
     val mockData = PokemonResponse(count = 984, next = null, previous = null, results = mockPokemonList())
     whenever(pokemonDao.getPokemonList(page_ = 0)).thenReturn(mockData.results)
-    whenever(service.fetchPokemonList()).thenReturn(ApiResponse.of { Response.success(mockData) })
+    whenever(pokemonDao.getAllPokemonList(page_ = 0)).thenReturn(mockData.results)
 
-    repository.fetchPokemonList(
+    val fetchedDataFlow = repository.fetchPokemonList(
       page = 0,
       onStart = {},
       onSuccess = {},
       onError = {}
-    ).test {
-      assertEquals(expectItem()[0].page, 0)
-      assertEquals(expectItem()[0].name, "bulbasaur")
-      assertEquals(expectItem(), mockPokemonList())
+    ).test(2.seconds) {
+      val expectItem = expectItem()[0]
+      assertEquals(expectItem.page, 0)
+      assertEquals(expectItem.name, "bulbasaur")
+      assertEquals(expectItem, mockPokemonList()[0])
       expectComplete()
     }
 
     verify(pokemonDao, atLeastOnce()).getPokemonList(page_ = 0)
-    verifyNoMoreInteractions(service)
+    verify(pokemonDao, atLeastOnce()).getAllPokemonList(page_ = 0)
+
+    fetchedDataFlow.apply {
+      // runBlocking should return Unit
+    }
   }
 }

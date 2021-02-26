@@ -16,29 +16,25 @@
 
 package com.skydoves.pokedex.viewmodel
 
-import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.Observer
-import androidx.lifecycle.asLiveData
+import app.cash.turbine.test
 import com.nhaarman.mockitokotlin2.atLeastOnce
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
 import com.skydoves.pokedex.MainCoroutinesRule
-import com.skydoves.pokedex.model.PokemonInfo
 import com.skydoves.pokedex.network.PokedexClient
 import com.skydoves.pokedex.network.PokedexService
 import com.skydoves.pokedex.persistence.PokemonInfoDao
 import com.skydoves.pokedex.repository.DetailRepository
 import com.skydoves.pokedex.ui.details.DetailViewModel
 import com.skydoves.pokedex.utils.MockUtil
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
+import org.junit.Assert
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import kotlin.time.seconds
 
-@ExperimentalCoroutinesApi
 class DetailViewModelTest {
 
   private lateinit var viewModel: DetailViewModel
@@ -47,36 +43,36 @@ class DetailViewModelTest {
   private val pokdexClient: PokedexClient = PokedexClient(pokedexService)
   private val pokemonInfoDao: PokemonInfoDao = mock()
 
-  @ExperimentalCoroutinesApi
   @get:Rule
   var coroutinesRule = MainCoroutinesRule()
 
-  @get:Rule
-  var instantExecutorRule = InstantTaskExecutorRule()
-
-  @ExperimentalCoroutinesApi
   @Before
   fun setup() {
     detailRepository = DetailRepository(pokdexClient, pokemonInfoDao)
-    viewModel = DetailViewModel(detailRepository, "skydoves")
+    viewModel = DetailViewModel(detailRepository, "bulbasaur")
   }
 
   @Test
   fun fetchPokemonInfoTest() = runBlocking {
     val mockData = MockUtil.mockPokemonInfo()
-    whenever(pokemonInfoDao.getPokemonInfo(name_ = "skydoves")).thenReturn(mockData)
+    whenever(pokemonInfoDao.getPokemonInfo(name_ = "bulbasaur")).thenReturn(mockData)
 
-    val observer: Observer<PokemonInfo?> = mock()
-    val fetchedData: LiveData<PokemonInfo?> =
-      detailRepository.fetchPokemonInfo(
-        name = "skydoves",
-        onSuccess = {},
-        onError = {}
-      ).asLiveData()
-    fetchedData.observeForever(observer)
+    val fetchedDataFlow = detailRepository.fetchPokemonInfo(
+      name = "bulbasaur",
+      onSuccess = { },
+      onError = { }
+    ).test(2.seconds) {
+      val item = requireNotNull(expectItem())
+      Assert.assertEquals(item.id, mockData.id)
+      Assert.assertEquals(item.name, mockData.name)
+      Assert.assertEquals(item, mockData)
+      expectComplete()
+    }
 
-    verify(pokemonInfoDao, atLeastOnce()).getPokemonInfo(name_ = "skydoves")
-    verify(observer).onChanged(mockData)
-    fetchedData.removeObserver(observer)
+    verify(pokemonInfoDao, atLeastOnce()).getPokemonInfo(name_ = "bulbasaur")
+
+    fetchedDataFlow.apply {
+      // runBlocking should return Unit
+    }
   }
 }
