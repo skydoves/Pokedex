@@ -59,7 +59,7 @@ class DetailViewModelTest {
 
     val fetchedDataFlow = detailRepository.fetchPokemonInfo(
       name = "bulbasaur",
-      onSuccess = { },
+      onComplete = { },
       onError = { }
     ).test(2.seconds) {
       val item = requireNotNull(expectItem())
