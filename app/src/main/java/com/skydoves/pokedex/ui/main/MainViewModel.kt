@@ -55,9 +55,8 @@ class MainViewModel @Inject constructor(
       mainRepository.fetchPokemonList(
         page = page,
         onStart = { isLoading = true },
-        onSuccess = { },
-        onError = { toastMessage = it },
-        onDone = { isLoading = false },
+        onComplete = { isLoading = false },
+        onError = { toastMessage = it }
       ).asLiveDataOnViewModelScope()
     }
   }

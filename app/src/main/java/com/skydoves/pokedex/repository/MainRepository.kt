@@ -44,9 +44,8 @@ class MainRepository @Inject constructor(
   fun fetchPokemonList(
     page: Int,
     onStart: () -> Unit,
-    onSuccess: () -> Unit,
-    onError: (String?) -> Unit,
-    onDone: () -> Unit
+    onComplete: () -> Unit,
+    onError: (String?) -> Unit
   ) = flow {
     var pokemons = pokemonDao.getPokemonList(page)
     if (pokemons.isEmpty()) {
@@ -61,7 +60,6 @@ class MainRepository @Inject constructor(
           pokemons.forEach { pokemon -> pokemon.page = page }
           pokemonDao.insertPokemonList(pokemons)
           emit(pokemonDao.getAllPokemonList(page))
-          onSuccess()
         }
       }
         // handles the case when the API request gets an error response.
@@ -75,7 +73,6 @@ class MainRepository @Inject constructor(
         .onException { onError(message) }
     } else {
       emit(pokemonDao.getAllPokemonList(page))
-      onSuccess()
     }
-  }.onStart { onStart() }.flowOn(Dispatchers.IO).onCompletion { onDone() }
+  }.onStart { onStart() }.onCompletion { onComplete() }.flowOn(Dispatchers.IO)
 }

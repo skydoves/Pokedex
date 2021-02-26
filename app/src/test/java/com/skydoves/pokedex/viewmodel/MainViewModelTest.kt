@@ -62,7 +62,7 @@ class MainViewModelTest {
     val fetchedDataFlow = mainRepository.fetchPokemonList(
       page = 0,
       onStart = {},
-      onSuccess = {},
+      onComplete = {},
       onError = {}
     ).test(2.seconds) {
       val item = expectItem()
