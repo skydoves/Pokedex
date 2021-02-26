@@ -70,7 +70,7 @@ class DetailViewModelTest {
     val fetchedData: LiveData<PokemonInfo?> =
       detailRepository.fetchPokemonInfo(
         name = "skydoves",
-        onSuccess = {},
+        onComplete = {},
         onError = {}
       ).asLiveData()
     fetchedData.observeForever(observer)

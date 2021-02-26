@@ -67,7 +67,7 @@ class DetailRepositoryTest {
     whenever(pokemonInfoDao.getPokemonInfo(name_ = "bulbasaur")).thenReturn(null)
     whenever(service.fetchPokemonInfo(name = "bulbasaur")).thenReturn(ApiResponse.of { Response.success(mockData) })
 
-    repository.fetchPokemonInfo(name = "bulbasaur", onSuccess = {}, onError = {}).test {
+    repository.fetchPokemonInfo(name = "bulbasaur", onComplete = {}, onError = {}).test {
       assertEquals(expectItem()?.id, mockData.id)
       assertEquals(expectItem()?.name, mockData.name)
       assertEquals(expectItem(), mockData)
@@ -86,7 +86,7 @@ class DetailRepositoryTest {
     whenever(pokemonInfoDao.getPokemonInfo(name_ = "bulbasaur")).thenReturn(mockData)
     whenever(service.fetchPokemonInfo(name = "bulbasaur")).thenReturn(ApiResponse.of { Response.success(mockData) })
 
-    repository.fetchPokemonInfo(name = "bulbasaur", onSuccess = {}, onError = {}).test {
+    repository.fetchPokemonInfo(name = "bulbasaur", onComplete = {}, onError = {}).test {
       assertEquals(expectItem()?.id, mockData.id)
       assertEquals(expectItem()?.name, mockData.name)
       assertEquals(expectItem(), mockData)

@@ -48,7 +48,7 @@ class DetailViewModel @AssistedInject constructor(
 
     pokemonInfoLiveData = detailRepository.fetchPokemonInfo(
       name = pokemonName,
-      onSuccess = { isLoading = false },
+      onComplete = { isLoading = false },
       onError = { toastMessage = it }
     ).asLiveDataOnViewModelScope()
   }
