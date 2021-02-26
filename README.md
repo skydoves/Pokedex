@@ -35,6 +35,7 @@ Go to the [Releases](https://github.com/skydoves/Pokedex/releases) to download t
   - Room Persistence - construct a database using the abstract layer.
 - Architecture
   - MVVM Architecture (View - DataBinding - ViewModel - Model)
+  - [Bindables](https://github.com/skydoves/bindables) - Android DataBinding kit for notifying data changes to UI layers.
   - Repository pattern
 - [Retrofit2 & OkHttp3](https://github.com/square/retrofit) - construct the REST APIs and paging network data.
 - [Sandwich](https://github.com/skydoves/Sandwich) - construct lightweight http API response and handling error responses.
