@@ -31,6 +31,7 @@ import com.skydoves.whatif.whatIfNotNull
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onStart
 import javax.inject.Inject
 
@@ -43,7 +44,7 @@ class MainRepository @Inject constructor(
   fun fetchPokemonList(
     page: Int,
     onStart: () -> Unit,
-    onSuccess: () -> Unit,
+    onComplete: () -> Unit,
     onError: (String?) -> Unit
   ) = flow {
     var pokemons = pokemonDao.getPokemonList(page)
@@ -59,7 +60,6 @@ class MainRepository @Inject constructor(
           pokemons.forEach { pokemon -> pokemon.page = page }
           pokemonDao.insertPokemonList(pokemons)
           emit(pokemonDao.getAllPokemonList(page))
-          onSuccess()
         }
       }
         // handles the case when the API request gets an error response.
@@ -73,7 +73,6 @@ class MainRepository @Inject constructor(
         .onException { onError(message) }
     } else {
       emit(pokemonDao.getAllPokemonList(page))
-      onSuccess()
     }
-  }.onStart { onStart() }.flowOn(Dispatchers.IO)
+  }.onStart { onStart() }.onCompletion { onComplete() }.flowOn(Dispatchers.IO)
 }

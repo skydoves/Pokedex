@@ -60,7 +60,7 @@ class DetailRepositoryTest {
     whenever(pokemonInfoDao.getPokemonInfo(name_ = "bulbasaur")).thenReturn(null)
     whenever(service.fetchPokemonInfo(name = "bulbasaur")).thenReturn(ApiResponse.of { Response.success(mockData) })
 
-    repository.fetchPokemonInfo(name = "bulbasaur", onSuccess = {}, onError = {}).test {
+    repository.fetchPokemonInfo(name = "bulbasaur", onComplete = {}, onError = {}).test {
       val expectItem = requireNotNull(expectItem())
       assertEquals(expectItem.id, mockData.id)
       assertEquals(expectItem.name, mockData.name)
@@ -80,7 +80,7 @@ class DetailRepositoryTest {
     whenever(pokemonInfoDao.getPokemonInfo(name_ = "bulbasaur")).thenReturn(mockData)
     whenever(service.fetchPokemonInfo(name = "bulbasaur")).thenReturn(ApiResponse.of { Response.success(mockData) })
 
-    repository.fetchPokemonInfo(name = "bulbasaur", onSuccess = {}, onError = {}).test(5.seconds) {
+    repository.fetchPokemonInfo(name = "bulbasaur", onComplete = {}, onError = {}).test(5.seconds) {
       val expectItem = requireNotNull(expectItem())
       assertEquals(expectItem.id, mockData.id)
       assertEquals(expectItem.name, mockData.name)

@@ -65,7 +65,7 @@ class MainRepositoryTest {
     repository.fetchPokemonList(
       page = 0,
       onStart = {},
-      onSuccess = {},
+      onComplete = {},
       onError = {}
     ).test(2.seconds) {
       val expectItem = expectItem()[0]
@@ -90,7 +90,7 @@ class MainRepositoryTest {
     val fetchedDataFlow = repository.fetchPokemonList(
       page = 0,
       onStart = {},
-      onSuccess = {},
+      onComplete = {},
       onError = {}
     ).test(2.seconds) {
       val expectItem = expectItem()[0]
