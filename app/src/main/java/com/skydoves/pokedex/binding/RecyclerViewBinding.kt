@@ -19,8 +19,7 @@ package com.skydoves.pokedex.binding
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.skydoves.baserecyclerviewadapter.RecyclerViewPaginator
-import com.skydoves.pokedex.model.Pokemon
-import com.skydoves.pokedex.ui.adapter.PokemonAdapter
+import com.skydoves.bindables.BindingListAdapter
 import com.skydoves.pokedex.ui.main.MainViewModel
 import com.skydoves.whatif.whatIfNotNullAs
 import com.skydoves.whatif.whatIfNotNullOrEmpty
@@ -36,6 +35,16 @@ object RecyclerViewBinding {
   }
 
   @JvmStatic
+  @BindingAdapter("submitList")
+  fun bindSubmitList(view: RecyclerView, pokemonList: List<*>?) {
+    pokemonList.whatIfNotNullOrEmpty { itemList ->
+      view.adapter.whatIfNotNullAs<BindingListAdapter<Any, *>> { adapter ->
+        adapter.submitList(itemList)
+      }
+    }
+  }
+
+  @JvmStatic
   @BindingAdapter("paginationPokemonList")
   fun paginationPokemonList(view: RecyclerView, viewModel: MainViewModel) {
     RecyclerViewPaginator(
@@ -45,16 +54,6 @@ object RecyclerViewBinding {
       onLast = { false }
     ).run {
       threshold = 8
-    }
-  }
-
-  @JvmStatic
-  @BindingAdapter("adapterPokemonList")
-  fun bindAdapterPokemonList(view: RecyclerView, pokemonList: List<Pokemon>?) {
-    pokemonList.whatIfNotNullOrEmpty { itemList ->
-      view.adapter.whatIfNotNullAs<PokemonAdapter> { adapter ->
-        adapter.setPokemonList(itemList)
-      }
     }
   }
 }
