@@ -59,13 +59,13 @@
       android:scrollbarThumbVertical="@drawable/scrollbar"
       android:scrollbars="vertical"
       app:adapter="@{adapter}"
-      app:adapterPokemonList="@{vm.pokemonListLiveData}"
       app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@id/appBarLayout"
       app:paginationPokemonList="@{vm}"
       app:spanCount="2"
+      app:submitList="@{vm.pokemonListLiveData}"
       app:toast="@{vm.toastMessage}"
       tools:listitem="@layout/item_pokemon" />
 
