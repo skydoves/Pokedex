@@ -18,7 +18,7 @@ package com.skydoves.pokedex.ui.adapter
 
 import android.os.SystemClock
 import android.view.ViewGroup
-import androidx.databinding.Bindable
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.NO_POSITION
 import com.skydoves.bindables.BindingListAdapter
@@ -28,11 +28,7 @@ import com.skydoves.pokedex.databinding.ItemPokemonBinding
 import com.skydoves.pokedex.model.Pokemon
 import com.skydoves.pokedex.ui.details.DetailActivity
 
-class PokemonAdapter : BindingListAdapter<Pokemon, PokemonAdapter.PokemonViewHolder>(PokemonDiffUtil()) {
-
-  @get:Bindable
-  val isEmpty: Boolean
-    get() = itemCount == 0
+class PokemonAdapter : BindingListAdapter<Pokemon, PokemonAdapter.PokemonViewHolder>(diffUtil) {
 
   private var onClickedAt = 0L
 
@@ -51,11 +47,6 @@ class PokemonAdapter : BindingListAdapter<Pokemon, PokemonAdapter.PokemonViewHol
     }
   }
 
-  override fun submitList(list: MutableList<Pokemon>?) {
-    super.submitList(list)
-    notifyPropertyChanged(::isEmpty)
-  }
-
   override fun onBindViewHolder(holder: PokemonViewHolder, position: Int) {
     holder.binding.apply {
       pokemon = getItem(position)
@@ -65,4 +56,15 @@ class PokemonAdapter : BindingListAdapter<Pokemon, PokemonAdapter.PokemonViewHol
 
   class PokemonViewHolder(val binding: ItemPokemonBinding) :
     RecyclerView.ViewHolder(binding.root)
+
+  companion object {
+    private val diffUtil = object : DiffUtil.ItemCallback<Pokemon>() {
+
+      override fun areItemsTheSame(oldItem: Pokemon, newItem: Pokemon): Boolean =
+        oldItem.name == newItem.name
+
+      override fun areContentsTheSame(oldItem: Pokemon, newItem: Pokemon): Boolean =
+        oldItem == newItem
+    }
+  }
 }
