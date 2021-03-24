@@ -22,4 +22,5 @@
   <string name="def">DEF</string>
   <string name="spd">SPD</string>
   <string name="exp">EXP</string>
+  <string name="empty_pokemon">No se puede encontrar Pokémon. 😥</string>
 </resources>
