@@ -23,6 +23,7 @@ import com.skydoves.pokedex.persistence.PokemonDao
 import com.skydoves.pokedex.persistence.PokemonInfoDao
 import com.skydoves.pokedex.persistence.TypeResponseConverter
 import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -36,7 +37,9 @@ object PersistenceModule {
   @Provides
   @Singleton
   fun provideMoshi(): Moshi {
-    return Moshi.Builder().build()
+    return Moshi.Builder()
+      .addLast(KotlinJsonAdapterFactory())
+      .build()
   }
 
   @Provides
