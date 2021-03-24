@@ -18,17 +18,18 @@ package com.skydoves.pokedex.ui.adapter
 
 import android.os.SystemClock
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.NO_POSITION
+import com.skydoves.bindables.BindingListAdapter
 import com.skydoves.bindables.binding
 import com.skydoves.pokedex.R
 import com.skydoves.pokedex.databinding.ItemPokemonBinding
 import com.skydoves.pokedex.model.Pokemon
 import com.skydoves.pokedex.ui.details.DetailActivity
 
-class PokemonAdapter : RecyclerView.Adapter<PokemonAdapter.PokemonViewHolder>() {
+class PokemonAdapter : BindingListAdapter<Pokemon, PokemonAdapter.PokemonViewHolder>(diffUtil) {
 
-  private val items: MutableList<Pokemon> = mutableListOf()
   private var onClickedAt = 0L
 
   override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PokemonViewHolder {
@@ -39,29 +40,31 @@ class PokemonAdapter : RecyclerView.Adapter<PokemonAdapter.PokemonViewHolder>() 
           ?: return@setOnClickListener
         val currentClickedAt = SystemClock.elapsedRealtime()
         if (currentClickedAt - onClickedAt > binding.transformationLayout.duration) {
-          DetailActivity.startActivity(binding.transformationLayout, items[position])
+          DetailActivity.startActivity(binding.transformationLayout, getItem(position))
           onClickedAt = currentClickedAt
         }
       }
     }
   }
 
-  fun setPokemonList(pokemonList: List<Pokemon>) {
-    val previousItemSize = items.size
-    items.clear()
-    items.addAll(pokemonList)
-    notifyItemRangeChanged(previousItemSize, pokemonList.size)
-  }
-
   override fun onBindViewHolder(holder: PokemonViewHolder, position: Int) {
     holder.binding.apply {
-      pokemon = items[position]
+      pokemon = getItem(position)
       executePendingBindings()
     }
   }
 
-  override fun getItemCount() = items.size
-
   class PokemonViewHolder(val binding: ItemPokemonBinding) :
     RecyclerView.ViewHolder(binding.root)
+
+  companion object {
+    private val diffUtil = object : DiffUtil.ItemCallback<Pokemon>() {
+
+      override fun areItemsTheSame(oldItem: Pokemon, newItem: Pokemon): Boolean =
+        oldItem.name == newItem.name
+
+      override fun areContentsTheSame(oldItem: Pokemon, newItem: Pokemon): Boolean =
+        oldItem == newItem
+    }
+  }
 }

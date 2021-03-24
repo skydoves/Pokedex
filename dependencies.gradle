@@ -39,7 +39,7 @@ ext.versions = [
     archCompomentVersion : '2.1.0',
 
     // binding
-    bindablesVersion     : '1.0.5',
+    bindablesVersion     : '1.0.7',
 
     // startup
     startupVersion       : '1.0.0',
