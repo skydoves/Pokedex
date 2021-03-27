@@ -65,7 +65,7 @@
       app:layout_constraintTop_toBottomOf="@id/appBarLayout"
       app:paginationPokemonList="@{vm}"
       app:spanCount="2"
-      app:submitList="@{vm.pokemonListLiveData}"
+      app:submitList="@{vm.pokemonList}"
       app:toast="@{vm.toastMessage}"
       tools:listitem="@layout/item_pokemon" />
 
