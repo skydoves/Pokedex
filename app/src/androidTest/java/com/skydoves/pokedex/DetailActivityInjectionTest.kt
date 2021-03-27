@@ -48,10 +48,8 @@ class DetailActivityInjectionTest {
     ActivityScenario.launch<DetailActivity>(intent).use {
       it.moveToState(Lifecycle.State.CREATED)
       it.onActivity { activity ->
+        assertThat(activity.detailViewModelFactory).isNotNull()
         assertThat(activity.viewModel).isNotNull()
-        activity.viewModel.pokemonInfoLiveData.observe(activity) { pokemonList ->
-          assertThat(pokemonList).isNotNull()
-        }
       }
     }
   }

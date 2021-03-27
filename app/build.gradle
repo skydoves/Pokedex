@@ -91,7 +91,6 @@ dependencies {
     // architecture components
     implementation "androidx.fragment:fragment-ktx:$versions.fragmentVersion"
     implementation "androidx.lifecycle:lifecycle-extensions:$versions.lifecycleVersion"
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$versions.lifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.lifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:$versions.lifecycleVersion"
     implementation "androidx.room:room-runtime:$versions.roomVersion"
