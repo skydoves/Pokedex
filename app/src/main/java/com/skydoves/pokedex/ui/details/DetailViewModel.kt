@@ -20,9 +20,9 @@ import androidx.databinding.Bindable
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import com.skydoves.bindables.BindingViewModel
 import com.skydoves.bindables.asBindingProperty
 import com.skydoves.bindables.bindingProperty
-import com.skydoves.pokedex.base.LiveCoroutinesViewModel
 import com.skydoves.pokedex.model.PokemonInfo
 import com.skydoves.pokedex.repository.DetailRepository
 import dagger.assisted.Assisted
@@ -33,7 +33,7 @@ import timber.log.Timber
 class DetailViewModel @AssistedInject constructor(
   detailRepository: DetailRepository,
   @Assisted private val pokemonName: String
-) : LiveCoroutinesViewModel() {
+) : BindingViewModel() {
 
   private val pokemonInfoFlow: Flow<PokemonInfo?> = detailRepository.fetchPokemonInfo(
     name = pokemonName,

@@ -20,9 +20,9 @@ import androidx.annotation.MainThread
 import androidx.databinding.Bindable
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
+import com.skydoves.bindables.BindingViewModel
 import com.skydoves.bindables.asBindingProperty
 import com.skydoves.bindables.bindingProperty
-import com.skydoves.pokedex.base.LiveCoroutinesViewModel
 import com.skydoves.pokedex.model.Pokemon
 import com.skydoves.pokedex.repository.MainRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -35,7 +35,7 @@ import javax.inject.Inject
 class MainViewModel @Inject constructor(
   private val mainRepository: MainRepository,
   private val savedStateHandle: SavedStateHandle
-) : LiveCoroutinesViewModel() {
+) : BindingViewModel() {
 
   private val pokemonFetchingIndex: MutableStateFlow<Int> = MutableStateFlow(0)
   private val pokemonListFlow = pokemonFetchingIndex.flatMapLatest { page ->
