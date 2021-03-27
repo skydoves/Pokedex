@@ -37,6 +37,14 @@ class MainViewModel @Inject constructor(
   private val savedStateHandle: SavedStateHandle
 ) : BindingViewModel() {
 
+  @get:Bindable
+  var isLoading: Boolean by bindingProperty(false)
+    private set
+
+  @get:Bindable
+  var toastMessage: String? by bindingProperty(null)
+    private set
+
   private val pokemonFetchingIndex: MutableStateFlow<Int> = MutableStateFlow(0)
   private val pokemonListFlow = pokemonFetchingIndex.flatMapLatest { page ->
     mainRepository.fetchPokemonList(
@@ -49,14 +57,6 @@ class MainViewModel @Inject constructor(
 
   @get:Bindable
   val pokemonList: List<Pokemon> by pokemonListFlow.asBindingProperty(viewModelScope, emptyList())
-
-  @get:Bindable
-  var toastMessage: String? by bindingProperty(null)
-    private set
-
-  @get:Bindable
-  var isLoading: Boolean by bindingProperty(false)
-    private set
 
   init {
     Timber.d("init MainViewModel")

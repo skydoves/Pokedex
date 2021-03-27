@@ -35,6 +35,14 @@ class DetailViewModel @AssistedInject constructor(
   @Assisted private val pokemonName: String
 ) : BindingViewModel() {
 
+  @get:Bindable
+  var isLoading: Boolean by bindingProperty(true)
+    private set
+
+  @get:Bindable
+  var toastMessage: String? by bindingProperty(null)
+    private set
+
   private val pokemonInfoFlow: Flow<PokemonInfo?> = detailRepository.fetchPokemonInfo(
     name = pokemonName,
     onComplete = { isLoading = false },
@@ -43,14 +51,6 @@ class DetailViewModel @AssistedInject constructor(
 
   @get:Bindable
   val pokemonInfo: PokemonInfo? by pokemonInfoFlow.asBindingProperty(viewModelScope, null)
-
-  @get:Bindable
-  var toastMessage: String? by bindingProperty(null)
-    private set
-
-  @get:Bindable
-  var isLoading: Boolean by bindingProperty(true)
-    private set
 
   init {
     Timber.d("init DetailViewModel")
