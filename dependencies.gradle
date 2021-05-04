@@ -16,17 +16,17 @@
 ext.versions = [
     minSdk               : 21,
     compileSdk           : 30,
-    versionCode          : 5,
-    versionName          : '1.0.4',
+    versionCode          : 6,
+    versionName          : '1.0.5',
 
     // gradle plugins
     gradleBuildTool      : '4.1.1',
-    spotlessGradle       : '5.9.0',
+    spotlessGradle       : '5.12.3',
     versionPlugin        : '0.28.0',
     ktlint               : '0.40.0',
 
     // kotlin
-    kotlin               : '1.4.30',
+    kotlin               : '1.4.32',
 
     // support library
     materialVersion      : '1.2.0-alpha06',
