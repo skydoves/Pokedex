@@ -29,7 +29,6 @@ Go to the [Releases](https://github.com/skydoves/Pokedex/releases) to download t
 - [Kotlin](https://kotlinlang.org/) based, [Coroutines](https://github.com/Kotlin/kotlinx.coroutines) + [Flow](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/) for asynchronous.
 - Hilt (alpha) for dependency injection.
 - JetPack
-  - LiveData - notify domain layer data to views.
   - Lifecycle - dispose of observing data when lifecycle state changes.
   - ViewModel - UI related data holder, lifecycle aware.
   - Room Persistence - construct a database using the abstract layer.
