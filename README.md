@@ -27,7 +27,7 @@ Go to the [Releases](https://github.com/skydoves/Pokedex/releases) to download t
 ## Tech stack & Open-source libraries
 - Minimum SDK level 21
 - [Kotlin](https://kotlinlang.org/) based, [Coroutines](https://github.com/Kotlin/kotlinx.coroutines) + [Flow](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/) for asynchronous.
-- Hilt (alpha) for dependency injection.
+- [Hilt](https://dagger.dev/hilt/) for dependency injection.
 - JetPack
   - Lifecycle - dispose of observing data when lifecycle state changes.
   - ViewModel - UI related data holder, lifecycle aware.
