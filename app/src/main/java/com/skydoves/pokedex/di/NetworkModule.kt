@@ -48,7 +48,7 @@ object NetworkModule {
       .client(okHttpClient)
       .baseUrl("https://pokeapi.co/api/v2/")
       .addConverterFactory(MoshiConverterFactory.create())
-      .addCallAdapterFactory(CoroutinesResponseCallAdapterFactory())
+      .addCallAdapterFactory(CoroutinesResponseCallAdapterFactory.create())
       .build()
   }
 
