@@ -51,7 +51,7 @@ ext.versions = [
     // network
     retrofitVersion      : '2.9.0',
     okhttpVersion        : '4.9.0',
-    sandwichVersion      : '1.2.0-SNAPSHOT',
+    sandwichVersion      : '1.2.0',
 
     // moshi
     moshiVersion         : '1.11.0',
