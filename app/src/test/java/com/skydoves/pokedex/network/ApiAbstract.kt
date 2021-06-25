@@ -74,7 +74,7 @@ abstract class ApiAbstract<T> {
     return Retrofit.Builder()
       .baseUrl(mockWebServer.url("/"))
       .addConverterFactory(MoshiConverterFactory.create())
-      .addCallAdapterFactory(CoroutinesResponseCallAdapterFactory())
+      .addCallAdapterFactory(CoroutinesResponseCallAdapterFactory.create())
       .build()
       .create(clazz)
   }

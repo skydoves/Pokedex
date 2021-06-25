@@ -27,7 +27,6 @@ import com.skydoves.sandwich.map
 import com.skydoves.sandwich.onError
 import com.skydoves.sandwich.onException
 import com.skydoves.sandwich.suspendOnSuccess
-import com.skydoves.whatif.whatIfNotNull
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
@@ -55,12 +54,10 @@ class MainRepository @Inject constructor(
        */
       val response = pokedexClient.fetchPokemonList(page = page)
       response.suspendOnSuccess {
-        data.whatIfNotNull { response ->
-          pokemons = response.results
-          pokemons.forEach { pokemon -> pokemon.page = page }
-          pokemonDao.insertPokemonList(pokemons)
-          emit(pokemonDao.getAllPokemonList(page))
-        }
+        pokemons = data.results
+        pokemons.forEach { pokemon -> pokemon.page = page }
+        pokemonDao.insertPokemonList(pokemons)
+        emit(pokemonDao.getAllPokemonList(page))
       }
         // handles the case when the API request gets an error response.
         // e.g., internal server error.
