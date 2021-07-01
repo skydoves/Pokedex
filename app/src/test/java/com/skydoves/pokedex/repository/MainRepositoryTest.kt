@@ -31,6 +31,7 @@ import com.skydoves.pokedex.network.PokedexService
 import com.skydoves.pokedex.persistence.PokemonDao
 import com.skydoves.pokedex.utils.MockUtil.mockPokemonList
 import com.skydoves.sandwich.ApiResponse
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Before
@@ -52,7 +53,7 @@ class MainRepositoryTest {
   @Before
   fun setup() {
     client = PokedexClient(service)
-    repository = MainRepository(client, pokemonDao)
+    repository = MainRepository(client, pokemonDao, Dispatchers.IO)
   }
 
   @Test

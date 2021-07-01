@@ -28,6 +28,7 @@ import com.skydoves.pokedex.persistence.PokemonInfoDao
 import com.skydoves.pokedex.repository.DetailRepository
 import com.skydoves.pokedex.ui.details.DetailViewModel
 import com.skydoves.pokedex.utils.MockUtil
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert
 import org.junit.Before
@@ -48,7 +49,7 @@ class DetailViewModelTest {
 
   @Before
   fun setup() {
-    detailRepository = DetailRepository(pokdexClient, pokemonInfoDao)
+    detailRepository = DetailRepository(pokdexClient, pokemonInfoDao, Dispatchers.IO)
     viewModel = DetailViewModel(detailRepository, "bulbasaur")
   }
 

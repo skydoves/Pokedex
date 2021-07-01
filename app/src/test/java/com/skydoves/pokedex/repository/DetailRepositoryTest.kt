@@ -30,6 +30,7 @@ import com.skydoves.pokedex.network.PokedexService
 import com.skydoves.pokedex.persistence.PokemonInfoDao
 import com.skydoves.pokedex.utils.MockUtil.mockPokemonInfo
 import com.skydoves.sandwich.ApiResponse
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Before
@@ -51,7 +52,7 @@ class DetailRepositoryTest {
   @Before
   fun setup() {
     client = PokedexClient(service)
-    repository = DetailRepository(client, pokemonInfoDao)
+    repository = DetailRepository(client, pokemonInfoDao, Dispatchers.IO)
   }
 
   @Test

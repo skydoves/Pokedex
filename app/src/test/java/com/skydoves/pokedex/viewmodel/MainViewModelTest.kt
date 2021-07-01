@@ -29,6 +29,7 @@ import com.skydoves.pokedex.persistence.PokemonDao
 import com.skydoves.pokedex.repository.MainRepository
 import com.skydoves.pokedex.ui.main.MainViewModel
 import com.skydoves.pokedex.utils.MockUtil
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert
 import org.junit.Before
@@ -49,7 +50,7 @@ class MainViewModelTest {
 
   @Before
   fun setup() {
-    mainRepository = MainRepository(pokdexClient, pokemonDao)
+    mainRepository = MainRepository(pokdexClient, pokemonDao, Dispatchers.IO)
     viewModel = MainViewModel(mainRepository, SavedStateHandle())
   }
 
