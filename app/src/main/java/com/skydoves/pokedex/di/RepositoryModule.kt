@@ -26,6 +26,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
 import dagger.hilt.android.scopes.ViewModelScoped
+import kotlinx.coroutines.CoroutineDispatcher
 
 @Module
 @InstallIn(ViewModelComponent::class)
@@ -35,17 +36,19 @@ object RepositoryModule {
   @ViewModelScoped
   fun provideMainRepository(
     pokedexClient: PokedexClient,
-    pokemonDao: PokemonDao
+    pokemonDao: PokemonDao,
+    coroutineDispatcher: CoroutineDispatcher
   ): MainRepository {
-    return MainRepository(pokedexClient, pokemonDao)
+    return MainRepository(pokedexClient, pokemonDao, coroutineDispatcher)
   }
 
   @Provides
   @ViewModelScoped
   fun provideDetailRepository(
     pokedexClient: PokedexClient,
-    pokemonInfoDao: PokemonInfoDao
+    pokemonInfoDao: PokemonInfoDao,
+    coroutineDispatcher: CoroutineDispatcher
   ): DetailRepository {
-    return DetailRepository(pokedexClient, pokemonInfoDao)
+    return DetailRepository(pokedexClient, pokemonInfoDao, coroutineDispatcher)
   }
 }
