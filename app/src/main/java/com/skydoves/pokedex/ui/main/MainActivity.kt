@@ -36,7 +36,6 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
     onTransformationStartContainer()
     super.onCreate(savedInstanceState)
     binding {
-      lifecycleOwner = this@MainActivity
       adapter = PokemonAdapter()
       vm = viewModel
     }

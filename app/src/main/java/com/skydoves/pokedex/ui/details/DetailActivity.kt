@@ -48,7 +48,6 @@ class DetailActivity : BindingActivity<ActivityDetailBinding>(R.layout.activity_
     onTransformationEndContainerApplyParams()
     super.onCreate(savedInstanceState)
     binding {
-      lifecycleOwner = this@DetailActivity
       pokemon = pokemonItem
       vm = viewModel
     }

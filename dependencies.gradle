@@ -20,8 +20,8 @@ ext.versions = [
     versionName          : '1.0.5',
 
     // gradle plugins
-    gradleBuildTool      : '4.1.1',
-    spotlessGradle       : '5.12.3',
+    gradleBuildTool      : '4.1.3',
+    spotlessGradle       : '5.14.0',
     versionPlugin        : '0.28.0',
     ktlint               : '0.40.0',
 
@@ -58,7 +58,7 @@ ext.versions = [
     moshiConverterVersion: '2.7.2',
 
     // coroutines
-    coroutinesVersion    : '1.4.3',
+    coroutinesVersion    : '1.5.0',
 
     // whatIf
     whatIfVersion        : '1.1.0',
