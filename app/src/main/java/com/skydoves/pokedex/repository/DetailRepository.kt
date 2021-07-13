@@ -27,7 +27,7 @@ import com.skydoves.sandwich.map
 import com.skydoves.sandwich.onError
 import com.skydoves.sandwich.onException
 import com.skydoves.sandwich.suspendOnSuccess
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.onCompletion
@@ -35,7 +35,8 @@ import javax.inject.Inject
 
 class DetailRepository @Inject constructor(
   private val pokedexClient: PokedexClient,
-  private val pokemonInfoDao: PokemonInfoDao
+  private val pokemonInfoDao: PokemonInfoDao,
+  private val ioDispatcher: CoroutineDispatcher
 ) : Repository {
 
   @WorkerThread
@@ -67,5 +68,5 @@ class DetailRepository @Inject constructor(
     } else {
       emit(pokemonInfo)
     }
-  }.onCompletion { onComplete() }.flowOn(Dispatchers.IO)
+  }.onCompletion { onComplete() }.flowOn(ioDispatcher)
 }
