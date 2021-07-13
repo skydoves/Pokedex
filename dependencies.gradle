@@ -57,7 +57,7 @@ ext.versions = [
     moshiVersion         : '1.11.0',
 
     // coroutines
-    coroutinesVersion    : '1.5.0',
+    coroutinesVersion    : '1.4.3',
 
     // whatIf
     whatIfVersion        : '1.1.0',
