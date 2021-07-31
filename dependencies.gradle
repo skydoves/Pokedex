@@ -39,25 +39,25 @@ ext.versions = [
     archCompomentVersion : '2.1.0',
 
     // binding
-    bindablesVersion     : '1.0.8',
+    bindablesVersion     : '1.0.9',
 
     // startup
     startupVersion       : '1.0.0',
 
     // di
-    hiltCoreVersion      : '2.38',
+    hiltCoreVersion      : '2.38.1',
     hiltVersion          : '1.0.0',
 
     // network
     retrofitVersion      : '2.9.0',
     okhttpVersion        : '4.9.0',
-    sandwichVersion      : '1.2.0',
+    sandwichVersion      : '1.2.1',
 
     // moshi
     moshiVersion         : '1.11.0',
 
     // coroutines
-    coroutinesVersion    : '1.4.3',
+    coroutinesVersion    : '1.5.0',
 
     // whatIf
     whatIfVersion        : '1.1.0',
@@ -67,13 +67,13 @@ ext.versions = [
     glidePaletteVersion  : '2.1.2',
 
     // bundler
-    bundlerVersion       : '1.0.3',
+    bundlerVersion       : '1.0.4',
 
     // transformation
     transformationLayout : '1.0.4',
 
     // adapter
-    recyclerView         : '1.2.0',
+    recyclerView         : '1.2.1',
     baseAdapter          : '1.0.4',
 
     // android ribbon
