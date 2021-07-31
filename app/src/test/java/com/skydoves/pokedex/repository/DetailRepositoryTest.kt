@@ -37,7 +37,8 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import retrofit2.Response
-import kotlin.time.seconds
+import kotlin.time.DurationUnit
+import kotlin.time.toDuration
 
 class DetailRepositoryTest {
 
@@ -62,11 +63,11 @@ class DetailRepositoryTest {
     whenever(service.fetchPokemonInfo(name = "bulbasaur")).thenReturn(ApiResponse.of { Response.success(mockData) })
 
     repository.fetchPokemonInfo(name = "bulbasaur", onComplete = {}, onError = {}).test {
-      val expectItem = requireNotNull(expectItem())
+      val expectItem = requireNotNull(awaitItem())
       assertEquals(expectItem.id, mockData.id)
       assertEquals(expectItem.name, mockData.name)
       assertEquals(expectItem, mockData)
-      expectComplete()
+      awaitComplete()
     }
 
     verify(pokemonInfoDao, atLeastOnce()).getPokemonInfo(name_ = "bulbasaur")
@@ -81,12 +82,14 @@ class DetailRepositoryTest {
     whenever(pokemonInfoDao.getPokemonInfo(name_ = "bulbasaur")).thenReturn(mockData)
     whenever(service.fetchPokemonInfo(name = "bulbasaur")).thenReturn(ApiResponse.of { Response.success(mockData) })
 
-    repository.fetchPokemonInfo(name = "bulbasaur", onComplete = {}, onError = {}).test(5.seconds) {
-      val expectItem = requireNotNull(expectItem())
+    repository.fetchPokemonInfo(
+      name = "bulbasaur", onComplete = {}, onError = {}
+    ).test(5.toDuration(DurationUnit.SECONDS)) {
+      val expectItem = requireNotNull(awaitItem())
       assertEquals(expectItem.id, mockData.id)
       assertEquals(expectItem.name, mockData.name)
       assertEquals(expectItem, mockData)
-      expectComplete()
+      awaitComplete()
     }
 
     verify(pokemonInfoDao, atLeastOnce()).getPokemonInfo(name_ = "bulbasaur")

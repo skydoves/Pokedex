@@ -34,7 +34,8 @@ import org.junit.Assert
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import kotlin.time.seconds
+import kotlin.time.DurationUnit
+import kotlin.time.toDuration
 
 class DetailViewModelTest {
 
@@ -62,12 +63,12 @@ class DetailViewModelTest {
       name = "bulbasaur",
       onComplete = { },
       onError = { }
-    ).test(2.seconds) {
-      val item = requireNotNull(expectItem())
+    ).test(2.toDuration(DurationUnit.SECONDS)) {
+      val item = requireNotNull(awaitItem())
       Assert.assertEquals(item.id, mockData.id)
       Assert.assertEquals(item.name, mockData.name)
       Assert.assertEquals(item, mockData)
-      expectComplete()
+      awaitComplete()
     }
 
     verify(pokemonInfoDao, atLeastOnce()).getPokemonInfo(name_ = "bulbasaur")

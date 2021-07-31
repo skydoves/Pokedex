@@ -91,7 +91,7 @@ ext.versions = [
     // unit test
     truthVersion         : '1.0.1',
     junitVersion         : '4.13.1',
-    turbineVersion       : '0.4.1',
+    turbineVersion       : '0.6.0',
     robolectricVersion   : '4.4',
     androidxTest         : '1.3.0',
     androidxTestJunit    : '1.1.2',

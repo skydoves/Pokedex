@@ -38,7 +38,8 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import retrofit2.Response
-import kotlin.time.seconds
+import kotlin.time.DurationUnit
+import kotlin.time.toDuration
 
 class MainRepositoryTest {
 
@@ -68,12 +69,12 @@ class MainRepositoryTest {
       onStart = {},
       onComplete = {},
       onError = {}
-    ).test(2.seconds) {
-      val expectItem = expectItem()[0]
+    ).test(2.toDuration(DurationUnit.SECONDS)) {
+      val expectItem = awaitItem()[0]
       assertEquals(expectItem.page, 0)
       assertEquals(expectItem.name, "bulbasaur")
       assertEquals(expectItem, mockPokemonList()[0])
-      expectComplete()
+      awaitComplete()
     }
 
     verify(pokemonDao, atLeastOnce()).getPokemonList(page_ = 0)
@@ -93,12 +94,12 @@ class MainRepositoryTest {
       onStart = {},
       onComplete = {},
       onError = {}
-    ).test(2.seconds) {
-      val expectItem = expectItem()[0]
+    ).test(2.toDuration(DurationUnit.SECONDS)) {
+      val expectItem = awaitItem()[0]
       assertEquals(expectItem.page, 0)
       assertEquals(expectItem.name, "bulbasaur")
       assertEquals(expectItem, mockPokemonList()[0])
-      expectComplete()
+      awaitComplete()
     }
 
     verify(pokemonDao, atLeastOnce()).getPokemonList(page_ = 0)

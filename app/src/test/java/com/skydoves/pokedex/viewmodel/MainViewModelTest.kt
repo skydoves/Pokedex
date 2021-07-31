@@ -35,7 +35,8 @@ import org.junit.Assert
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import kotlin.time.seconds
+import kotlin.time.DurationUnit
+import kotlin.time.toDuration
 
 class MainViewModelTest {
 
@@ -65,12 +66,12 @@ class MainViewModelTest {
       onStart = {},
       onComplete = {},
       onError = {}
-    ).test(2.seconds) {
-      val item = expectItem()
+    ).test(2.toDuration(DurationUnit.SECONDS)) {
+      val item = awaitItem()
       Assert.assertEquals(item[0].page, 0)
       Assert.assertEquals(item[0].name, "bulbasaur")
       Assert.assertEquals(item, MockUtil.mockPokemonList())
-      expectComplete()
+      awaitComplete()
     }
 
     viewModel.fetchNextPokemonList()
