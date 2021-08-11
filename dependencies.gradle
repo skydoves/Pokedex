@@ -86,7 +86,7 @@ ext.versions = [
     rainbowVersion       : '1.0.3',
 
     // debugging
-    timberVersion        : '4.7.1',
+    timberVersion        : '5.0.0',
 
     // unit test
     truthVersion         : '1.0.1',
