@@ -35,14 +35,14 @@ ext.versions = [
     // architecture components
     fragmentVersion      : '1.3.0',
     lifecycleVersion     : '2.2.0',
-    roomVersion          : '2.3.0-rc01',
+    roomVersion          : '2.4.0-alpha04',
     archCompomentVersion : '2.1.0',
 
     // binding
     bindablesVersion     : '1.0.9',
 
     // startup
-    startupVersion       : '1.0.0',
+    startupVersion       : '1.1.0',
 
     // di
     hiltCoreVersion      : '2.38.1',
