@@ -16,7 +16,6 @@
 
 package com.skydoves.pokedex.viewmodel
 
-import androidx.lifecycle.SavedStateHandle
 import app.cash.turbine.test
 import com.nhaarman.mockitokotlin2.atLeastOnce
 import com.nhaarman.mockitokotlin2.mock
@@ -52,7 +51,7 @@ class MainViewModelTest {
   @Before
   fun setup() {
     mainRepository = MainRepository(pokdexClient, pokemonDao, Dispatchers.IO)
-    viewModel = MainViewModel(mainRepository, SavedStateHandle())
+    viewModel = MainViewModel(mainRepository)
   }
 
   @Test

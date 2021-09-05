@@ -18,7 +18,6 @@ package com.skydoves.pokedex.ui.main
 
 import androidx.annotation.MainThread
 import androidx.databinding.Bindable
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import com.skydoves.bindables.BindingViewModel
 import com.skydoves.bindables.asBindingProperty
@@ -33,8 +32,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-  private val mainRepository: MainRepository,
-  private val savedStateHandle: SavedStateHandle
+  private val mainRepository: MainRepository
 ) : BindingViewModel() {
 
   @get:Bindable
