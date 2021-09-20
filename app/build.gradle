@@ -21,14 +21,23 @@ apply plugin: 'dagger.hilt.android.plugin'
 
 apply from: "$rootDir/dependencies.gradle"
 
+def getVersionName = { ->
+    def stdout = new ByteArrayOutputStream()
+    exec {
+        commandLine 'git', 'describe', '--tags', '--always'
+        standardOutput = stdout
+    }
+    return stdout.toString().trim()
+}
+
 android {
     compileSdkVersion versions.compileSdk
     defaultConfig {
         applicationId "com.skydoves.pokedex"
         minSdkVersion versions.minSdk
         targetSdkVersion versions.compileSdk
-        versionCode versions.versionCode
-        versionName versions.versionName
+        versionCode 1000000
+        versionName getVersionName()
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "com.skydoves.pokedex.AppTestRunner"
         javaCompileOptions {
