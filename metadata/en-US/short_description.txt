@@ -1,1 +1,1 @@
-A demo Pokedex application using Hilt, Motion, Coroutines, Flow, Jetpack (Room, ViewModel) based on MVVM architecture.
+Pokedex is a small demo application based on modern Android tech stacks.
