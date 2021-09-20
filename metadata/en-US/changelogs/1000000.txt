@@ -1,0 +1,3 @@
+* Shows Pokemon lists on home screen.
+
+* Shows details of Pokemons.
