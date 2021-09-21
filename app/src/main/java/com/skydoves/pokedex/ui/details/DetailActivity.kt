@@ -38,7 +38,7 @@ class DetailActivity : BindingActivity<ActivityDetailBinding>(R.layout.activity_
   lateinit var detailViewModelFactory: DetailViewModel.AssistedFactory
 
   @VisibleForTesting
-  val viewModel: DetailViewModel by viewModels {
+  internal val viewModel: DetailViewModel by viewModels {
     DetailViewModel.provideFactory(detailViewModelFactory, pokemonItem.name)
   }
 
@@ -55,7 +55,7 @@ class DetailActivity : BindingActivity<ActivityDetailBinding>(R.layout.activity_
 
   companion object {
     @VisibleForTesting
-    const val EXTRA_POKEMON = "EXTRA_POKEMON"
+    internal const val EXTRA_POKEMON = "EXTRA_POKEMON"
 
     fun startActivity(transformationLayout: TransformationLayout, pokemon: Pokemon) =
       transformationLayout.context.intentOf<DetailActivity> {

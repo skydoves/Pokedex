@@ -30,7 +30,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main) {
 
   @VisibleForTesting
-  val viewModel: MainViewModel by viewModels()
+  internal val viewModel: MainViewModel by viewModels()
 
   override fun onCreate(savedInstanceState: Bundle?) {
     onTransformationStartContainer()
