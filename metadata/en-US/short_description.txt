@@ -1,0 +1,1 @@
+Pokedex is a small demo application based on modern Android tech stacks.

@@ -27,8 +27,8 @@ android {
         applicationId "com.skydoves.pokedex"
         minSdkVersion versions.minSdk
         targetSdkVersion versions.compileSdk
-        versionCode versions.versionCode
-        versionName versions.versionName
+        versionCode 1000000
+        versionName "1.0.5"
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "com.skydoves.pokedex.AppTestRunner"
         javaCompileOptions {
