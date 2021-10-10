@@ -55,10 +55,8 @@ class PokemonAdapter : BindingListAdapter<Pokemon, PokemonAdapter.PokemonViewHol
     }
 
     fun bindPokemon(pokemon: Pokemon) {
-      binding.apply {
-        this.pokemon = pokemon
-        executePendingBindings()
-      }
+      binding.pokemon = pokemon
+      binding.executePendingBindings()
     }
   }
 
