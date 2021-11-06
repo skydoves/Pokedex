@@ -34,10 +34,10 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class DetailActivity : BindingActivity<ActivityDetailBinding>(R.layout.activity_detail) {
 
-  @Inject
-  lateinit var detailViewModelFactory: DetailViewModel.AssistedFactory
+  @set:Inject
+  internal lateinit var detailViewModelFactory: DetailViewModel.AssistedFactory
 
-  @VisibleForTesting
+  @get:VisibleForTesting
   internal val viewModel: DetailViewModel by viewModels {
     DetailViewModel.provideFactory(detailViewModelFactory, pokemonItem.name)
   }

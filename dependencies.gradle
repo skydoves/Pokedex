@@ -22,7 +22,7 @@ ext.versions = [
     // gradle plugins
     gradleBuildTool      : '7.0.2',
     spotlessGradle       : '5.15.0',
-    versionPlugin        : '0.28.0',
+    versionPlugin        : '0.39.0',
     ktlint               : '0.40.0',
 
     // kotlin
@@ -45,7 +45,7 @@ ext.versions = [
     startupVersion       : '1.1.0',
 
     // di
-    hiltCoreVersion      : '2.38.1',
+    hiltCoreVersion      : '2.40',
     hiltVersion          : '1.0.0',
 
     // network
@@ -57,7 +57,7 @@ ext.versions = [
     moshiVersion         : '1.11.0',
 
     // coroutines
-    coroutinesVersion    : '1.5.0',
+    coroutinesVersion    : '1.5.2',
 
     // whatIf
     whatIfVersion        : '1.1.0',
