@@ -45,7 +45,7 @@ ext.versions = [
     startupVersion       : '1.1.0',
 
     // di
-    hiltCoreVersion      : '2.40',
+    hiltCoreVersion      : '2.40.2',
     hiltVersion          : '1.0.0',
 
     // network
@@ -60,7 +60,7 @@ ext.versions = [
     coroutinesVersion    : '1.5.2',
 
     // whatIf
-    whatIfVersion        : '1.1.0',
+    whatIfVersion        : '1.1.1',
 
     // glide
     glideVersion         : '4.12.0',
