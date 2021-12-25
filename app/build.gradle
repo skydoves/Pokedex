@@ -95,9 +95,7 @@ dependencies {
     testImplementation "androidx.arch.core:core-testing:$versions.archCompomentVersion"
 
     // binding
-    implementation ("com.github.skydoves:bindables:$versions.bindablesVersion") {
-        exclude group: "com.google.android.material"
-    }
+    implementation ("com.github.skydoves:bindables:$versions.bindablesVersion")
 
     // startup
     implementation "androidx.startup:startup-runtime:$versions.startupVersion"
@@ -140,7 +138,6 @@ dependencies {
     implementation "com.github.skydoves:transformationlayout:$versions.transformationLayout"
 
     // recyclerView
-    implementation "androidx.recyclerview:recyclerview:$versions.recyclerView"
     implementation "com.github.skydoves:baserecyclerviewadapter:$versions.baseAdapter"
 
     // gradation

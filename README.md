@@ -10,8 +10,7 @@
 </p>
 
 <p align="center">  
-Pokedex is a small demo application based on modern Android application tech-stacks and MVVM architecture.<br>This project is for focusing especially on the new library Hilt of implementing dependency injection.<br>
-Also fetching data from the network and integrating persisted data in the database via repository pattern.
+Pokedex is a small demo application based on modern Android tech-stacks and MVVM architecture.
 </p>
 </br>
 
@@ -22,30 +21,30 @@ Also fetching data from the network and integrating persisted data in the databa
 ## Download
 Go to the [Releases](https://github.com/skydoves/Pokedex/releases) to download the latest APK.
 
-
 <img src="/previews/preview.gif" align="right" width="32%"/>
 
 ## Tech stack & Open-source libraries
 - Minimum SDK level 21
 - [Kotlin](https://kotlinlang.org/) based, [Coroutines](https://github.com/Kotlin/kotlinx.coroutines) + [Flow](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/) for asynchronous.
 - [Hilt](https://dagger.dev/hilt/) for dependency injection.
-- JetPack
+- Jetpack
   - Lifecycle - dispose of observing data when lifecycle state changes.
   - ViewModel - UI related data holder, lifecycle aware.
-  - Room Persistence - construct a database using the abstract layer.
+  - Room Persistence - construct the database using the abstract layer.
 - Architecture
   - MVVM Architecture (View - DataBinding - ViewModel - Model)
   - [Bindables](https://github.com/skydoves/bindables) - Android DataBinding kit for notifying data changes to UI layers.
   - Repository pattern
-- [Retrofit2 & OkHttp3](https://github.com/square/retrofit) - construct the REST APIs and paging network data.
-- [Sandwich](https://github.com/skydoves/Sandwich) - construct lightweight http API response and handling error responses.
+- [Retrofit2 & OkHttp3](https://github.com/square/retrofit) - construct the REST APIs.
+- [Sandwich](https://github.com/skydoves/Sandwich) - construct the lightweight Http API response and handling error responses.
 - [Moshi](https://github.com/square/moshi/) - A modern JSON library for Kotlin and Java.
 - [Glide](https://github.com/bumptech/glide), [GlidePalette](https://github.com/florent37/GlidePalette) - loading images.
 - [TransformationLayout](https://github.com/skydoves/transformationlayout) - implementing transformation motion animations.
 - [WhatIf](https://github.com/skydoves/whatif) - checking nullable object and empty collections more fluently.
 - [Bundler](https://github.com/skydoves/bundler) - Android Intent & Bundle extensions that insert and retrieve values elegantly.
-- [Timber](https://github.com/JakeWharton/timber) - logging.
-- [Material-Components](https://github.com/material-components/material-components-android) - Material design components like ripple animation, cardView.
+- [Timber](https://github.com/JakeWharton/timber) - A logger with a small, extensible API.
+- [Material-Components](https://github.com/material-components/material-components-android) - Material design components for building ripple animation, and CardView.
+- [Turbine](https://github.com/cashapp/turbine) - A small testing library for kotlinx.coroutines Flow.
 - Custom Views
   - [Rainbow](https://github.com/skydoves/rainbow) - An easy way to apply gradations and tinting for Android.
   - [AndroidRibbon](https://github.com/skydoves/androidribbon) - A simple way to implement a  beautiful ribbon with the shimmering on Android.
@@ -56,7 +55,7 @@ Go to the [Releases](https://github.com/skydoves/Pokedex/releases) to download t
 ![kotlin](https://user-images.githubusercontent.com/24237865/102366932-8a53fa80-3ffc-11eb-8131-fd6745a6f079.png)
 
 ## Architecture
-Pokedex is based on MVVM architecture and a repository pattern.
+Pokedex is based on the MVVM architecture and the Repository pattern.
 
 ![architecture](https://user-images.githubusercontent.com/24237865/77502018-f7d36000-6e9c-11ea-92b0-1097240c8689.png)
 
