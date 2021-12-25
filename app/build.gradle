@@ -74,19 +74,19 @@ android {
     }
 
     tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
-        kotlinOptions.freeCompilerArgs += ["-Xopt-in=kotlin.time.ExperimentalTime"]
-        kotlinOptions.freeCompilerArgs += ["-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi"]
+        kotlinOptions.freeCompilerArgs += [
+            "-Xopt-in=kotlin.time.ExperimentalTime",
+            "-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi"
+        ]
     }
 }
 
 dependencies {
     // android supports
     implementation "com.google.android.material:material:$versions.materialVersion"
-    implementation "androidx.constraintlayout:constraintlayout:$versions.constraintVersion"
 
     // architecture components
     implementation "androidx.fragment:fragment-ktx:$versions.fragmentVersion"
-    implementation "androidx.lifecycle:lifecycle-extensions:$versions.lifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.lifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:$versions.lifecycleVersion"
     implementation "androidx.room:room-runtime:$versions.roomVersion"
@@ -95,9 +95,7 @@ dependencies {
     testImplementation "androidx.arch.core:core-testing:$versions.archCompomentVersion"
 
     // binding
-    implementation ("com.github.skydoves:bindables:$versions.bindablesVersion") {
-        exclude group: "com.google.android.material"
-    }
+    implementation ("com.github.skydoves:bindables:$versions.bindablesVersion")
 
     // startup
     implementation "androidx.startup:startup-runtime:$versions.startupVersion"
@@ -140,7 +138,6 @@ dependencies {
     implementation "com.github.skydoves:transformationlayout:$versions.transformationLayout"
 
     // recyclerView
-    implementation "androidx.recyclerview:recyclerview:$versions.recyclerView"
     implementation "com.github.skydoves:baserecyclerviewadapter:$versions.baseAdapter"
 
     // gradation

@@ -24,9 +24,9 @@ import com.skydoves.bundler.bundleNonNull
 import com.skydoves.bundler.intentOf
 import com.skydoves.pokedex.R
 import com.skydoves.pokedex.databinding.ActivityDetailBinding
-import com.skydoves.pokedex.extensions.onTransformationEndContainerApplyParams
 import com.skydoves.pokedex.model.Pokemon
 import com.skydoves.transformationlayout.TransformationCompat
+import com.skydoves.transformationlayout.TransformationCompat.onTransformationEndContainerApplyParams
 import com.skydoves.transformationlayout.TransformationLayout
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -45,7 +45,7 @@ class DetailActivity : BindingActivity<ActivityDetailBinding>(R.layout.activity_
   private val pokemonItem: Pokemon by bundleNonNull(EXTRA_POKEMON)
 
   override fun onCreate(savedInstanceState: Bundle?) {
-    onTransformationEndContainerApplyParams()
+    onTransformationEndContainerApplyParams(this)
     super.onCreate(savedInstanceState)
     binding {
       pokemon = pokemonItem

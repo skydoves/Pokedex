@@ -21,21 +21,20 @@ ext.versions = [
 
     // gradle plugins
     gradleBuildTool      : '7.0.2',
-    spotlessGradle       : '5.15.0',
+    spotlessGradle       : '6.1.0',
     versionPlugin        : '0.39.0',
-    ktlint               : '0.40.0',
+    ktlint               : '0.41.0',
 
     // kotlin
-    kotlin               : '1.4.32',
+    kotlin               : '1.5.31',
 
     // support library
-    materialVersion      : '1.2.0-alpha06',
-    constraintVersion    : '2.0.4',
+    materialVersion      : '1.4.0',
 
     // architecture components
-    fragmentVersion      : '1.3.0',
-    lifecycleVersion     : '2.2.0',
-    roomVersion          : '2.4.0-alpha04',
+    fragmentVersion      : '1.4.0',
+    lifecycleVersion     : '2.4.0',
+    roomVersion          : '2.4.0',
     archCompomentVersion : '2.1.0',
 
     // binding
@@ -45,16 +44,16 @@ ext.versions = [
     startupVersion       : '1.1.0',
 
     // di
-    hiltCoreVersion      : '2.40.2',
+    hiltCoreVersion      : '2.40.5',
     hiltVersion          : '1.0.0',
 
     // network
     retrofitVersion      : '2.9.0',
-    okhttpVersion        : '4.9.0',
+    okhttpVersion        : '4.9.1',
     sandwichVersion      : '1.2.1',
 
     // moshi
-    moshiVersion         : '1.11.0',
+    moshiVersion         : '1.12.0',
 
     // coroutines
     coroutinesVersion    : '1.5.2',
@@ -70,10 +69,9 @@ ext.versions = [
     bundlerVersion       : '1.0.4',
 
     // transformation
-    transformationLayout : '1.0.4',
+    transformationLayout : '1.1.0',
 
     // adapter
-    recyclerView         : '1.2.1',
     baseAdapter          : '1.0.4',
 
     // android ribbon
