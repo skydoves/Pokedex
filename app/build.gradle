@@ -34,11 +34,7 @@ android {
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments += ["room.schemaLocation" : "$projectDir/schemas".toString()]
-            }
-        }
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments["dagger.hilt.disableModulesHaveInstallInCheck"] = "true"
+                arguments += ["dagger.hilt.disableModulesHaveInstallInCheck" : "true"]
             }
         }
     }
@@ -129,7 +125,6 @@ dependencies {
     // glide
     implementation "com.github.bumptech.glide:glide:$versions.glideVersion"
     implementation "com.github.florent37:glidepalette:$versions.glidePaletteVersion"
-    kapt "com.github.bumptech.glide:compiler:$versions.glideVersion"
 
     // bundler
     implementation "com.github.skydoves:bundler:$versions.bundlerVersion"

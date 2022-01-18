@@ -50,7 +50,7 @@ ext.versions = [
     // network
     retrofitVersion      : '2.9.0',
     okhttpVersion        : '4.9.1',
-    sandwichVersion      : '1.2.1',
+    sandwichVersion      : '1.2.3',
 
     // moshi
     moshiVersion         : '1.12.0',
@@ -75,16 +75,16 @@ ext.versions = [
     baseAdapter          : '1.0.4',
 
     // android ribbon
-    androidRibbonVersion : '1.0.3',
+    androidRibbonVersion : '1.0.4',
 
     // progress view
-    progressViewVersion  : '1.1.1',
+    progressViewVersion  : '1.1.3',
 
     // rainbow
     rainbowVersion       : '1.0.3',
 
     // debugging
-    timberVersion        : '5.0.0',
+    timberVersion        : '5.0.1',
 
     // unit test
     truthVersion         : '1.0.1',
