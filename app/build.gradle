@@ -56,6 +56,10 @@ android {
         abortOnError false
     }
 
+    hilt {
+        enableAggregatingTask = true
+    }
+
     sourceSets {
         androidTest.java.srcDirs += "src/test-common/java"
         test.java.srcDirs += "src/test-common/java"
@@ -97,11 +101,10 @@ dependencies {
     implementation "androidx.startup:startup-runtime:$versions.startupVersion"
 
     // hilt
-    implementation "com.google.dagger:hilt-android:$versions.hiltCoreVersion"
-    kapt "com.google.dagger:hilt-compiler:$versions.hiltCoreVersion"
-    kapt "androidx.hilt:hilt-compiler:$versions.hiltVersion"
-    androidTestImplementation "com.google.dagger:hilt-android-testing:$versions.hiltCoreVersion"
-    kaptAndroidTest "com.google.dagger:hilt-compiler:$versions.hiltCoreVersion"
+    implementation "com.google.dagger:hilt-android:$versions.hiltVersion"
+    kapt "com.google.dagger:hilt-compiler:$versions.hiltVersion"
+    androidTestImplementation "com.google.dagger:hilt-android-testing:$versions.hiltVersion"
+    kaptAndroidTest "com.google.dagger:hilt-compiler:$versions.hiltVersion"
 
     // network
     implementation "com.github.skydoves:sandwich:$versions.sandwichVersion"
