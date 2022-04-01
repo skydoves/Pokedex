@@ -20,55 +20,55 @@ ext.versions = [
     versionName          : '1.0.5',
 
     // gradle plugins
-    gradleBuildTool      : '7.0.2',
-    spotlessGradle       : '6.1.0',
+    gradleBuildTool      : '7.1.2',
+    spotlessGradle       : '6.2.1',
     versionPlugin        : '0.39.0',
-    ktlint               : '0.41.0',
+    ktlint               : '0.43.0',
 
     // kotlin
-    kotlin               : '1.5.31',
+    kotlin               : '1.6.10',
 
     // support library
     materialVersion      : '1.5.0',
 
     // architecture components
-    fragmentVersion      : '1.4.0',
-    lifecycleVersion     : '2.4.0',
-    roomVersion          : '2.4.0',
+    fragmentVersion      : '1.4.1',
+    lifecycleVersion     : '2.4.1',
+    roomVersion          : '2.4.2',
     archCompomentVersion : '2.1.0',
 
     // binding
     bindablesVersion     : '1.0.9',
 
     // startup
-    startupVersion       : '1.1.0',
+    startupVersion       : '1.1.1',
 
     // di
     hiltVersion      : '2.40.5',
 
     // network
     retrofitVersion      : '2.9.0',
-    okhttpVersion        : '4.9.1',
+    okhttpVersion        : '4.9.3',
     sandwichVersion      : '1.2.3',
 
     // moshi
-    moshiVersion         : '1.12.0',
+    moshiVersion         : '1.13.0',
 
     // coroutines
-    coroutinesVersion    : '1.5.2',
+    coroutinesVersion    : '1.6.0',
 
     // whatIf
     whatIfVersion        : '1.1.1',
 
     // glide
-    glideVersion         : '4.12.0',
+    glideVersion         : '4.13.0',
     glidePaletteVersion  : '2.1.2',
 
     // bundler
     bundlerVersion       : '1.0.4',
 
     // transformation
-    transformationLayout : '1.1.0',
+    transformationLayout : '1.1.1',
 
     // adapter
     baseAdapter          : '1.0.4',
