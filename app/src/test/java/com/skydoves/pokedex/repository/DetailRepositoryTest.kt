@@ -30,15 +30,14 @@ import com.skydoves.pokedex.network.PokedexService
 import com.skydoves.pokedex.persistence.PokemonInfoDao
 import com.skydoves.pokedex.utils.MockUtil.mockPokemonInfo
 import com.skydoves.sandwich.ApiResponse
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.runBlocking
+import kotlin.time.DurationUnit
+import kotlin.time.toDuration
+import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import retrofit2.Response
-import kotlin.time.DurationUnit
-import kotlin.time.toDuration
 
 class DetailRepositoryTest {
 
@@ -53,14 +52,18 @@ class DetailRepositoryTest {
   @Before
   fun setup() {
     client = PokedexClient(service)
-    repository = DetailRepository(client, pokemonInfoDao, Dispatchers.IO)
+    repository = DetailRepository(client, pokemonInfoDao, coroutinesRule.testDispatcher)
   }
 
   @Test
-  fun fetchPokemonInfoFromNetworkTest() = runBlocking {
+  fun fetchPokemonInfoFromNetworkTest() = runTest {
     val mockData = mockPokemonInfo()
     whenever(pokemonInfoDao.getPokemonInfo(name_ = "bulbasaur")).thenReturn(null)
-    whenever(service.fetchPokemonInfo(name = "bulbasaur")).thenReturn(ApiResponse.of { Response.success(mockData) })
+    whenever(service.fetchPokemonInfo(name = "bulbasaur")).thenReturn(ApiResponse.of {
+      Response.success(
+        mockData
+      )
+    })
 
     repository.fetchPokemonInfo(name = "bulbasaur", onComplete = {}, onError = {}).test {
       val expectItem = requireNotNull(awaitItem())
@@ -77,10 +80,14 @@ class DetailRepositoryTest {
   }
 
   @Test
-  fun fetchPokemonInfoFromDatabaseTest() = runBlocking {
+  fun fetchPokemonInfoFromDatabaseTest() = runTest {
     val mockData = mockPokemonInfo()
     whenever(pokemonInfoDao.getPokemonInfo(name_ = "bulbasaur")).thenReturn(mockData)
-    whenever(service.fetchPokemonInfo(name = "bulbasaur")).thenReturn(ApiResponse.of { Response.success(mockData) })
+    whenever(service.fetchPokemonInfo(name = "bulbasaur")).thenReturn(ApiResponse.of {
+      Response.success(
+        mockData
+      )
+    })
 
     repository.fetchPokemonInfo(
       name = "bulbasaur", onComplete = {}, onError = {}

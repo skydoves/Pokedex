@@ -28,14 +28,13 @@ import com.skydoves.pokedex.persistence.PokemonDao
 import com.skydoves.pokedex.repository.MainRepository
 import com.skydoves.pokedex.ui.main.MainViewModel
 import com.skydoves.pokedex.utils.MockUtil
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.runBlocking
+import kotlin.time.DurationUnit
+import kotlin.time.toDuration
+import kotlinx.coroutines.test.runTest
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import kotlin.time.DurationUnit
-import kotlin.time.toDuration
 
 class MainViewModelTest {
 
@@ -50,17 +49,17 @@ class MainViewModelTest {
 
   @Before
   fun setup() {
-    mainRepository = MainRepository(pokdexClient, pokemonDao, Dispatchers.IO)
+    mainRepository = MainRepository(pokdexClient, pokemonDao, coroutinesRule.testDispatcher)
     viewModel = MainViewModel(mainRepository)
   }
 
   @Test
-  fun fetchPokemonListTest() = runBlocking {
+  fun fetchPokemonListTest() = runTest {
     val mockData = MockUtil.mockPokemonList()
     whenever(pokemonDao.getPokemonList(page_ = 0)).thenReturn(mockData)
     whenever(pokemonDao.getAllPokemonList(page_ = 0)).thenReturn(mockData)
 
-    val fetchedDataFlow = mainRepository.fetchPokemonList(
+    mainRepository.fetchPokemonList(
       page = 0,
       onStart = {},
       onComplete = {},
@@ -76,9 +75,5 @@ class MainViewModelTest {
     viewModel.fetchNextPokemonList()
 
     verify(pokemonDao, atLeastOnce()).getPokemonList(page_ = 0)
-
-    fetchedDataFlow.apply {
-      // runBlocking should return Unit
-    }
   }
 }

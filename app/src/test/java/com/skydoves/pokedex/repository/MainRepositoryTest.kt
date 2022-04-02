@@ -31,15 +31,14 @@ import com.skydoves.pokedex.network.PokedexService
 import com.skydoves.pokedex.persistence.PokemonDao
 import com.skydoves.pokedex.utils.MockUtil.mockPokemonList
 import com.skydoves.sandwich.ApiResponse
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.runBlocking
+import kotlin.time.DurationUnit
+import kotlin.time.toDuration
+import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import retrofit2.Response
-import kotlin.time.DurationUnit
-import kotlin.time.toDuration
 
 class MainRepositoryTest {
 
@@ -54,12 +53,13 @@ class MainRepositoryTest {
   @Before
   fun setup() {
     client = PokedexClient(service)
-    repository = MainRepository(client, pokemonDao, Dispatchers.IO)
+    repository = MainRepository(client, pokemonDao, coroutinesRule.testDispatcher)
   }
 
   @Test
-  fun fetchPokemonListFromNetworkTest() = runBlocking {
-    val mockData = PokemonResponse(count = 984, next = null, previous = null, results = mockPokemonList())
+  fun fetchPokemonListFromNetworkTest() = runTest {
+    val mockData =
+      PokemonResponse(count = 984, next = null, previous = null, results = mockPokemonList())
     whenever(pokemonDao.getPokemonList(page_ = 0)).thenReturn(emptyList())
     whenever(pokemonDao.getAllPokemonList(page_ = 0)).thenReturn(mockData.results)
     whenever(service.fetchPokemonList()).thenReturn(ApiResponse.of { Response.success(mockData) })
@@ -84,12 +84,13 @@ class MainRepositoryTest {
   }
 
   @Test
-  fun fetchPokemonListFromDatabaseTest() = runBlocking {
-    val mockData = PokemonResponse(count = 984, next = null, previous = null, results = mockPokemonList())
+  fun fetchPokemonListFromDatabaseTest() = runTest {
+    val mockData =
+      PokemonResponse(count = 984, next = null, previous = null, results = mockPokemonList())
     whenever(pokemonDao.getPokemonList(page_ = 0)).thenReturn(mockData.results)
     whenever(pokemonDao.getAllPokemonList(page_ = 0)).thenReturn(mockData.results)
 
-    val fetchedDataFlow = repository.fetchPokemonList(
+    repository.fetchPokemonList(
       page = 0,
       onStart = {},
       onComplete = {},
@@ -104,9 +105,5 @@ class MainRepositoryTest {
 
     verify(pokemonDao, atLeastOnce()).getPokemonList(page_ = 0)
     verify(pokemonDao, atLeastOnce()).getAllPokemonList(page_ = 0)
-
-    fetchedDataFlow.apply {
-      // runBlocking should return Unit
-    }
   }
 }
