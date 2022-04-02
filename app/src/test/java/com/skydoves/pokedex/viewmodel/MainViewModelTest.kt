@@ -28,13 +28,13 @@ import com.skydoves.pokedex.persistence.PokemonDao
 import com.skydoves.pokedex.repository.MainRepository
 import com.skydoves.pokedex.ui.main.MainViewModel
 import com.skydoves.pokedex.utils.MockUtil
-import kotlin.time.DurationUnit
-import kotlin.time.toDuration
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import kotlin.time.DurationUnit
+import kotlin.time.toDuration
 
 class MainViewModelTest {
 

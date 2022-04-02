@@ -31,14 +31,14 @@ import com.skydoves.pokedex.network.PokedexService
 import com.skydoves.pokedex.persistence.PokemonDao
 import com.skydoves.pokedex.utils.MockUtil.mockPokemonList
 import com.skydoves.sandwich.ApiResponse
-import kotlin.time.DurationUnit
-import kotlin.time.toDuration
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import retrofit2.Response
+import kotlin.time.DurationUnit
+import kotlin.time.toDuration
 
 class MainRepositoryTest {
 
