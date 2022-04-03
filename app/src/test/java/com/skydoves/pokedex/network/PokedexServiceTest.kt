@@ -34,7 +34,7 @@ class PokedexServiceTest : ApiAbstract<PokedexService>() {
 
   @ExperimentalCoroutinesApi
   @get:Rule
-  var coroutinesRule = MainCoroutinesRule()
+  val coroutinesRule = MainCoroutinesRule()
 
   @Before
   fun initService() {

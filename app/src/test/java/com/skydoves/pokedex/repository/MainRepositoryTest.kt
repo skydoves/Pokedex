@@ -48,7 +48,7 @@ class MainRepositoryTest {
   private val pokemonDao: PokemonDao = mock()
 
   @get:Rule
-  var coroutinesRule = MainCoroutinesRule()
+  val coroutinesRule = MainCoroutinesRule()
 
   @Before
   fun setup() {
