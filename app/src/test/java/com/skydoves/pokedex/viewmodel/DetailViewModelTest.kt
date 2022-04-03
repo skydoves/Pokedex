@@ -28,8 +28,7 @@ import com.skydoves.pokedex.persistence.PokemonInfoDao
 import com.skydoves.pokedex.repository.DetailRepository
 import com.skydoves.pokedex.ui.details.DetailViewModel
 import com.skydoves.pokedex.utils.MockUtil
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.test.runTest
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Rule
@@ -50,16 +49,16 @@ class DetailViewModelTest {
 
   @Before
   fun setup() {
-    detailRepository = DetailRepository(pokdexClient, pokemonInfoDao, Dispatchers.IO)
+    detailRepository = DetailRepository(pokdexClient, pokemonInfoDao, coroutinesRule.testDispatcher)
     viewModel = DetailViewModel(detailRepository, "bulbasaur")
   }
 
   @Test
-  fun fetchPokemonInfoTest() = runBlocking {
+  fun fetchPokemonInfoTest() = runTest {
     val mockData = MockUtil.mockPokemonInfo()
     whenever(pokemonInfoDao.getPokemonInfo(name_ = "bulbasaur")).thenReturn(mockData)
 
-    val fetchedDataFlow = detailRepository.fetchPokemonInfo(
+    detailRepository.fetchPokemonInfo(
       name = "bulbasaur",
       onComplete = { },
       onError = { }
@@ -72,9 +71,5 @@ class DetailViewModelTest {
     }
 
     verify(pokemonInfoDao, atLeastOnce()).getPokemonInfo(name_ = "bulbasaur")
-
-    fetchedDataFlow.apply {
-      // runBlocking should return Unit
-    }
   }
 }
