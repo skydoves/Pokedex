@@ -49,13 +49,13 @@ ext.versions = [
     // network
     retrofitVersion      : '2.9.0',
     okhttpVersion        : '4.9.3',
-    sandwichVersion      : '1.2.3',
+    sandwichVersion      : '1.2.4',
 
     // moshi
     moshiVersion         : '1.13.0',
 
     // coroutines
-    coroutinesVersion    : '1.6.0',
+    coroutinesVersion    : '1.6.1',
 
     // whatIf
     whatIfVersion        : '1.1.1',
