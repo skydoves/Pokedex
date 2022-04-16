@@ -17,7 +17,7 @@
 package com.skydoves.pokedex.network
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.skydoves.sandwich.coroutines.CoroutinesResponseCallAdapterFactory
+import com.skydoves.sandwich.adapters.ApiResponseCallAdapterFactory
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import okio.buffer
@@ -74,7 +74,7 @@ abstract class ApiAbstract<T> {
     return Retrofit.Builder()
       .baseUrl(mockWebServer.url("/"))
       .addConverterFactory(MoshiConverterFactory.create())
-      .addCallAdapterFactory(CoroutinesResponseCallAdapterFactory.create())
+      .addCallAdapterFactory(ApiResponseCallAdapterFactory.create())
       .build()
       .create(clazz)
   }

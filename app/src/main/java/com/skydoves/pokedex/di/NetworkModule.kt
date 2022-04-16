@@ -19,7 +19,7 @@ package com.skydoves.pokedex.di
 import com.skydoves.pokedex.network.HttpRequestInterceptor
 import com.skydoves.pokedex.network.PokedexClient
 import com.skydoves.pokedex.network.PokedexService
-import com.skydoves.sandwich.coroutines.CoroutinesResponseCallAdapterFactory
+import com.skydoves.sandwich.adapters.ApiResponseCallAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -48,7 +48,7 @@ object NetworkModule {
       .client(okHttpClient)
       .baseUrl("https://pokeapi.co/api/v2/")
       .addConverterFactory(MoshiConverterFactory.create())
-      .addCallAdapterFactory(CoroutinesResponseCallAdapterFactory.create())
+      .addCallAdapterFactory(ApiResponseCallAdapterFactory.create())
       .build()
   }
 
