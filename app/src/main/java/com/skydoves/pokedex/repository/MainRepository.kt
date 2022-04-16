@@ -51,7 +51,7 @@ class MainRepository @Inject constructor(
     if (pokemons.isEmpty()) {
       /**
        * fetches a list of [Pokemon] from the network and getting [ApiResponse] asynchronously.
-       * @see [suspendOnSuccess](https://github.com/skydoves/sandwich#suspendonsuccess-suspendonerror-suspendonexception)
+       * @see [suspendOnSuccess](https://github.com/skydoves/sandwich#apiresponse-extensions-for-coroutines)
        */
       val response = pokedexClient.fetchPokemonList(page = page)
       response.suspendOnSuccess {

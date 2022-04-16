@@ -44,12 +44,13 @@ class DetailRepository @Inject constructor(
     name: String,
     onComplete: () -> Unit,
     onError: (String?) -> Unit
-  ) = flow<PokemonInfo?> {
+  ) = flow {
     val pokemonInfo = pokemonInfoDao.getPokemonInfo(name)
+    Result
     if (pokemonInfo == null) {
       /**
        * fetches a [PokemonInfo] from the network and getting [ApiResponse] asynchronously.
-       * @see [suspendOnSuccess](https://github.com/skydoves/sandwich#suspendonsuccess-suspendonerror-suspendonexception)
+       * @see [suspendOnSuccess](https://github.com/skydoves/sandwich#apiresponse-extensions-for-coroutines)
        */
       val response = pokedexClient.fetchPokemonInfo(name = name)
       response.suspendOnSuccess {
