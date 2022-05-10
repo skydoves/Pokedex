@@ -29,7 +29,7 @@ ext.versions = [
   kotlin              : '1.6.21',
 
   // support library
-  materialVersion     : '1.5.0',
+  materialVersion     : '1.6.0',
 
   // architecture components
   fragmentVersion     : '1.4.1',
@@ -61,7 +61,7 @@ ext.versions = [
   whatIfVersion       : '1.1.1',
 
   // glide
-  glideVersion        : '4.13.0',
+  glideVersion        : '4.13.2',
   glidePaletteVersion : '2.1.2',
 
   // bundler
