@@ -46,7 +46,6 @@ class DetailRepository @Inject constructor(
     onError: (String?) -> Unit
   ) = flow {
     val pokemonInfo = pokemonInfoDao.getPokemonInfo(name)
-    Result
     if (pokemonInfo == null) {
       /**
        * fetches a [PokemonInfo] from the network and getting [ApiResponse] asynchronously.
