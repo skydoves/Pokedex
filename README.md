@@ -21,7 +21,9 @@
 ## Download
 Go to the [Releases](https://github.com/skydoves/Pokedex/releases) to download the latest APK.
 
-<img src="/previews/preview.gif" align="right" width="32%"/>
+## Preview
+
+<img src="/previews/preview.gif" width="320"/>
 
 ## Tech stack & Open-source libraries
 - Minimum SDK level 21
