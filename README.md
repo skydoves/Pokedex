@@ -23,7 +23,7 @@ Go to the [Releases](https://github.com/skydoves/Pokedex/releases) to download t
 
 ## Preview
 
-<img src="/previews/preview.gif" width="320"/>
+<img src="/previews/preview.gif" width="320" align="right" />
 
 ## Tech stack & Open-source libraries
 - Minimum SDK level 21
