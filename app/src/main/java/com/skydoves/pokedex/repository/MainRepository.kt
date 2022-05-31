@@ -17,15 +17,12 @@
 package com.skydoves.pokedex.repository
 
 import androidx.annotation.WorkerThread
-import com.skydoves.pokedex.mapper.ErrorResponseMapper
 import com.skydoves.pokedex.model.Pokemon
-import com.skydoves.pokedex.model.PokemonErrorResponse
 import com.skydoves.pokedex.network.PokedexClient
 import com.skydoves.pokedex.persistence.PokemonDao
 import com.skydoves.sandwich.ApiResponse
-import com.skydoves.sandwich.map
-import com.skydoves.sandwich.onError
-import com.skydoves.sandwich.onException
+import com.skydoves.sandwich.message
+import com.skydoves.sandwich.onFailure
 import com.skydoves.sandwich.suspendOnSuccess
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.flow
@@ -59,16 +56,9 @@ class MainRepository @Inject constructor(
         pokemons.forEach { pokemon -> pokemon.page = page }
         pokemonDao.insertPokemonList(pokemons)
         emit(pokemonDao.getAllPokemonList(page))
+      }.onFailure { // handles the all error cases from the API request fails.
+        onError(message())
       }
-        // handles the case when the API request gets an error response.
-        // e.g., internal server error.
-        .onError {
-          /** maps the [ApiResponse.Failure.Error] to the [PokemonErrorResponse] using the mapper. */
-          map(ErrorResponseMapper) { onError("[Code: $code]: $message") }
-        }
-        // handles the case when the API request gets an exception response.
-        // e.g., network connection error.
-        .onException { onError(message) }
     } else {
       emit(pokemonDao.getAllPokemonList(page))
     }
