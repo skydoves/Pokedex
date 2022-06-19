@@ -38,7 +38,7 @@ ext.versions = [
   archCompomentVersion: '2.1.0',
 
   // binding
-  bindablesVersion    : '1.0.9',
+  bindablesVersion    : '1.1.0',
 
   // startup
   startupVersion      : '1.1.1',
@@ -70,7 +70,8 @@ ext.versions = [
   // transformation
   transformationLayout: '1.1.1',
 
-  // adapter
+  // recyclerView
+  recyclerView        : '1.2.1',
   baseAdapter         : '1.0.4',
 
   // android ribbon

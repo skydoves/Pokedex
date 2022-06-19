@@ -136,6 +136,7 @@ dependencies {
     implementation "com.github.skydoves:transformationlayout:$versions.transformationLayout"
 
     // recyclerView
+    implementation "androidx.recyclerview:recyclerview:$versions.recyclerView"
     implementation "com.github.skydoves:baserecyclerviewadapter:$versions.baseAdapter"
 
     // gradation
