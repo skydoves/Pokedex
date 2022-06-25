@@ -24,7 +24,7 @@ buildscript {
         gradlePluginPortal()
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:7.2.1"
+        classpath "com.android.tools.build:gradle:$versions.gradleBuildTool"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
         classpath "com.google.dagger:hilt-android-gradle-plugin:$versions.hiltVersion"
         classpath "com.diffplug.spotless:spotless-plugin-gradle:$versions.spotlessGradle"
