@@ -15,8 +15,8 @@
 // */
 
 plugins {
-    id 'com.android.test'
-    id 'org.jetbrains.kotlin.android'
+  id 'com.android.test'
+  id 'org.jetbrains.kotlin.android'
 }
 
 apply from: "$rootDir/dependencies.gradle"
@@ -24,46 +24,47 @@ apply from: "$rootDir/dependencies.gradle"
 android {
   compileSdkVersion versions.compileSdk
 
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
+  compileOptions {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+  }
 
-    kotlinOptions {
-        jvmTarget = "11"
-    }
+  kotlinOptions {
+    jvmTarget = "11"
+  }
 
-    defaultConfig {
-        minSdk versions.minSdk
-        targetSdk versions.compileSdk
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-    }
+  defaultConfig {
+    minSdk versions.minSdk
+    targetSdk versions.compileSdk
+    testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+  }
 
-    buildTypes {
-        // This benchmark buildType is used for benchmarking, and should function like your
-        // release build (for example, with minification on). It's signed with a debug key
-        // for easy local/CI testing.
-        benchmark {
-            debuggable = true
-            signingConfig = debug.signingConfig
-            matchingFallbacks = ["release"]
-        }
+  buildTypes {
+    // This benchmark buildType is used for benchmarking, and should function like your
+    // release build (for example, with minification on). It's signed with a debug key
+    // for easy local/CI testing.
+    benchmark {
+      debuggable = true
+      signingConfig = debug.signingConfig
+      matchingFallbacks = ["release"]
     }
+  }
 
-    targetProjectPath = ":app"
-    experimentalProperties["android.experimental.self-instrumenting"] = true
+  targetProjectPath = ":app"
+  experimentalProperties["android.experimental.self-instrumenting"] = true
 }
 
 dependencies {
-    implementation "androidx.profileinstaller:profileinstaller:$versions.baselineProfiles"
-    implementation "androidx.benchmark:benchmark-macro-junit4:$versions.macroBenchmark"
-    implementation "androidx.test.uiautomator:uiautomator:$versions.uiAutomator"
+  implementation "androidx.profileinstaller:profileinstaller:$versions.baselineProfiles"
+  implementation "androidx.benchmark:benchmark-macro-junit4:$versions.macroBenchmark"
+  implementation "androidx.test.uiautomator:uiautomator:$versions.uiAutomator"
+  implementation "com.android.support.test:runner:$versions.androidTestRunner"
 }
 
 androidComponents {
-    beforeVariants(selector().all()) {
-        enabled = buildType == "benchmark"
-    }
+  beforeVariants(selector().all()) {
+    enabled = buildType == "benchmark"
+  }
 }
 
 apply from: "$rootDir/spotless.gradle"
