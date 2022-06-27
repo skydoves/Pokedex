@@ -14,7 +14,7 @@
 // * limitations under the License.
 // */
 ext.versions = [
-  minSdk              : 21,
+  minSdk              : 23,
   compileSdk          : 32,
   versionCode         : 6,
   versionName         : '1.0.5',
