@@ -52,5 +52,11 @@
         android:name="com.skydoves.pokedex.initializer.TimberInitializer"
         android:value="androidx.startup" />
     </provider>
+
+    <profileable
+      android:shell="true"
+      tools:targetApi="q" />
+
   </application>
+
 </manifest>

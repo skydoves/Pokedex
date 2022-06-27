@@ -73,6 +73,14 @@ android {
         }
     }
 
+    buildTypes {
+        benchmark {
+            signingConfig signingConfigs.debug
+            matchingFallbacks = ['release']
+            debuggable false
+        }
+    }
+
     tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
         kotlinOptions.freeCompilerArgs += [
             "-Xopt-in=kotlin.time.ExperimentalTime",
