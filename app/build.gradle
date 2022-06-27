@@ -72,6 +72,7 @@ android {
             returnDefaultValues = true
         }
     }
+
     buildTypes {
         benchmark {
             signingConfig signingConfigs.debug
