@@ -86,6 +86,11 @@ ext.versions = [
   // debugging
   timberVersion       : '5.0.1',
 
+  // benchmark
+  baselineProfiles    : '1.2.0-beta01',
+  macroBenchmark      : '1.1.0-rc01',
+  uiAutomator         : '2.2.0',
+
   // unit test
   truthVersion        : '1.0.1',
   junitVersion        : '4.13.1',
