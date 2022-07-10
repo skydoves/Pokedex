@@ -49,7 +49,7 @@ ext.versions = [
   // network
   retrofitVersion     : '2.9.0',
   okhttpVersion       : '4.9.3',
-  sandwichVersion     : '1.2.5',
+  sandwichVersion     : '1.2.6',
 
   // moshi
   moshiVersion        : '1.13.0',

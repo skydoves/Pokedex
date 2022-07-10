@@ -16,14 +16,12 @@
 
 package com.skydoves.pokedex.network
 
-import com.skydoves.pokedex.MainCoroutinesRule
 import com.skydoves.sandwich.ApiResponse
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.test.runTest
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Before
-import org.junit.Rule
 import org.junit.Test
 import java.io.IOException
 
@@ -32,10 +30,6 @@ class PokedexServiceTest : ApiAbstract<PokedexService>() {
 
   private lateinit var service: PokedexService
 
-  @ExperimentalCoroutinesApi
-  @get:Rule
-  val coroutinesRule = MainCoroutinesRule()
-
   @Before
   fun initService() {
     service = createService(PokedexService::class.java)
@@ -43,11 +37,10 @@ class PokedexServiceTest : ApiAbstract<PokedexService>() {
 
   @Throws(IOException::class)
   @Test
-  fun fetchPokemonListFromNetworkTest() = runBlocking {
+  fun fetchPokemonListFromNetworkTest() = runTest {
     enqueueResponse("/PokemonResponse.json")
     val response = service.fetchPokemonList()
     val responseBody = requireNotNull((response as ApiResponse.Success).data)
-    mockWebServer.takeRequest()
 
     assertThat(responseBody.count, `is`(964))
     assertThat(responseBody.results[0].name, `is`("bulbasaur"))
@@ -56,11 +49,10 @@ class PokedexServiceTest : ApiAbstract<PokedexService>() {
 
   @Throws(IOException::class)
   @Test
-  fun fetchPokemonInfoFromNetworkTest() = runBlocking {
+  fun fetchPokemonInfoFromNetworkTest() = runTest {
     enqueueResponse("/Bulbasaur.json")
     val response = service.fetchPokemonInfo("bulbasaur")
     val responseBody = requireNotNull((response as ApiResponse.Success).data)
-    mockWebServer.takeRequest()
 
     assertThat(responseBody.id, `is`(1))
     assertThat(responseBody.name, `is`("bulbasaur"))
