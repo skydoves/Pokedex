@@ -87,8 +87,8 @@ ext.versions = [
   timberVersion       : '5.0.1',
 
   // benchmark
-  baselineProfiles    : '1.2.0-beta01',
-  macroBenchmark      : '1.1.0-rc01',
+  baselineProfiles    : '1.2.0-rc01',
+  macroBenchmark      : '1.1.0',
   uiAutomator         : '2.2.0',
 
   // unit test
