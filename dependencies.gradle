@@ -21,20 +21,20 @@ ext.versions = [
 
   // gradle plugins
   gradleBuildTool     : '7.2.1',
-  spotlessGradle      : '6.4.1',
+  spotlessGradle      : '6.7.0',
   versionPlugin       : '0.39.0',
   ktlint              : '0.43.0',
 
   // kotlin
-  kotlin              : '1.7.0',
+  kotlin              : '1.7.10',
 
   // support library
   materialVersion     : '1.6.1',
 
   // architecture components
-  fragmentVersion     : '1.4.1',
-  lifecycleVersion    : '2.4.1',
-  roomVersion         : '2.4.2',
+  fragmentVersion     : '1.5.2',
+  lifecycleVersion    : '2.5.1',
+  roomVersion         : '2.4.3',
   archCompomentVersion: '2.1.0',
 
   // binding
@@ -48,14 +48,14 @@ ext.versions = [
 
   // network
   retrofitVersion     : '2.9.0',
-  okhttpVersion       : '4.9.3',
-  sandwichVersion     : '1.2.6',
+  okhttpVersion       : '4.10.0',
+  sandwichVersion     : '1.2.7',
 
   // moshi
   moshiVersion        : '1.13.0',
 
   // coroutines
-  coroutinesVersion   : '1.6.1',
+  coroutinesVersion   : '1.6.4',
 
   // whatIf
   whatIfVersion       : '1.1.1',
@@ -87,7 +87,7 @@ ext.versions = [
   timberVersion       : '5.0.1',
 
   // benchmark
-  baselineProfiles    : '1.2.0-rc01',
+  baselineProfiles    : '1.2.0',
   macroBenchmark      : '1.1.0',
   uiAutomator         : '2.2.0',
 
