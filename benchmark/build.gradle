@@ -69,4 +69,4 @@ androidComponents {
   }
 }
 
-apply from: "$rootDir/spotless.gradle"
+apply from: "$rootDir/spotless/spotless.gradle"

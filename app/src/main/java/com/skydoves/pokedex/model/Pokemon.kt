@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+ 
 package com.skydoves.pokedex.model
 
 import android.os.Parcelable
@@ -28,7 +28,8 @@ import kotlinx.parcelize.Parcelize
 @JsonClass(generateAdapter = true)
 data class Pokemon(
   var page: Int = 0,
-  @field:Json(name = "name") @PrimaryKey val name: String,
+  @field:Json(name = "name") @PrimaryKey
+  val name: String,
   @field:Json(name = "url") val url: String
 ) : Parcelable {
 
