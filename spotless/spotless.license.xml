@@ -14,10 +14,3 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 -->
-<shape xmlns:android="http://schemas.android.com/apk/res/android">
-  <gradient
-    android:angle="45"
-    android:endColor="@color/colorPrimary"
-    android:startColor="@color/colorPrimary" />
-  <corners android:radius="6dp" />
-</shape>

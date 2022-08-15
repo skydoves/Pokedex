@@ -1,3 +1,5 @@
+import com.skydoves.pokedex.Configuration
+
 ///*
 // * Designed and developed by 2020 skydoves (Jaewoong Eum)
 // *
@@ -22,13 +24,13 @@ apply plugin: 'dagger.hilt.android.plugin'
 apply from: "$rootDir/dependencies.gradle"
 
 android {
-    compileSdkVersion versions.compileSdk
+    compileSdkVersion Configuration.compileSdk
     defaultConfig {
         applicationId "com.skydoves.pokedex"
-        minSdkVersion versions.minSdk
-        targetSdkVersion versions.compileSdk
-        versionCode versions.versionCode
-        versionName versions.versionName
+        minSdkVersion Configuration.minSdk
+        targetSdkVersion Configuration.compileSdk
+        versionCode Configuration.versionCode
+        versionName Configuration.versionName
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "com.skydoves.pokedex.AppTestRunner"
         javaCompileOptions {
@@ -170,4 +172,4 @@ dependencies {
     androidTestImplementation "androidx.test.espresso:espresso-core:$versions.espressoVersion"
 }
 
-apply from: "$rootDir/spotless.gradle"
+apply from: "$rootDir/spotless/spotless.gradle"

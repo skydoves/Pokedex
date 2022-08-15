@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+ 
 package com.skydoves.pokedex.persistence
 
 import com.skydoves.pokedex.utils.MockUtil.mockPokemon

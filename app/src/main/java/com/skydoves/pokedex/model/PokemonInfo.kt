@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+ 
 package com.skydoves.pokedex.model
 
 import androidx.room.Entity
@@ -25,7 +25,8 @@ import kotlin.random.Random
 @Entity
 @JsonClass(generateAdapter = true)
 data class PokemonInfo(
-  @field:Json(name = "id") @PrimaryKey val id: Int,
+  @field:Json(name = "id") @PrimaryKey
+  val id: Int,
   @field:Json(name = "name") val name: String,
   @field:Json(name = "height") val height: Int,
   @field:Json(name = "weight") val weight: Int,

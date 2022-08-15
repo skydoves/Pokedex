@@ -1,3 +1,5 @@
+import com.skydoves.pokedex.Configuration
+
 ///*
 // * Designed and developed by 2020 skydoves (Jaewoong Eum)
 // *
@@ -22,7 +24,7 @@ plugins {
 apply from: "$rootDir/dependencies.gradle"
 
 android {
-  compileSdkVersion versions.compileSdk
+  compileSdkVersion Configuration.compileSdk
 
   compileOptions {
     sourceCompatibility = JavaVersion.VERSION_1_8
@@ -34,8 +36,8 @@ android {
   }
 
   defaultConfig {
-    minSdk versions.minSdk
-    targetSdk versions.compileSdk
+    minSdk Configuration.minSdk
+    targetSdk Configuration.compileSdk
     testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
   }
 
@@ -67,4 +69,4 @@ androidComponents {
   }
 }
 
-apply from: "$rootDir/spotless.gradle"
+apply from: "$rootDir/spotless/spotless.gradle"

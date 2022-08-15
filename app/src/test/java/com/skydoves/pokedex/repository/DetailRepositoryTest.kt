@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+ 
 @file:Suppress("SpellCheckingInspection")
 
 package com.skydoves.pokedex.repository
@@ -94,7 +94,9 @@ class DetailRepositoryTest {
     )
 
     repository.fetchPokemonInfo(
-      name = "bulbasaur", onComplete = {}, onError = {}
+      name = "bulbasaur",
+      onComplete = {},
+      onError = {}
     ).test(5.toDuration(DurationUnit.SECONDS)) {
       val expectItem = requireNotNull(awaitItem())
       assertEquals(expectItem.id, mockData.id)

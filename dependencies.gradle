@@ -14,11 +14,6 @@
 // * limitations under the License.
 // */
 ext.versions = [
-  minSdk              : 23,
-  compileSdk          : 32,
-  versionCode         : 6,
-  versionName         : '1.0.5',
-
   // gradle plugins
   gradleBuildTool     : '7.2.1',
   spotlessGradle      : '6.7.0',
