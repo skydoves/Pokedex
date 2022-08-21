@@ -35,6 +35,10 @@ android {
       arg("room.schemaLocation", "$projectDir/schemas")
     }
   }
+
+  sourceSets.getByName("test") {
+    assets.srcDir(files("$projectDir/schemas"))
+  }
 }
 
 dependencies {
