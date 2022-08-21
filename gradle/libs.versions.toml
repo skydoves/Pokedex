@@ -51,7 +51,7 @@ kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
-spotless = { id = "com.diffplug.spotless", version = "6.9.0" }
+spotless = { id = "com.diffplug.spotless", version = "6.7.2" }
 hilt-plugin = { id = "dagger.hilt.android.plugin", version = "hilt" }
 
 [libraries]

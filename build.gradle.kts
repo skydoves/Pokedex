@@ -1,5 +1,5 @@
 ///*
-// * Designed and developed by 2020 skydoves (Jaewoong Eum)
+// * Designed and developed by 2022 skydoves (Jaewoong Eum)
 // *
 // * Licensed under the Apache License, Version 2.0 (the "License");
 // * you may not use this file except in compliance with the License.
@@ -16,8 +16,6 @@
 
 plugins {
   alias(libs.plugins.spotless)
-  id("com.android.library") version "7.2.2" apply false
-  id("org.jetbrains.kotlin.android") version "1.7.10" apply false
 }
 
 buildscript {
@@ -45,7 +43,7 @@ subprojects {
     )
   }
 
-  configure<com.diffplug.gradle.spotless.SpotlessExtension> {
+  extensions.configure<com.diffplug.gradle.spotless.SpotlessExtension> {
     kotlin {
       target("**/*.kt")
       targetExclude("$buildDir/**/*.kt")
@@ -63,8 +61,6 @@ subprojects {
       target("**/*.kts")
       targetExclude("$buildDir/**/*.kts")
       licenseHeaderFile(rootProject.file("spotless/spotless.license.kt"), "(^(?![\\/ ]\\*).*$)")
-      trimTrailingWhitespace()
-      endWithNewline()
     }
     format("xml") {
       target("**/*.xml")

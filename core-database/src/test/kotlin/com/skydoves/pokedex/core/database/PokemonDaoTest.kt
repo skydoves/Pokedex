@@ -1,5 +1,5 @@
 /*
- * Designed and developed by 2020 skydoves (Jaewoong Eum)
+ * Designed and developed by 2022 skydoves (Jaewoong Eum)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@
 
 package com.skydoves.pokedex.core.database
 
-import com.skydoves.pokedex.core.database.entitiy.mapper.PokemonEntityMapper
+import com.skydoves.pokedex.core.database.entitiy.mapper.asEntity
 import com.skydoves.pokedex.core.test.MockUtil.mockPokemon
 import com.skydoves.pokedex.core.test.MockUtil.mockPokemonList
 import kotlinx.coroutines.runBlocking
@@ -41,14 +41,13 @@ class PokemonDaoTest : LocalDatabase() {
 
   @Test
   fun insertAndLoadPokemonListTest() = runBlocking {
-    val mockDataList = mockPokemonList()
-    val pokemonEntities = PokemonEntityMapper.asEntity(mockDataList)
-    pokemonDao.insertPokemonList(pokemonEntities)
+    val mockDataList = mockPokemonList().asEntity()
+    pokemonDao.insertPokemonList(mockDataList)
 
     val loadFromDB = pokemonDao.getPokemonList(page_ = 0)
     assertThat(loadFromDB.toString(), `is`(mockDataList.toString()))
 
-    val mockData = mockPokemon()
+    val mockData = listOf(mockPokemon()).asEntity()[0]
     assertThat(loadFromDB[0].toString(), `is`(mockData.toString()))
   }
 }
