@@ -95,11 +95,8 @@ So users don't need to be up-to-date on the network resources every time and it 
 **Pokedex** adopted modularization strategies below:
 
 - **Reusability**: Modulizing reusable codes properly enable opportunities for code sharing and limits code accessibility in other modules at the same time.
-
 - **Parallel Building**: Each module can be run in parallel and it reduces the build time.
-
 - **Strict visibility control**: Modules restrict to expose dedicated components and access to other layers, so it prevents they're being used outside the module
-
 - **Decentralized focusing**: Each developer team can assign their dedicated module and they can focus on their own modules.
 
 For more information, check out the [Guide to Android app modularization](https://developer.android.com/topic/modularization).
