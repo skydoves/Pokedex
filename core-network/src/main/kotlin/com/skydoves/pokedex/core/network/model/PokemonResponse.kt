@@ -14,27 +14,16 @@
  * limitations under the License.
  */
 
-package com.skydoves.pokedex.utils
+package com.skydoves.pokedex.core.network.model
 
-import com.skydoves.pokedex.model.Pokemon
-import com.skydoves.pokedex.model.PokemonInfo
+import com.skydoves.pokedex.core.model.Pokemon
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
-object MockUtil {
-
-  fun mockPokemon() = Pokemon(
-    page = 0,
-    name = "bulbasaur",
-    url = "https://pokeapi.co/api/v2/pokemon/1/"
-  )
-
-  fun mockPokemonList() = listOf(mockPokemon())
-
-  fun mockPokemonInfo() = PokemonInfo(
-    id = 1,
-    name = "bulbasaur",
-    height = 7,
-    weight = 69,
-    experience = 60,
-    types = emptyList()
-  )
-}
+@JsonClass(generateAdapter = true)
+data class PokemonResponse(
+  @field:Json(name = "count") val count: Int,
+  @field:Json(name = "next") val next: String?,
+  @field:Json(name = "previous") val previous: String?,
+  @field:Json(name = "results") val results: List<Pokemon>
+)

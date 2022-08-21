@@ -15,9 +15,9 @@
 // */
 
 plugins {
-  alias(libs.plugins.android.application) apply false
-  alias(libs.plugins.android.library) apply false
   alias(libs.plugins.spotless)
+  id("com.android.library") version "7.2.2" apply false
+  id("org.jetbrains.kotlin.android") version "1.7.10" apply false
 }
 
 buildscript {
@@ -39,8 +39,11 @@ subprojects {
 
   tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().all {
     kotlinOptions.jvmTarget = JavaVersion.VERSION_1_8.toString()
+    kotlinOptions.freeCompilerArgs += listOf(
+      "-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
+    )
   }
-  
+
   configure<com.diffplug.gradle.spotless.SpotlessExtension> {
     kotlin {
       target("**/*.kt")

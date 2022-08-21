@@ -3,8 +3,6 @@ import com.skydoves.pokedex.Configuration
 plugins {
   id(libs.plugins.android.library.get().pluginId)
   id(libs.plugins.kotlin.android.get().pluginId)
-  id(libs.plugins.kotlin.parcelize.get().pluginId)
-  id(libs.plugins.ksp.get().pluginId) version libs.versions.ksp.get()
 }
 
 android {
@@ -17,10 +15,8 @@ android {
 }
 
 dependencies {
-  // json parsing
-  implementation(libs.moshi)
-  ksp(libs.moshi.codegen)
-
-  // logger
-  api(libs.timber)
+  implementation(project(":core-model"))
+  implementation(libs.coroutines)
+  implementation(libs.coroutines.test)
+  implementation(libs.junit)
 }

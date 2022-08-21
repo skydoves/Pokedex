@@ -61,12 +61,7 @@ android {
     }
   }
 
-  sourceSets.getByName("androidTest") {
-    kotlin.srcDir("src/test-common/kotlin")
-  }
-
   sourceSets.getByName("test") {
-    kotlin.srcDir("src/test-common/kotlin")
     assets.srcDir(files("$projectDir/schemas"))
   }
 
@@ -117,7 +112,7 @@ dependencies {
   implementation(libs.okhttp.interceptor)
   testImplementation(libs.okhttp.mockserver)
 
-  // moshi
+  // json parsing
   implementation(libs.moshi)
   ksp(libs.moshi.codegen)
 
@@ -149,9 +144,6 @@ dependencies {
   // custom views
   implementation(libs.androidRibbon)
   implementation(libs.progressView)
-
-  // logging
-  implementation(libs.timber)
 
   // unit test
   testImplementation(libs.junit)
