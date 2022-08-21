@@ -13,6 +13,12 @@ android {
   defaultConfig {
     minSdk = Configuration.minSdk
     targetSdk = Configuration.targetSdk
+    // The schemas directory contains a schema file for each version of the Room database.
+    // This is required to enable Room auto migrations.
+    // See https://developer.android.com/reference/kotlin/androidx/room/AutoMigration.
+    ksp {
+      arg("room.schemaLocation", "$projectDir/schemas")
+    }
   }
 }
 
@@ -25,12 +31,10 @@ dependencies {
   testImplementation(libs.coroutines)
   testImplementation(libs.coroutines.test)
 
-  // network
-  implementation(libs.sandwich)
-  implementation(libs.retrofit)
-  implementation(libs.retrofit.moshi)
-  implementation(libs.okhttp.interceptor)
-  testImplementation(libs.okhttp.mockserver)
+  // database
+  implementation(libs.androidx.room.runtime)
+  implementation(libs.androidx.room.ktx)
+  ksp(libs.androidx.room.compiler)
   testImplementation(libs.androidx.arch.core)
 
   // json parsing
@@ -40,4 +44,9 @@ dependencies {
   // di
   implementation(libs.hilt.android)
   kapt(libs.hilt.compiler)
+
+  // unit test
+  testImplementation(libs.junit)
+  testImplementation(libs.androidx.test.core)
+  testImplementation(libs.robolectric)
 }

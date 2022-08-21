@@ -34,12 +34,6 @@ android {
     versionName = Configuration.versionName
     vectorDrawables.useSupportLibrary = true
     testInstrumentationRunner = "com.skydoves.pokedex.AppTestRunner"
-    // The schemas directory contains a schema file for each version of the Room database.
-    // This is required to enable Room auto migrations.
-    // See https://developer.android.com/reference/kotlin/androidx/room/AutoMigration.
-    ksp {
-      arg("room.schemaLocation", "$projectDir/schemas")
-    }
   }
 
   compileOptions {
@@ -82,6 +76,8 @@ android {
 }
 
 dependencies {
+  implementation(project(":core-database"))
+
   // android supports
   implementation(libs.material)
 
@@ -145,13 +141,14 @@ dependencies {
   implementation(libs.androidRibbon)
   implementation(libs.progressView)
 
+  implementation(libs.timber)
+
   // unit test
   testImplementation(libs.junit)
   testImplementation(libs.androidx.test.core)
   testImplementation(libs.mockito.kotlin)
   testImplementation(libs.mockito.inline)
   testImplementation(libs.turbine)
-  testImplementation(libs.robolectric)
   androidTestImplementation(libs.truth)
   androidTestImplementation(libs.androidx.junit)
   androidTestImplementation(libs.androidx.espresso)

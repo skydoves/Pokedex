@@ -14,10 +14,11 @@
  * limitations under the License.
  */
 
-package com.skydoves.pokedex.persistence
+package com.skydoves.pokedex.core.database
 
-import com.skydoves.pokedex.utils.MockUtil.mockPokemon
-import com.skydoves.pokedex.utils.MockUtil.mockPokemonList
+import com.skydoves.pokedex.core.database.entitiy.mapper.PokemonEntityMapper
+import com.skydoves.pokedex.core.test.MockUtil.mockPokemon
+import com.skydoves.pokedex.core.test.MockUtil.mockPokemonList
 import kotlinx.coroutines.runBlocking
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.core.Is.`is`
@@ -41,7 +42,8 @@ class PokemonDaoTest : LocalDatabase() {
   @Test
   fun insertAndLoadPokemonListTest() = runBlocking {
     val mockDataList = mockPokemonList()
-    pokemonDao.insertPokemonList(mockDataList)
+    val pokemonEntities = PokemonEntityMapper.toEntity(mockDataList)
+    pokemonDao.insertPokemonList(pokemonEntities)
 
     val loadFromDB = pokemonDao.getPokemonList(page_ = 0)
     assertThat(loadFromDB.toString(), `is`(mockDataList.toString()))

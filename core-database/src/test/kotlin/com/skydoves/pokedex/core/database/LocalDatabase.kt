@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.skydoves.pokedex.persistence
+package com.skydoves.pokedex.core.database
 
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider.getApplicationContext
@@ -28,12 +28,12 @@ import org.robolectric.annotation.Config
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk = [23])
 abstract class LocalDatabase {
-  lateinit var db: AppDatabase
+  lateinit var db: PokedexDatabase
 
   @Before
   fun initDB() {
     val moshi = Moshi.Builder().build()
-    db = Room.inMemoryDatabaseBuilder(getApplicationContext(), AppDatabase::class.java)
+    db = Room.inMemoryDatabaseBuilder(getApplicationContext(), PokedexDatabase::class.java)
       .allowMainThreadQueries()
       .addTypeConverter(TypeResponseConverter(moshi))
       .build()
