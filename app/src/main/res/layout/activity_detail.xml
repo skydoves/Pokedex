@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-    Designed and developed by 2020 skydoves (Jaewoong Eum)
+    Designed and developed by 2022 skydoves (Jaewoong Eum)
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
@@ -22,7 +22,7 @@
 
     <variable
       name="pokemon"
-      type="com.skydoves.pokedex.model.Pokemon" />
+      type="com.skydoves.pokedex.core.model.Pokemon" />
 
     <variable
       name="vm"
