@@ -1,3 +1,5 @@
+@file:Suppress("UnstableApiUsage")
+
 //Designed and developed by 2020 skydoves (Jaewoong Eum)
 //
 //Licensed under the Apache License, Version 2.0 (the "License");
@@ -11,6 +13,24 @@
 //    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 //See the License for the specific language governing permissions and
 //limitations under the License.
-include ':app'
-include ':benchmark'
+
+pluginManagement {
+  repositories {
+    google()
+    mavenCentral()
+    gradlePluginPortal()
+    maven(url = "https://oss.sonatype.org/content/repositories/snapshots/")
+  }
+}
+dependencyResolutionManagement {
+  repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+  repositories {
+    google()
+    mavenCentral()
+    gradlePluginPortal()
+    maven(url = "https://oss.sonatype.org/content/repositories/snapshots/")
+  }
+}
 rootProject.name = "Pokedex"
+include(":app")
+include(":benchmark")

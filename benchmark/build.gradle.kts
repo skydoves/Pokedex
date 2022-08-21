@@ -17,14 +17,12 @@ import com.skydoves.pokedex.Configuration
 // */
 
 plugins {
-  id 'com.android.test'
-  id 'org.jetbrains.kotlin.android'
+  id(libs.plugins.android.test.get().pluginId)
+  id(libs.plugins.kotlin.android.get().pluginId)
 }
 
-apply from: "$rootDir/dependencies.gradle"
-
 android {
-  compileSdkVersion Configuration.compileSdk
+  compileSdk = Configuration.compileSdk
 
   compileOptions {
     sourceCompatibility = JavaVersion.VERSION_1_8
@@ -36,19 +34,19 @@ android {
   }
 
   defaultConfig {
-    minSdk Configuration.minSdk
-    targetSdk Configuration.compileSdk
-    testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    minSdk = Configuration.minSdk
+    targetSdk = Configuration.compileSdk
+    testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
   }
 
   buildTypes {
     // This benchmark buildType is used for benchmarking, and should function like your
-    // release build (for example, with minification on). It's signed with a debug key
+    // release build (for example, with minification on). It"s signed with a debug key
     // for easy local/CI testing.
-    benchmark {
-      debuggable = true
-      signingConfig = debug.signingConfig
-      matchingFallbacks = ["release"]
+    create("benchmark") {
+      isDebuggable = true
+      signingConfig = getByName("debug").signingConfig
+      matchingFallbacks += listOf("release")
     }
   }
 
@@ -57,16 +55,14 @@ android {
 }
 
 dependencies {
-  implementation "androidx.profileinstaller:profileinstaller:$versions.baselineProfiles"
-  implementation "androidx.benchmark:benchmark-macro-junit4:$versions.macroBenchmark"
-  implementation "androidx.test.uiautomator:uiautomator:$versions.uiAutomator"
-  implementation "com.android.support.test:runner:$versions.androidTestRunner"
+  implementation(libs.profileinstaller)
+  implementation(libs.macrobenchmark)
+  implementation(libs.uiautomator)
+  implementation(libs.android.test.runner)
 }
 
 androidComponents {
   beforeVariants(selector().all()) {
-    enabled = buildType == "benchmark"
+    it.enabled = it.buildType == "benchmark"
   }
 }
-
-apply from: "$rootDir/spotless/spotless.gradle"
