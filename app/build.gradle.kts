@@ -66,12 +66,12 @@ android {
   }
 
   sourceSets.getByName("androidTest") {
-    java.srcDir("src/test-common/java")
+    kotlin.srcDir("src/test-common/kotlin")
   }
 
   sourceSets.getByName("test") {
-    java.srcDir("src/test-common/java")
-    assets.srcDir(files("$projectDir/schemas".toString()))
+    kotlin.srcDir("src/test-common/kotlin")
+    assets.srcDir(files("$projectDir/schemas"))
   }
 
   testOptions {
