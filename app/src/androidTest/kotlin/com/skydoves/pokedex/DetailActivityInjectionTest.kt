@@ -22,8 +22,8 @@ import androidx.test.core.app.ActivityScenario
 import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.google.common.truth.Truth.assertThat
+import com.skydoves.pokedex.core.test.MockUtil
 import com.skydoves.pokedex.ui.details.DetailActivity
-import com.skydoves.pokedex.utils.MockUtil
 import com.skydoves.transformationlayout.TransformationLayout
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest

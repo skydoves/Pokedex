@@ -21,7 +21,7 @@ import com.skydoves.pokedex.core.model.PokemonInfo
 
 object PokemonInfoEntityMapper : EntityMapper<PokemonInfo, PokemonInfoEntity> {
 
-  override fun toEntity(domain: PokemonInfo): PokemonInfoEntity {
+  override fun asEntity(domain: PokemonInfo): PokemonInfoEntity {
     return PokemonInfoEntity(
       id = domain.id,
       name = domain.name,
@@ -37,7 +37,7 @@ object PokemonInfoEntityMapper : EntityMapper<PokemonInfo, PokemonInfoEntity> {
     )
   }
 
-  override fun toDomain(entity: PokemonInfoEntity): PokemonInfo {
+  override fun asDomain(entity: PokemonInfoEntity): PokemonInfo {
     return PokemonInfo(
       id = entity.id,
       name = entity.name,
@@ -52,4 +52,12 @@ object PokemonInfoEntityMapper : EntityMapper<PokemonInfo, PokemonInfoEntity> {
       exp = entity.exp
     )
   }
+}
+
+fun PokemonInfo.asEntity(): PokemonInfoEntity {
+  return PokemonInfoEntityMapper.asEntity(this)
+}
+
+fun PokemonInfoEntity.asDomain(): PokemonInfo {
+  return PokemonInfoEntityMapper.asDomain(this)
 }

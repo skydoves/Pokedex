@@ -21,7 +21,7 @@ import com.skydoves.pokedex.core.model.Pokemon
 
 object PokemonEntityMapper : EntityMapper<List<Pokemon>, List<PokemonEntity>> {
 
-  override fun toEntity(domain: List<Pokemon>): List<PokemonEntity> {
+  override fun asEntity(domain: List<Pokemon>): List<PokemonEntity> {
     return domain.map { pokemon ->
       PokemonEntity(
         page = pokemon.page,
@@ -31,7 +31,7 @@ object PokemonEntityMapper : EntityMapper<List<Pokemon>, List<PokemonEntity>> {
     }
   }
 
-  override fun toDomain(entity: List<PokemonEntity>): List<Pokemon> {
+  override fun asDomain(entity: List<PokemonEntity>): List<Pokemon> {
     return entity.map { pokemonEntity ->
       Pokemon(
         page = pokemonEntity.page,
@@ -40,4 +40,12 @@ object PokemonEntityMapper : EntityMapper<List<Pokemon>, List<PokemonEntity>> {
       )
     }
   }
+}
+
+fun List<Pokemon>.asEntity(): List<PokemonEntity> {
+  return PokemonEntityMapper.asEntity(this)
+}
+
+fun List<PokemonEntity>.asDomain(): List<Pokemon> {
+  return PokemonEntityMapper.asDomain(this)
 }

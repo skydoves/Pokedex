@@ -42,7 +42,7 @@ class PokemonDaoTest : LocalDatabase() {
   @Test
   fun insertAndLoadPokemonListTest() = runBlocking {
     val mockDataList = mockPokemonList()
-    val pokemonEntities = PokemonEntityMapper.toEntity(mockDataList)
+    val pokemonEntities = PokemonEntityMapper.asEntity(mockDataList)
     pokemonDao.insertPokemonList(pokemonEntities)
 
     val loadFromDB = pokemonDao.getPokemonList(page_ = 0)

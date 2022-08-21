@@ -23,8 +23,8 @@ import com.skydoves.bindables.BindingActivity
 import com.skydoves.bundler.bundleNonNull
 import com.skydoves.bundler.intentOf
 import com.skydoves.pokedex.R
+import com.skydoves.pokedex.core.model.Pokemon
 import com.skydoves.pokedex.databinding.ActivityDetailBinding
-import com.skydoves.pokedex.model.Pokemon
 import com.skydoves.transformationlayout.TransformationCompat
 import com.skydoves.transformationlayout.TransformationCompat.onTransformationEndContainerApplyParams
 import com.skydoves.transformationlayout.TransformationLayout

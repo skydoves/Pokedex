@@ -26,7 +26,7 @@
 
     <variable
       name="adapter"
-      type="com.skydoves.pokedex.ui.adapter.PokemonAdapter" />
+      type="com.skydoves.pokedex.ui.main.PokemonAdapter" />
   </data>
 
   <androidx.constraintlayout.widget.ConstraintLayout

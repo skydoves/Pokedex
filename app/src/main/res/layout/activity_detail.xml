@@ -22,7 +22,7 @@
 
     <variable
       name="pokemon"
-      type="com.skydoves.pokedex.model.Pokemon" />
+      type="com.skydoves.pokedex.core.model.Pokemon" />
 
     <variable
       name="vm"

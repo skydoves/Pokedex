@@ -14,11 +14,18 @@
  * limitations under the License.
  */
 
-package com.skydoves.pokedex.core.database.entitiy.mapper
+package com.skydoves.core.data.repository
 
-interface EntityMapper<Domain, Entity> {
+import androidx.annotation.WorkerThread
+import com.skydoves.pokedex.core.model.PokemonInfo
+import kotlinx.coroutines.flow.Flow
 
-  fun asEntity(domain: Domain): Entity
+interface DetailRepository {
 
-  fun asDomain(entity: Entity): Domain
+  @WorkerThread
+  fun fetchPokemonInfo(
+    name: String,
+    onComplete: () -> Unit,
+    onError: (String?) -> Unit
+  ): Flow<PokemonInfo>
 }

@@ -22,7 +22,6 @@ import androidx.annotation.VisibleForTesting
 import com.skydoves.bindables.BindingActivity
 import com.skydoves.pokedex.R
 import com.skydoves.pokedex.databinding.ActivityMainBinding
-import com.skydoves.pokedex.ui.adapter.PokemonAdapter
 import com.skydoves.transformationlayout.onTransformationStartContainer
 import dagger.hilt.android.AndroidEntryPoint
 

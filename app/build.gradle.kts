@@ -21,7 +21,6 @@ plugins {
   id(libs.plugins.kotlin.kapt.get().pluginId)
   id(libs.plugins.kotlin.parcelize.get().pluginId)
   id(libs.plugins.hilt.plugin.get().pluginId)
-  id(libs.plugins.ksp.get().pluginId) version libs.versions.ksp.get()
 }
 
 android {
@@ -76,79 +75,62 @@ android {
 }
 
 dependencies {
-  implementation(project(":core-database"))
+  // modules
+  implementation(project(":core-data"))
 
-  // android supports
+  // modules for unit test
+  testImplementation(project(":core-network"))
+  testImplementation(project(":core-database"))
+  testImplementation(project(":core-test"))
+  androidTestImplementation(project(":core-test"))
+
+  // androidx
   implementation(libs.material)
-
-  // architecture components
   implementation(libs.androidx.fragment)
   implementation(libs.androidx.lifecycle)
-  implementation(libs.androidx.room.runtime)
-  implementation(libs.androidx.room.ktx)
-  ksp(libs.androidx.room.compiler)
-  testImplementation(libs.androidx.arch.core)
-
-  // binding
-  implementation(libs.bindables)
-
-  // startup
   implementation(libs.androidx.startup)
 
-  // hilt
+  // data binding
+  implementation(libs.bindables)
+
+  // di
   implementation(libs.hilt.android)
   kapt(libs.hilt.compiler)
   androidTestImplementation(libs.hilt.testing)
   kaptAndroidTest(libs.hilt.compiler)
 
-  // network
-  implementation(libs.sandwich)
-  implementation(libs.retrofit)
-  implementation(libs.retrofit.moshi)
-  implementation(libs.okhttp.interceptor)
-  testImplementation(libs.okhttp.mockserver)
-
-  // json parsing
-  implementation(libs.moshi)
-  ksp(libs.moshi.codegen)
-
   // coroutines
   implementation(libs.coroutines)
-  testImplementation(libs.coroutines)
-  testImplementation(libs.coroutines.test)
 
   // whatIf
   implementation(libs.whatif)
 
-  // glide
+  // image loading
   implementation(libs.glide)
   implementation(libs.glide.palette)
 
   // bundler
   implementation(libs.bundler)
 
-  // transformation
+  // transformation animation
   implementation(libs.transformationLayout)
 
   // recyclerView
   implementation(libs.recyclerview)
   implementation(libs.baseAdapter)
 
-  // gradation
-  implementation(libs.rainbow)
-
   // custom views
+  implementation(libs.rainbow)
   implementation(libs.androidRibbon)
   implementation(libs.progressView)
 
-  implementation(libs.timber)
-
   // unit test
   testImplementation(libs.junit)
+  testImplementation(libs.turbine)
   testImplementation(libs.androidx.test.core)
   testImplementation(libs.mockito.kotlin)
   testImplementation(libs.mockito.inline)
-  testImplementation(libs.turbine)
+  testImplementation(libs.coroutines.test)
   androidTestImplementation(libs.truth)
   androidTestImplementation(libs.androidx.junit)
   androidTestImplementation(libs.androidx.espresso)
