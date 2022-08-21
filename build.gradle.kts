@@ -15,6 +15,8 @@
 // */
 
 plugins {
+  alias(libs.plugins.android.application) apply false
+  alias(libs.plugins.android.library) apply false
   alias(libs.plugins.spotless)
 }
 
@@ -34,6 +36,11 @@ buildscript {
 
 subprojects {
   apply(plugin = rootProject.libs.plugins.spotless.get().pluginId)
+
+  tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().all {
+    kotlinOptions.jvmTarget = JavaVersion.VERSION_1_8.toString()
+  }
+  
   configure<com.diffplug.gradle.spotless.SpotlessExtension> {
     kotlin {
       target("**/*.kt")
