@@ -14,6 +14,7 @@
 // * limitations under the License.
 // */
 
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
   alias(libs.plugins.spotless)
 }

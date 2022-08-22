@@ -1,14 +1,5 @@
 @file:Suppress("UnstableApiUsage")
 
-include(":core-data")
-
-
-include(":core-database")
-
-
-include(":core-test")
-
-
 //Designed and developed by 2022 skydoves (Jaewoong Eum)
 //
 //Licensed under the Apache License, Version 2.0 (the "License");
@@ -45,3 +36,6 @@ include(":app")
 include(":benchmark")
 include(":core-model")
 include(":core-network")
+include(":core-database")
+include(":core-data")
+include(":core-test")
