@@ -32,10 +32,8 @@ class PokemonAdapter : BindingListAdapter<Pokemon, PokemonAdapter.PokemonViewHol
 
   private var onClickedAt = 0L
 
-  override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PokemonViewHolder {
-    val binding = parent.binding<ItemPokemonBinding>(R.layout.item_pokemon)
-    return PokemonViewHolder(binding)
-  }
+  override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PokemonViewHolder =
+    parent.binding<ItemPokemonBinding>(R.layout.item_pokemon).let(::PokemonViewHolder)
 
   override fun onBindViewHolder(holder: PokemonViewHolder, position: Int) =
     holder.bindPokemon(getItem(position))
