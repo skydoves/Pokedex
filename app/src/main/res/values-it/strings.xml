@@ -19,9 +19,9 @@
   <string name="weight">Peso</string>
   <string name="height">Altezza</string>
   <string name="base_stats">Statistiche base</string>
-  <string name="hp">HP</string>
-  <string name="atk">ATK</string>
-  <string name="def">DEF</string>
-  <string name="spd">SPD</string>
-  <string name="exp">EXP</string>
+  <string name="hp">PS</string>
+  <string name="atk">ATT</string>
+  <string name="def">DIF</string>
+  <string name="spd">VEL</string>
+  <string name="exp">ESP</string>
 </resources>
