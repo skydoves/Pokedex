@@ -27,7 +27,7 @@ import kotlinx.coroutines.Dispatchers
 
 @Module
 @InstallIn(SingletonComponent::class)
-object DispatchersModule {
+internal object DispatchersModule {
 
   @Provides
   @Dispatcher(PokedexAppDispatchers.IO)
