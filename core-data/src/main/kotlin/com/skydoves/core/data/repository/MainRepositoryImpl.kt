@@ -35,7 +35,7 @@ import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onStart
 import javax.inject.Inject
 
-class MainRepositoryImpl @Inject constructor(
+internal class MainRepositoryImpl @Inject constructor(
   private val pokedexClient: PokedexClient,
   private val pokemonDao: PokemonDao,
   @Dispatcher(PokedexAppDispatchers.IO) private val ioDispatcher: CoroutineDispatcher
