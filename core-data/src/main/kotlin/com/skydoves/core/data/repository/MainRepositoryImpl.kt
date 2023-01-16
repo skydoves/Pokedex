@@ -16,6 +16,7 @@
 
 package com.skydoves.core.data.repository
 
+import androidx.annotation.VisibleForTesting
 import androidx.annotation.WorkerThread
 import com.skydoves.pokedex.core.database.PokemonDao
 import com.skydoves.pokedex.core.database.entitiy.mapper.asDomain
@@ -35,7 +36,8 @@ import kotlinx.coroutines.flow.onCompletion
 import kotlinx.coroutines.flow.onStart
 import javax.inject.Inject
 
-internal class MainRepositoryImpl @Inject constructor(
+@VisibleForTesting
+class MainRepositoryImpl @Inject constructor(
   private val pokedexClient: PokedexClient,
   private val pokemonDao: PokemonDao,
   @Dispatcher(PokedexAppDispatchers.IO) private val ioDispatcher: CoroutineDispatcher
