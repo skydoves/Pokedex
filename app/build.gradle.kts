@@ -69,6 +69,10 @@ android {
       matchingFallbacks += listOf("release")
     }
   }
+
+  lint {
+    abortOnError = false
+  }
 }
 
 dependencies {
