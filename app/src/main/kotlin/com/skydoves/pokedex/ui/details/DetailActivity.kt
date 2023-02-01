@@ -39,18 +39,16 @@ class DetailActivity : BindingActivity<ActivityDetailBinding>(R.layout.activity_
 
   @get:VisibleForTesting
   internal val viewModel: DetailViewModel by viewModels {
-    DetailViewModel.provideFactory(detailViewModelFactory, pokemonItem.name)
+    DetailViewModel.provideFactory(detailViewModelFactory, pokemon.name)
   }
 
-  private val pokemonItem: Pokemon by bundleNonNull(EXTRA_POKEMON)
+  private val pokemon: Pokemon by bundleNonNull(EXTRA_POKEMON)
 
   override fun onCreate(savedInstanceState: Bundle?) {
     onTransformationEndContainerApplyParams(this)
     super.onCreate(savedInstanceState)
-    binding {
-      pokemon = pokemonItem
-      vm = viewModel
-    }
+    binding.pokemon = pokemon
+    binding.vm = viewModel
   }
 
   companion object {
