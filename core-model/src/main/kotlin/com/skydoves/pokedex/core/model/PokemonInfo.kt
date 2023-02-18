@@ -18,7 +18,6 @@ package com.skydoves.pokedex.core.model
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
-import kotlin.random.Random
 
 @JsonClass(generateAdapter = true)
 data class PokemonInfo(
@@ -29,31 +28,26 @@ data class PokemonInfo(
   @field:Json(name = "weight") val weight: Int,
   @field:Json(name = "base_experience") val experience: Int,
   @field:Json(name = "types") val types: List<TypeResponse>,
-  val hp: Int = Random.nextInt(maxHp),
-  val attack: Int = Random.nextInt(maxAttack),
-  val defense: Int = Random.nextInt(maxDefense),
-  val speed: Int = Random.nextInt(maxSpeed),
-  val exp: Int = Random.nextInt(maxExp)
+  val hp: Int = (50..maxHp).random(),
+  val attack: Int = (50..maxAttack).random(),
+  val defense: Int = (50..maxDefense).random(),
+  val speed: Int = (50..maxSpeed).random(),
+  val exp: Int = (200..maxExp).random(),
 ) {
 
   fun getIdString(): String = String.format("#%03d", id)
   fun getWeightString(): String = String.format("%.1f KG", weight.toFloat() / 10)
   fun getHeightString(): String = String.format("%.1f M", height.toFloat() / 10)
-  fun getHpString(): String = " $hp/$maxHp"
-  fun getAttackString(): String = " $attack/$maxAttack"
-  fun getDefenseString(): String = " $defense/$maxDefense"
-  fun getSpeedString(): String = " $speed/$maxSpeed"
-  fun getExpString(): String = " $exp/$maxExp"
 
   @JsonClass(generateAdapter = true)
   data class TypeResponse(
     @field:Json(name = "slot") val slot: Int,
-    @field:Json(name = "type") val type: Type
+    @field:Json(name = "type") val type: Type,
   )
 
   @JsonClass(generateAdapter = true)
   data class Type(
-    @field:Json(name = "name") val name: String
+    @field:Json(name = "name") val name: String,
   )
 
   companion object {
