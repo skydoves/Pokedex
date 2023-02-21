@@ -1,10 +1,10 @@
 [versions]
 agp = "7.4.0"
-kotlin = "1.8.0"
-ksp = "1.8.0-1.0.8"
+kotlin = "1.8.10"
+ksp = "1.8.10-1.0.9"
 javaRelease = "8"
 jvmTarget = "1.8"
-material = "1.6.1"
+material = "1.8.0"
 androidxActivity = "1.4.0"
 androidxFragment = "1.5.1"
 androidxLifecycle = "2.5.1"
