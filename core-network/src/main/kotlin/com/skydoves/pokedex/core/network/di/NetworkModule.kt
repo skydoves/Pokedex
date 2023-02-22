@@ -17,7 +17,6 @@
 package com.skydoves.pokedex.core.network.di
 
 import com.skydoves.pokedex.core.network.interceptor.HttpRequestInterceptor
-import com.skydoves.pokedex.core.network.service.PokedexClient
 import com.skydoves.pokedex.core.network.service.PokedexService
 import com.skydoves.sandwich.adapters.ApiResponseCallAdapterFactory
 import dagger.Module
@@ -56,11 +55,5 @@ internal object NetworkModule {
   @Singleton
   fun providePokedexService(retrofit: Retrofit): PokedexService {
     return retrofit.create(PokedexService::class.java)
-  }
-
-  @Provides
-  @Singleton
-  fun providePokedexClient(pokedexService: PokedexService): PokedexClient {
-    return PokedexClient(pokedexService)
   }
 }

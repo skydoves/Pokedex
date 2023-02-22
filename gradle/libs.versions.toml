@@ -21,13 +21,11 @@ coroutines = "1.6.4"
 whatIf = "1.1.2"
 glide = "4.13.2"
 glidePalette = "2.1.2"
+glideCompose = "1.0.0-alpha.1"
 bundler = "1.0.4"
 transformationLayout = "1.1.1"
 recyclerView = "1.2.1"
 baseAdapter = "1.0.4"
-androidRibbon = "1.0.4"
-progressView = "1.1.3"
-rainbow = "1.0.3"
 timber = "5.0.1"
 baselineProfiles = "1.2.0"
 macroBenchmark = "1.1.0"
@@ -42,6 +40,11 @@ androidTestRunner = "1.3.0-beta01"
 espresso = "3.3.0"
 mockitoKotlin = "2.2.0"
 mockitoInline = "3.5.13"
+androidxComposeBom = "2023.01.00"
+androidxComposeCompiler = "1.4.1"
+androidxComposeMaterial3 = "1.1.0-alpha06"
+androidxComposeRuntimeTracing = "1.0.0-alpha01"
+androidxConstraintlayoutCompose = "1.0.1"
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
@@ -87,19 +90,32 @@ coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", ve
 whatif = { module = "com.github.skydoves:whatif", version.ref = "whatIf" }
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
 glide-palette = { module = "com.github.florent37:glidepalette", version.ref = "glidePalette" }
+glide-compose = { module = "com.github.bumptech.glide:compose", version.ref = "glideCompose" }
 bundler = { module = "com.github.skydoves:bundler", version.ref = "bundler" }
 transformationLayout = { module = "com.github.skydoves:transformationlayout", version.ref = "transformationLayout" }
 recyclerview = { module = "androidx.recyclerview:recyclerview", version.ref = "recyclerView" }
 baseAdapter = { module = "com.github.skydoves:baserecyclerviewadapter", version.ref = "baseAdapter" }
-rainbow = { module = "com.github.skydoves:rainbow", version.ref = "rainbow" }
-androidRibbon = { module = "com.github.skydoves:androidribbon", version.ref = "androidRibbon" }
-progressView = { module = "com.github.skydoves:progressview", version.ref = "progressView" }
 timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
+androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "androidxComposeBom" }
+androidx-compose-foundation = { group = "androidx.compose.foundation", name = "foundation" }
+androidx-compose-foundation-layout = { group = "androidx.compose.foundation", name = "foundation-layout" }
+androidx-compose-material-iconsExtended = { group = "androidx.compose.material", name = "material-icons-extended" }
+androidx-compose-material3 = { group = "androidx.compose.material3", name = "material3", version.ref = "androidxComposeMaterial3" }
+androidx-compose-material3-windowSizeClass = { group = "androidx.compose.material3", name = "material3-window-size-class", version.ref = "androidxComposeMaterial3" }
+androidx-compose-runtime = { group = "androidx.compose.runtime", name = "runtime" }
+androidx-compose-runtime-livedata = { group = "androidx.compose.runtime", name = "runtime-livedata" }
+androidx-compose-runtime-tracing = { group = "androidx.compose.runtime", name = "runtime-tracing", version.ref = "androidxComposeRuntimeTracing" }
+androidx-compose-ui-test = { group = "androidx.compose.ui", name = "ui-test-junit4" }
+androidx-compose-ui-testManifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
+androidx-compose-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+androidx-compose-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+androidx-compose-ui-util = { group = "androidx.compose.ui", name = "ui-util" }
+androidx-constraintlayout-compose = { group = "androidx.constraintlayout", name = "constraintlayout-compose", version.ref = "androidxConstraintlayoutCompose" }
 
 # unit test
 junit = { module = "junit:junit", version.ref = "junit" }
-mockito-kotlin  = { module = "com.nhaarman.mockitokotlin2:mockito-kotlin", version.ref = "mockitoKotlin" }
-mockito-inline  = { module = "org.mockito:mockito-inline", version.ref = "mockitoInline" }
+mockito-kotlin = { module = "com.nhaarman.mockitokotlin2:mockito-kotlin", version.ref = "mockitoKotlin" }
+mockito-inline = { module = "org.mockito:mockito-inline", version.ref = "mockitoInline" }
 turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
 robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }
 truth = { module = "com.google.truth:truth", version.ref = "truth" }

@@ -43,6 +43,7 @@ android {
 
   buildFeatures {
     dataBinding = true
+    compose = true
   }
 
   hilt {
@@ -72,6 +73,14 @@ android {
 
   lint {
     abortOnError = false
+  }
+
+  kotlinOptions {
+    jvmTarget = "1.8"
+  }
+
+  composeOptions {
+    kotlinCompilerExtensionVersion = "1.4.0"
   }
 }
 
@@ -109,6 +118,7 @@ dependencies {
   // image loading
   implementation(libs.glide)
   implementation(libs.glide.palette)
+  implementation(libs.glide.compose)
 
   // bundler
   implementation(libs.bundler)
@@ -119,11 +129,6 @@ dependencies {
   // recyclerView
   implementation(libs.recyclerview)
   implementation(libs.baseAdapter)
-
-  // custom views
-  implementation(libs.rainbow)
-  implementation(libs.androidRibbon)
-  implementation(libs.progressView)
 
   // unit test
   testImplementation(libs.junit)
@@ -136,4 +141,18 @@ dependencies {
   androidTestImplementation(libs.androidx.junit)
   androidTestImplementation(libs.androidx.espresso)
   androidTestImplementation(libs.android.test.runner)
+
+  // compose
+  val composeBom = platform(libs.androidx.compose.bom)
+  implementation(composeBom)
+  implementation(libs.androidx.compose.foundation)
+  implementation(libs.androidx.compose.foundation.layout)
+  implementation(libs.androidx.compose.material.iconsExtended)
+  implementation(libs.androidx.compose.material3)
+  debugImplementation(libs.androidx.compose.ui.tooling)
+  implementation(libs.androidx.compose.ui.tooling.preview)
+  implementation(libs.androidx.compose.ui.util)
+  implementation(libs.androidx.compose.runtime)
+  implementation(libs.androidx.compose.runtime.livedata)
+  implementation(libs.androidx.constraintlayout.compose)
 }
