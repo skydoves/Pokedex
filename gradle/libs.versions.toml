@@ -40,8 +40,8 @@ androidxTest = "1.3.0"
 androidxTestJunit = "1.1.2"
 androidTestRunner = "1.3.0-beta01"
 espresso = "3.3.0"
-mockitoKotlin = "2.2.0"
-mockitoInline = "3.5.13"
+mockitoKotlin = "4.1.0"
+mockitoInline = "5.2.0"
 spotless = "6.7.2"
 
 [plugins]
@@ -99,7 +99,7 @@ timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
 
 # unit test
 junit = { module = "junit:junit", version.ref = "junit" }
-mockito-kotlin  = { module = "com.nhaarman.mockitokotlin2:mockito-kotlin", version.ref = "mockitoKotlin" }
+mockito-kotlin  = { module = "org.mockito.kotlin:mockito-kotlin", version.ref = "mockitoKotlin" }
 mockito-inline  = { module = "org.mockito:mockito-inline", version.ref = "mockitoInline" }
 turbine = { module = "app.cash.turbine:turbine", version.ref = "turbine" }
 robolectric = { module = "org.robolectric:robolectric", version.ref = "robolectric" }

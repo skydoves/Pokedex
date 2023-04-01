@@ -17,10 +17,6 @@
 package com.skydoves.pokedex
 
 import app.cash.turbine.test
-import com.nhaarman.mockitokotlin2.atLeastOnce
-import com.nhaarman.mockitokotlin2.mock
-import com.nhaarman.mockitokotlin2.verify
-import com.nhaarman.mockitokotlin2.whenever
 import com.skydoves.pokedex.core.data.repository.DetailRepository
 import com.skydoves.pokedex.core.data.repository.DetailRepositoryImpl
 import com.skydoves.pokedex.core.database.PokemonInfoDao
@@ -35,6 +31,10 @@ import org.junit.Assert
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import org.mockito.Mockito.atLeastOnce
+import org.mockito.Mockito.mock
+import org.mockito.Mockito.verify
+import org.mockito.kotlin.whenever
 import kotlin.time.DurationUnit
 import kotlin.time.toDuration
 

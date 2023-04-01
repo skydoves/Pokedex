@@ -17,11 +17,6 @@
 package com.skydoves.pokedex.core.data
 
 import app.cash.turbine.test
-import com.nhaarman.mockitokotlin2.atLeastOnce
-import com.nhaarman.mockitokotlin2.mock
-import com.nhaarman.mockitokotlin2.verify
-import com.nhaarman.mockitokotlin2.verifyNoMoreInteractions
-import com.nhaarman.mockitokotlin2.whenever
 import com.skydoves.pokedex.core.data.repository.MainRepositoryImpl
 import com.skydoves.pokedex.core.database.PokemonDao
 import com.skydoves.pokedex.core.database.entitiy.mapper.asEntity
@@ -36,6 +31,11 @@ import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import org.mockito.Mockito.atLeastOnce
+import org.mockito.Mockito.mock
+import org.mockito.Mockito.verify
+import org.mockito.Mockito.verifyNoMoreInteractions
+import org.mockito.kotlin.whenever
 import retrofit2.Response
 import kotlin.time.DurationUnit
 import kotlin.time.toDuration
