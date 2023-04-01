@@ -71,7 +71,7 @@ abstract class AbstractStartupBenchmark(private val startupMode: StartupMode) {
   fun startupFullCompilation() = startup(CompilationMode.Full())
 
   private fun startup(compilationMode: CompilationMode) = benchmarkRule.measureRepeated(
-    packageName = "com.skydoves.pokedex",
+    packageName = packageName,
     metrics = listOf(StartupTimingMetric()),
     compilationMode = compilationMode,
     iterations = 5,

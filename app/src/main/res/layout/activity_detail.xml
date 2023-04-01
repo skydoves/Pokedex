@@ -30,6 +30,7 @@
   </data>
 
   <androidx.core.widget.NestedScrollView
+    android:id="@+id/nestedScroll"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background">
