@@ -22,7 +22,7 @@ plugins {
 }
 
 android {
-  namespace = "com.skydoves.pokedex.benchmark"
+  namespace = "com.github.skydoves.benchmark"
   compileSdk = Configuration.compileSdk
 
   compileOptions {
