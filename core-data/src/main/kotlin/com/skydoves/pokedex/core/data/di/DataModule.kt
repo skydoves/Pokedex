@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-package com.skydoves.core.data.di
+package com.skydoves.pokedex.core.data.di
 
-import com.skydoves.core.data.repository.DetailRepository
-import com.skydoves.core.data.repository.DetailRepositoryImpl
-import com.skydoves.core.data.repository.MainRepository
-import com.skydoves.core.data.repository.MainRepositoryImpl
+import com.skydoves.pokedex.core.data.repository.DetailRepository
+import com.skydoves.pokedex.core.data.repository.DetailRepositoryImpl
+import com.skydoves.pokedex.core.data.repository.MainRepository
+import com.skydoves.pokedex.core.data.repository.MainRepositoryImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

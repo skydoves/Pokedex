@@ -14,4 +14,4 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 -->
-<manifest package="com.skydoves.core.data" />
+<manifest package="com.skydoves.pokedex.core.data" />

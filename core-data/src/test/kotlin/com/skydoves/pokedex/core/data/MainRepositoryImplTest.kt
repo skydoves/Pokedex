@@ -22,7 +22,7 @@ import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.verifyNoMoreInteractions
 import com.nhaarman.mockitokotlin2.whenever
-import com.skydoves.core.data.repository.MainRepositoryImpl
+import com.skydoves.pokedex.core.data.repository.MainRepositoryImpl
 import com.skydoves.pokedex.core.database.PokemonDao
 import com.skydoves.pokedex.core.database.entitiy.mapper.asEntity
 import com.skydoves.pokedex.core.network.model.PokemonResponse

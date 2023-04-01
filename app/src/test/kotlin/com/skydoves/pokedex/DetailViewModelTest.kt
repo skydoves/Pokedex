@@ -21,8 +21,8 @@ import com.nhaarman.mockitokotlin2.atLeastOnce
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
-import com.skydoves.core.data.repository.DetailRepository
-import com.skydoves.core.data.repository.DetailRepositoryImpl
+import com.skydoves.pokedex.core.data.repository.DetailRepository
+import com.skydoves.pokedex.core.data.repository.DetailRepositoryImpl
 import com.skydoves.pokedex.core.database.PokemonInfoDao
 import com.skydoves.pokedex.core.database.entitiy.mapper.asEntity
 import com.skydoves.pokedex.core.network.service.PokedexClient
