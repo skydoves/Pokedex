@@ -42,6 +42,7 @@ androidTestRunner = "1.3.0-beta01"
 espresso = "3.3.0"
 mockitoKotlin = "2.2.0"
 mockitoInline = "3.5.13"
+spotless = "6.7.2"
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
@@ -51,8 +52,8 @@ kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
-spotless = { id = "com.diffplug.spotless", version = "6.7.2" }
-hilt-plugin = { id = "dagger.hilt.android.plugin", version = "hilt" }
+spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
+hilt-plugin = { id = "dagger.hilt.android.plugin", version.ref = "hilt" }
 
 [libraries]
 agp = { module = "com.android.tools.build:gradle", version.ref = "agp" }
