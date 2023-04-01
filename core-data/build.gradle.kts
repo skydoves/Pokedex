@@ -23,6 +23,7 @@ plugins {
 }
 
 android {
+  namespace = "com.skydoves.core.data"
   compileSdk = Configuration.compileSdk
 
   defaultConfig {

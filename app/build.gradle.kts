@@ -25,6 +25,7 @@ plugins {
 }
 
 android {
+  namespace = "com.skydoves.pokedex"
   compileSdk = Configuration.compileSdk
   defaultConfig {
     applicationId = "com.skydoves.pokedex"
@@ -43,6 +44,7 @@ android {
 
   buildFeatures {
     dataBinding = true
+    buildConfig = true
   }
 
   hilt {

@@ -24,6 +24,7 @@ plugins {
 }
 
 android {
+  namespace = "com.skydoves.pokedex.core.database"
   compileSdk = Configuration.compileSdk
 
   defaultConfig {
