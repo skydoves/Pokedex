@@ -57,8 +57,8 @@ class BaselineProfileGenerator {
 }
 
 private fun UiDevice.testDiscover(): Boolean {
-  // Scroll one of the Discover Carousels
-  //  waitForObject(By.res(packageName, "recyclerView")).scroll(Direction.DOWN, 1f)
+  // UI automator library has an issue about scrolling down.
+  //  waitForObject(By.res(packageName, "recyclerView")).scroll(Direction.DOWN, 1f).
   return wait(Until.hasObject(By.res(packageName, "transformationLayout")), 1_000)
 }
 
