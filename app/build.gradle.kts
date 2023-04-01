@@ -27,19 +27,14 @@ plugins {
 android {
   namespace = "com.skydoves.pokedex"
   compileSdk = Configuration.compileSdk
+
   defaultConfig {
     applicationId = "com.skydoves.pokedex"
     minSdk = Configuration.minSdk
-    targetSdk = Configuration.targetSdk
     versionCode = Configuration.versionCode
     versionName = Configuration.versionName
     vectorDrawables.useSupportLibrary = true
     testInstrumentationRunner = "com.skydoves.pokedex.AppTestRunner"
-  }
-
-  compileOptions {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
   }
 
   buildFeatures {
@@ -55,6 +50,11 @@ android {
     sourceSets.configureEach {
       kotlin.srcDir("$buildDir/generated/ksp/$name/kotlin/")
     }
+  }
+
+  compileOptions {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
   }
 
   testOptions {
