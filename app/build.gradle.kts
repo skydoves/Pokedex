@@ -77,13 +77,13 @@ android {
 
 dependencies {
   // modules
-  implementation(project(":core-data"))
+  implementation(projects.coreData)
 
   // modules for unit test
-  testImplementation(project(":core-network"))
-  testImplementation(project(":core-database"))
-  testImplementation(project(":core-test"))
-  androidTestImplementation(project(":core-test"))
+  testImplementation(projects.coreNetwork)
+  testImplementation(projects.coreDatabase)
+  testImplementation(projects.coreTest)
+  androidTestImplementation(projects.coreTest)
 
   // androidx
   implementation(libs.material)

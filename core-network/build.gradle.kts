@@ -33,8 +33,8 @@ android {
 }
 
 dependencies {
-  implementation(project(":core-model"))
-  testImplementation(project(":core-test"))
+  implementation(projects.coreModel)
+  testImplementation(projects.coreTest)
 
   // coroutines
   implementation(libs.coroutines)

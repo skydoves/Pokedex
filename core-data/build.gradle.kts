@@ -32,10 +32,10 @@ android {
 }
 
 dependencies {
-  api(project(":core-model"))
-  implementation(project(":core-network"))
-  implementation(project(":core-database"))
-  testImplementation(project(":core-test"))
+  api(projects.coreModel)
+  implementation(projects.coreNetwork)
+  implementation(projects.coreDatabase)
+  testImplementation(projects.coreTest)
 
   // coroutines
   implementation(libs.coroutines)

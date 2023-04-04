@@ -31,7 +31,7 @@ android {
 }
 
 dependencies {
-  implementation(project(":core-model"))
+  implementation(projects.coreModel)
   implementation(libs.coroutines)
   implementation(libs.coroutines.test)
   implementation(libs.junit)
