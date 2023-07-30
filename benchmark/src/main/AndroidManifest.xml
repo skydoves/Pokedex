@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
     Designed and developed by 2022 skydoves (Jaewoong Eum)
 
     Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,10 +13,9 @@
     See the License for the specific language governing permissions and
     limitations under the License.
 -->
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.github.skydoves.benchmark">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <queries>
-        <package android:name="com.skydoves.pokedex" />
-    </queries>
+  <queries>
+    <package android:name="com.skydoves.pokedex" />
+  </queries>
 </manifest>
