@@ -25,10 +25,15 @@ plugins {
 
 android {
   compileSdk = Configuration.compileSdk
+  namespace = "com.skydoves.pokedex.core.model"
 
   defaultConfig {
     minSdk = Configuration.minSdk
-    targetSdk = Configuration.targetSdk
+  }
+
+  compileOptions {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
   }
 }
 

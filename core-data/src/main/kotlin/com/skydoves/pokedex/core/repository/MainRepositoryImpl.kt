@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.skydoves.core.data.repository
+package com.skydoves.pokedex.core.repository
 
 import androidx.annotation.VisibleForTesting
 import androidx.annotation.WorkerThread

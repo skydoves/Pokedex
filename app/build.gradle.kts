@@ -26,6 +26,8 @@ plugins {
 
 android {
   compileSdk = Configuration.compileSdk
+  namespace = "com.skydoves.pokedex"
+
   defaultConfig {
     applicationId = "com.skydoves.pokedex"
     minSdk = Configuration.minSdk
@@ -37,12 +39,13 @@ android {
   }
 
   compileOptions {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
   }
 
   buildFeatures {
     dataBinding = true
+    buildConfig = true
   }
 
   hilt {

@@ -25,10 +25,10 @@ plugins {
 
 android {
   compileSdk = Configuration.compileSdk
+  namespace = "com.skydoves.pokedex.core.database"
 
   defaultConfig {
     minSdk = Configuration.minSdk
-    targetSdk = Configuration.targetSdk
     // The schemas directory contains a schema file for each version of the Room database.
     // This is required to enable Room auto migrations.
     // See https://developer.android.com/reference/kotlin/androidx/room/AutoMigration.
@@ -39,6 +39,11 @@ android {
 
   sourceSets.getByName("test") {
     assets.srcDir(files("$projectDir/schemas"))
+  }
+
+  compileOptions {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
   }
 }
 
