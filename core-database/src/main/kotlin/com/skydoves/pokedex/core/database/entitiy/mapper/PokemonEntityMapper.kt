@@ -46,6 +46,6 @@ fun List<Pokemon>.asEntity(): List<PokemonEntity> {
   return PokemonEntityMapper.asEntity(this)
 }
 
-fun List<PokemonEntity>.asDomain(): List<Pokemon> {
-  return PokemonEntityMapper.asDomain(this)
+fun List<PokemonEntity>?.asDomain(): List<Pokemon> {
+  return PokemonEntityMapper.asDomain(this.orEmpty())
 }
