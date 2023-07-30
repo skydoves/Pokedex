@@ -15,6 +15,7 @@ jobs:
       - name: set up JDK
         uses: actions/setup-java@v3
         with:
+          distribution: zulu
           java-version: 17
 
       - name: Cache Gradle and wrapper
