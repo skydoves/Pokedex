@@ -14,18 +14,19 @@
  * limitations under the License.
  */
 
-package com.skydoves.core.data.repository
+package com.skydoves.pokedex.core.repository
 
 import androidx.annotation.WorkerThread
-import com.skydoves.pokedex.core.model.PokemonInfo
+import com.skydoves.pokedex.core.model.Pokemon
 import kotlinx.coroutines.flow.Flow
 
-interface DetailRepository {
+interface MainRepository {
 
   @WorkerThread
-  fun fetchPokemonInfo(
-    name: String,
+  fun fetchPokemonList(
+    page: Int,
+    onStart: () -> Unit,
     onComplete: () -> Unit,
     onError: (String?) -> Unit
-  ): Flow<PokemonInfo>
+  ): Flow<List<Pokemon>>
 }

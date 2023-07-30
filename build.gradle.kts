@@ -37,7 +37,7 @@ subprojects {
   apply(plugin = rootProject.libs.plugins.spotless.get().pluginId)
 
   tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().all {
-    kotlinOptions.jvmTarget = JavaVersion.VERSION_1_8.toString()
+    kotlinOptions.jvmTarget = JavaVersion.VERSION_17.toString()
     kotlinOptions.freeCompilerArgs += listOf(
       "-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
       "-Xopt-in=kotlin.time.ExperimentalTime",

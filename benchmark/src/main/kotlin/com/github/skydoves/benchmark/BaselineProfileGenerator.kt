@@ -16,7 +16,8 @@
 
 package com.github.skydoves.benchmark
 
-import androidx.benchmark.macro.ExperimentalStableBaselineProfilesApi
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.benchmark.macro.junit4.BaselineProfileRule
 import androidx.test.uiautomator.By
 import androidx.test.uiautomator.BySelector
@@ -30,14 +31,14 @@ import org.junit.Test
 /**
  * Generates a baseline profile which can be copied to `app/src/main/baseline-prof.txt`.
  */
+@RequiresApi(Build.VERSION_CODES.P)
 class BaselineProfileGenerator {
   @get:Rule
   val baselineProfileRule = BaselineProfileRule()
 
   @Test
-  @OptIn(ExperimentalStableBaselineProfilesApi::class)
   fun startup() =
-    baselineProfileRule.collectStableBaselineProfile(
+    baselineProfileRule.collect(
       packageName = packageName,
       stableIterations = 2,
       maxIterations = 8
@@ -50,7 +51,7 @@ class BaselineProfileGenerator {
       device.waitForIdle()
 
       // Navigate to the details screen
-      device.testDiscover() || return@collectStableBaselineProfile
+      device.testDiscover() || return@collect
       device.navigateFromMainToDetails()
       device.pressBack()
     }
