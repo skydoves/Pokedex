@@ -64,7 +64,7 @@ class DetailViewModelTest {
     detailRepository.fetchPokemonInfo(
       name = "bulbasaur",
       onComplete = { },
-      onError = { }
+      onError = { },
     ).test(2.toDuration(DurationUnit.SECONDS)) {
       val item = awaitItem()
       Assert.assertEquals(item.id, mockData.id)

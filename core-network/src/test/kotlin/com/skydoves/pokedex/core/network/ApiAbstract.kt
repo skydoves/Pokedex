@@ -78,8 +78,8 @@ abstract class ApiAbstract<T> {
       .addConverterFactory(MoshiConverterFactory.create())
       .addCallAdapterFactory(
         ApiResponseCallAdapterFactory.create(
-          coroutineScope = coroutinesRule.testScope
-        )
+          coroutineScope = coroutinesRule.testScope,
+        ),
       )
       .build()
       .create(clazz)

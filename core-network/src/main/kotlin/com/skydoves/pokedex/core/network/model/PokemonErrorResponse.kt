@@ -24,5 +24,5 @@ package com.skydoves.pokedex.core.network.model
  */
 data class PokemonErrorResponse(
   val code: Int,
-  val message: String?
+  val message: String?,
 )

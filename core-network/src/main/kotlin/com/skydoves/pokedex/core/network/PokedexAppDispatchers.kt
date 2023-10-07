@@ -24,5 +24,5 @@ import kotlin.annotation.AnnotationRetention.RUNTIME
 annotation class Dispatcher(val pokedexAppDispatchers: PokedexAppDispatchers)
 
 enum class PokedexAppDispatchers {
-  IO
+  IO,
 }

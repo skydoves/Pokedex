@@ -46,7 +46,7 @@ internal object DatabaseModule {
   @Singleton
   fun provideAppDatabase(
     application: Application,
-    typeResponseConverter: TypeResponseConverter
+    typeResponseConverter: TypeResponseConverter,
   ): PokedexDatabase {
     return Room
       .databaseBuilder(application, PokedexDatabase::class.java, "Pokedex.db")

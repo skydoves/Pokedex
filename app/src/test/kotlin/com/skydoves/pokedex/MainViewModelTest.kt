@@ -65,7 +65,7 @@ class MainViewModelTest {
       page = 0,
       onStart = {},
       onComplete = {},
-      onError = {}
+      onError = {},
     ).test(2.toDuration(DurationUnit.SECONDS)) {
       val item = awaitItem()
       Assert.assertEquals(item[0].page, 0)

@@ -40,7 +40,7 @@ import javax.inject.Inject
 class MainRepositoryImpl @Inject constructor(
   private val pokedexClient: PokedexClient,
   private val pokemonDao: PokemonDao,
-  @Dispatcher(PokedexAppDispatchers.IO) private val ioDispatcher: CoroutineDispatcher
+  @Dispatcher(PokedexAppDispatchers.IO) private val ioDispatcher: CoroutineDispatcher,
 ) : MainRepository {
 
   @WorkerThread
@@ -48,7 +48,7 @@ class MainRepositoryImpl @Inject constructor(
     page: Int,
     onStart: () -> Unit,
     onComplete: () -> Unit,
-    onError: (String?) -> Unit
+    onError: (String?) -> Unit,
   ) = flow {
     var pokemons = pokemonDao.getPokemonList(page).asDomain()
     if (pokemons.isEmpty()) {

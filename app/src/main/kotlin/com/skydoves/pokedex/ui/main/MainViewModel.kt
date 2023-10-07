@@ -32,7 +32,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-  private val mainRepository: MainRepository
+  private val mainRepository: MainRepository,
 ) : BindingViewModel() {
 
   @get:Bindable
@@ -49,7 +49,7 @@ class MainViewModel @Inject constructor(
       page = page,
       onStart = { isLoading = true },
       onComplete = { isLoading = false },
-      onError = { toastMessage = it }
+      onError = { toastMessage = it },
     )
   }
 

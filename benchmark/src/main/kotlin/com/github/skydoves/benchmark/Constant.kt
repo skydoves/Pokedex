@@ -16,4 +16,4 @@
 
 package com.github.skydoves.benchmark
 
-internal const val packageName: String = "com.skydoves.pokedex"
+internal const val PACKAGE_NAME: String = "com.skydoves.pokedex"

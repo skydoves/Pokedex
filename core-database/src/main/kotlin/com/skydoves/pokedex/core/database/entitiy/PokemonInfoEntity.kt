@@ -32,5 +32,5 @@ data class PokemonInfoEntity(
   val attack: Int,
   val defense: Int,
   val speed: Int,
-  val exp: Int
+  val exp: Int,
 )

@@ -16,6 +16,8 @@
 
 package com.github.skydoves.benchmark
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.benchmark.macro.BaselineProfileMode
 import androidx.benchmark.macro.CompilationMode
 import androidx.benchmark.macro.StartupMode
@@ -56,14 +58,20 @@ abstract class AbstractStartupBenchmark(private val startupMode: StartupMode) {
   val benchmarkRule = MacrobenchmarkRule()
 
   @Test
+  @RequiresApi(Build.VERSION_CODES.N)
   fun startupNoCompilation() = startup(CompilationMode.None())
 
   @Test
+  @RequiresApi(Build.VERSION_CODES.N)
   fun startupBaselineProfileDisabled() = startup(
-    CompilationMode.Partial(baselineProfileMode = BaselineProfileMode.Disable, warmupIterations = 1)
+    CompilationMode.Partial(
+      baselineProfileMode = BaselineProfileMode.Disable,
+      warmupIterations = 1,
+    ),
   )
 
   @Test
+  @RequiresApi(Build.VERSION_CODES.N)
   fun startupBaselineProfile() =
     startup(CompilationMode.Partial(baselineProfileMode = BaselineProfileMode.Require))
 
@@ -71,14 +79,14 @@ abstract class AbstractStartupBenchmark(private val startupMode: StartupMode) {
   fun startupFullCompilation() = startup(CompilationMode.Full())
 
   private fun startup(compilationMode: CompilationMode) = benchmarkRule.measureRepeated(
-    packageName = packageName,
+    packageName = PACKAGE_NAME,
     metrics = listOf(StartupTimingMetric()),
     compilationMode = compilationMode,
     iterations = 5,
     startupMode = startupMode,
     setupBlock = {
       pressHome()
-    }
+    },
   ) {
     startActivityAndWait()
   }

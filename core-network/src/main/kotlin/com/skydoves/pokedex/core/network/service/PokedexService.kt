@@ -28,7 +28,7 @@ interface PokedexService {
   @GET("pokemon")
   suspend fun fetchPokemonList(
     @Query("limit") limit: Int = 20,
-    @Query("offset") offset: Int = 0
+    @Query("offset") offset: Int = 0,
   ): ApiResponse<PokemonResponse>
 
   @GET("pokemon/{name}")
