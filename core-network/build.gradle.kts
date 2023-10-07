@@ -19,8 +19,7 @@ import com.skydoves.pokedex.Configuration
 plugins {
   id(libs.plugins.android.library.get().pluginId)
   id(libs.plugins.kotlin.android.get().pluginId)
-  id(libs.plugins.kotlin.kapt.get().pluginId)
-  id(libs.plugins.ksp.get().pluginId) version libs.versions.ksp.get()
+  id(libs.plugins.ksp.get().pluginId)
 }
 
 android {
@@ -60,5 +59,5 @@ dependencies {
 
   // di
   implementation(libs.hilt.android)
-  kapt(libs.hilt.compiler)
+  ksp(libs.hilt.compiler)
 }

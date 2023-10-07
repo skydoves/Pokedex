@@ -19,7 +19,7 @@ import com.skydoves.pokedex.Configuration
 plugins {
   id(libs.plugins.android.application.get().pluginId)
   id(libs.plugins.kotlin.android.get().pluginId)
-  id(libs.plugins.kotlin.kapt.get().pluginId)
+  id(libs.plugins.ksp.get().pluginId)
   id(libs.plugins.kotlin.parcelize.get().pluginId)
   id(libs.plugins.hilt.plugin.get().pluginId)
 }
@@ -99,9 +99,9 @@ dependencies {
 
   // di
   implementation(libs.hilt.android)
-  kapt(libs.hilt.compiler)
+  ksp(libs.hilt.compiler)
   androidTestImplementation(libs.hilt.testing)
-  kaptAndroidTest(libs.hilt.compiler)
+  kspAndroidTest(libs.hilt.compiler)
 
   // coroutines
   implementation(libs.coroutines)
