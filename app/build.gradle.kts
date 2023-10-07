@@ -13,12 +13,16 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+import com.android.build.gradle.internal.tasks.databinding.DataBindingGenBaseClassesTask
 import com.skydoves.pokedex.Configuration
+import org.gradle.configurationcache.extensions.capitalized
+import org.jetbrains.kotlin.gradle.tasks.AbstractKotlinCompileTool
 
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
   id(libs.plugins.android.application.get().pluginId)
   id(libs.plugins.kotlin.android.get().pluginId)
+  id(libs.plugins.kotlin.kapt.get().pluginId)
   id(libs.plugins.ksp.get().pluginId)
   id(libs.plugins.kotlin.parcelize.get().pluginId)
   id(libs.plugins.hilt.plugin.get().pluginId)
@@ -75,6 +79,20 @@ android {
 
   lint {
     abortOnError = false
+  }
+}
+
+androidComponents {
+  onVariants(selector().all()) { variant ->
+    afterEvaluate {
+      val dataBindingTask =
+        project.tasks.findByName("dataBindingGenBaseClasses" + variant.name.capitalized()) as? DataBindingGenBaseClassesTask
+      if (dataBindingTask != null) {
+        project.tasks.getByName("ksp" + variant.name.capitalized() + "Kotlin") {
+          (this as AbstractKotlinCompileTool<*>).setSource(dataBindingTask.sourceOutFolder)
+        }
+      }
+    }
   }
 }
 
