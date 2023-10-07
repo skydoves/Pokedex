@@ -30,12 +30,8 @@ import dagger.hilt.components.SingletonComponent
 internal interface DataModule {
 
   @Binds
-  fun bindsMainRepository(
-    mainRepositoryImpl: MainRepositoryImpl
-  ): MainRepository
+  fun bindsMainRepository(mainRepositoryImpl: MainRepositoryImpl): MainRepository
 
   @Binds
-  fun bindsDetailRepository(
-    detailRepositoryImpl: DetailRepositoryImpl
-  ): DetailRepository
+  fun bindsDetailRepository(detailRepositoryImpl: DetailRepositoryImpl): DetailRepository
 }

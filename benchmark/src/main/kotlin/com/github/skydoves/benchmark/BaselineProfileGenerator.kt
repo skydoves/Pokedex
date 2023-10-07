@@ -37,37 +37,36 @@ class BaselineProfileGenerator {
   val baselineProfileRule = BaselineProfileRule()
 
   @Test
-  fun startup() =
-    baselineProfileRule.collect(
-      packageName = packageName,
-      stableIterations = 2,
-      maxIterations = 8
-    ) {
-      pressHome()
-      // This block defines the app's critical user journey. Here we are interested in
-      // optimizing for app startup. But you can also navigate and scroll
-      // through your most important UI.
-      startActivityAndWait()
-      device.waitForIdle()
+  fun startup() = baselineProfileRule.collect(
+    packageName = PACKAGE_NAME,
+    stableIterations = 2,
+    maxIterations = 8,
+  ) {
+    pressHome()
+    // This block defines the app's critical user journey. Here we are interested in
+    // optimizing for app startup. But you can also navigate and scroll
+    // through your most important UI.
+    startActivityAndWait()
+    device.waitForIdle()
 
-      // Navigate to the details screen
-      device.testDiscover() || return@collect
-      device.navigateFromMainToDetails()
-      device.pressBack()
-    }
+    // Navigate to the details screen
+    device.testDiscover() || return@collect
+    device.navigateFromMainToDetails()
+    device.pressBack()
+  }
 }
 
 private fun UiDevice.testDiscover(): Boolean {
   // UI automator library has an issue about scrolling down.
   //  waitForObject(By.res(packageName, "recyclerView")).scroll(Direction.DOWN, 1f).
-  return wait(Until.hasObject(By.res(packageName, "transformationLayout")), 1_000)
+  return wait(Until.hasObject(By.res(PACKAGE_NAME, "transformationLayout")), 1_000)
 }
 
 private fun UiDevice.navigateFromMainToDetails() {
   // Open a show from one of the carousels
-  waitForObject(By.res(packageName, "transformationLayout")).click()
-  wait(Until.hasObject(By.res(packageName, "nestedScroll")), 1_000)
-  waitForObject(By.res(packageName, "nestedScroll")).scroll(Direction.DOWN, 1f)
+  waitForObject(By.res(PACKAGE_NAME, "transformationLayout")).click()
+  wait(Until.hasObject(By.res(PACKAGE_NAME, "nestedScroll")), 1_000)
+  waitForObject(By.res(PACKAGE_NAME, "nestedScroll")).scroll(Direction.DOWN, 1f)
   waitForIdle()
   pressBack()
 }

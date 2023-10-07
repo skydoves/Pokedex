@@ -64,7 +64,7 @@ object ViewBinding {
             if (rgb != null) {
               paletteCard.setCardBackgroundColor(rgb)
             }
-          }.crossfade(true)
+          }.crossfade(true),
       ).into(view)
   }
 
@@ -96,7 +96,7 @@ object ViewBinding {
                 }
               }
             }
-          }.crossfade(true)
+          }.crossfade(true),
       ).into(view)
   }
 
@@ -140,12 +140,12 @@ object ViewBinding {
               setRibbonRadius(120f)
               setTextStyle(Typeface.BOLD)
               setRibbonBackgroundColorResource(
-                PokemonTypeUtils.getTypeColor(type.type.name)
+                PokemonTypeUtils.getTypeColor(type.type.name),
               )
             }.apply {
               maxLines = 1
               gravity = Gravity.CENTER
-            }
+            },
           )
           addItemDecoration(SpacesItemDecoration())
         }

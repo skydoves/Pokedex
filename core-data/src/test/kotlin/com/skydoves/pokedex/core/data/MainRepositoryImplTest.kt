@@ -68,7 +68,7 @@ class MainRepositoryImplTest {
       page = 0,
       onStart = {},
       onComplete = {},
-      onError = {}
+      onError = {},
     ).test(2.toDuration(DurationUnit.SECONDS)) {
       val expectItem = awaitItem()[0]
       assertEquals(expectItem.page, 0)
@@ -94,7 +94,7 @@ class MainRepositoryImplTest {
       page = 0,
       onStart = {},
       onComplete = {},
-      onError = {}
+      onError = {},
     ).test(2.toDuration(DurationUnit.SECONDS)) {
       val expectItem = awaitItem()[0]
       assertEquals(expectItem.page, 0)

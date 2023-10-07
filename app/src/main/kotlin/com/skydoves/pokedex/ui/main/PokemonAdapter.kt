@@ -39,7 +39,7 @@ class PokemonAdapter : BindingListAdapter<Pokemon, PokemonAdapter.PokemonViewHol
     holder.bindPokemon(getItem(position))
 
   inner class PokemonViewHolder constructor(
-    private val binding: ItemPokemonBinding
+    private val binding: ItemPokemonBinding,
   ) : RecyclerView.ViewHolder(binding.root) {
 
     init {

@@ -32,7 +32,7 @@ import timber.log.Timber
 
 class DetailViewModel @AssistedInject constructor(
   detailRepository: DetailRepository,
-  @Assisted private val pokemonName: String
+  @Assisted private val pokemonName: String,
 ) : BindingViewModel() {
 
   @get:Bindable
@@ -46,7 +46,7 @@ class DetailViewModel @AssistedInject constructor(
   private val pokemonInfoFlow: Flow<PokemonInfo?> = detailRepository.fetchPokemonInfo(
     name = pokemonName,
     onComplete = { isLoading = false },
-    onError = { toastMessage = it }
+    onError = { toastMessage = it },
   )
 
   @get:Bindable
@@ -64,7 +64,7 @@ class DetailViewModel @AssistedInject constructor(
   companion object {
     fun provideFactory(
       assistedFactory: AssistedFactory,
-      pokemonName: String
+      pokemonName: String,
     ): ViewModelProvider.Factory = object : ViewModelProvider.Factory {
 
       @Suppress("UNCHECKED_CAST")

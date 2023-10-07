@@ -62,9 +62,9 @@ class DetailRepositoryTest {
     whenever(service.fetchPokemonInfo(name = "bulbasaur")).thenReturn(
       ApiResponse.of {
         Response.success(
-          mockData
+          mockData,
         )
-      }
+      },
     )
 
     repository.fetchPokemonInfo(name = "bulbasaur", onComplete = {}, onError = {}).test {
@@ -88,15 +88,15 @@ class DetailRepositoryTest {
     whenever(service.fetchPokemonInfo(name = "bulbasaur")).thenReturn(
       ApiResponse.of {
         Response.success(
-          mockData
+          mockData,
         )
-      }
+      },
     )
 
     repository.fetchPokemonInfo(
       name = "bulbasaur",
       onComplete = {},
-      onError = {}
+      onError = {},
     ).test(5.toDuration(DurationUnit.SECONDS)) {
       val expectItem = awaitItem()
       assertEquals(expectItem.id, mockData.id)

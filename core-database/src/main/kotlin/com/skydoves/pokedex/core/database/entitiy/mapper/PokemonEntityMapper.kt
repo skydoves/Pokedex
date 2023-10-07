@@ -26,7 +26,7 @@ object PokemonEntityMapper : EntityMapper<List<Pokemon>, List<PokemonEntity>> {
       PokemonEntity(
         page = pokemon.page,
         name = pokemon.name,
-        url = pokemon.url
+        url = pokemon.url,
       )
     }
   }
@@ -36,7 +36,7 @@ object PokemonEntityMapper : EntityMapper<List<Pokemon>, List<PokemonEntity>> {
       Pokemon(
         page = pokemonEntity.page,
         name = pokemonEntity.name,
-        url = pokemonEntity.url
+        url = pokemonEntity.url,
       )
     }
   }

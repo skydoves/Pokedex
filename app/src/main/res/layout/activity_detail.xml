@@ -231,7 +231,7 @@
         app:progressView_labelColorOuter="@color/black"
         app:progressView_labelSize="12sp"
         app:progressView_labelText="@{vm.pokemonInfo.hpString}"
-        app:progressView_max="@{vm.pokemonInfo.maxHp}"
+        app:progressView_max="@{vm.pokemonInfo.MAX_HP}"
         app:progressView_progress="@{vm.pokemonInfo.hp}"
         app:progressView_radius="12dp" />
 
@@ -261,7 +261,7 @@
         app:progressView_labelColorOuter="@color/black"
         app:progressView_labelSize="12sp"
         app:progressView_labelText="@{vm.pokemonInfo.attackString}"
-        app:progressView_max="@{vm.pokemonInfo.maxAttack}"
+        app:progressView_max="@{vm.pokemonInfo.MAX_ATTACK}"
         app:progressView_progress="@{vm.pokemonInfo.attack}"
         app:progressView_radius="12dp" />
 
@@ -291,7 +291,7 @@
         app:progressView_labelColorOuter="@color/black"
         app:progressView_labelSize="12sp"
         app:progressView_labelText="@{vm.pokemonInfo.defenseString}"
-        app:progressView_max="@{vm.pokemonInfo.maxDefense}"
+        app:progressView_max="@{vm.pokemonInfo.MAX_DEFENSE}"
         app:progressView_progress="@{vm.pokemonInfo.defense}"
         app:progressView_radius="12dp" />
 
@@ -321,7 +321,7 @@
         app:progressView_labelColorOuter="@color/black"
         app:progressView_labelSize="12sp"
         app:progressView_labelText="@{vm.pokemonInfo.speedString}"
-        app:progressView_max="@{vm.pokemonInfo.maxSpeed}"
+        app:progressView_max="@{vm.pokemonInfo.MAX_SPEED}"
         app:progressView_progress="@{vm.pokemonInfo.speed}"
         app:progressView_radius="12dp" />
 
@@ -351,7 +351,7 @@
         app:progressView_labelColorOuter="@color/black"
         app:progressView_labelSize="12sp"
         app:progressView_labelText="@{vm.pokemonInfo.expString}"
-        app:progressView_max="@{vm.pokemonInfo.maxExp}"
+        app:progressView_max="@{vm.pokemonInfo.MAX_EXP}"
         app:progressView_progress="@{vm.pokemonInfo.exp}"
         app:progressView_radius="12dp" />
 

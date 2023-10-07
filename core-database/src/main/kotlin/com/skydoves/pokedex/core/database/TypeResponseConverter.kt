@@ -26,7 +26,7 @@ import javax.inject.Inject
 
 @ProvidedTypeConverter
 class TypeResponseConverter @Inject constructor(
-  private val moshi: Moshi
+  private val moshi: Moshi,
 ) {
 
   @TypeConverter

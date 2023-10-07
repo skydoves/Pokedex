@@ -26,7 +26,7 @@ class SpacesItemDecoration : RecyclerView.ItemDecoration() {
     outRect: Rect,
     view: View,
     parent: RecyclerView,
-    state: RecyclerView.State
+    state: RecyclerView.State,
   ) {
     if (parent.getChildAdapterPosition(view) != 0) {
       outRect.left = 32
