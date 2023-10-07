@@ -34,7 +34,7 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class DetailActivity : BindingActivity<ActivityDetailBinding>(R.layout.activity_detail) {
 
-  @set:Inject
+  @Inject
   internal lateinit var detailViewModelFactory: DetailViewModel.AssistedFactory
 
   @get:VisibleForTesting
