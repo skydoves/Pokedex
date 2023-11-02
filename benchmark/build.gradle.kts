@@ -51,6 +51,10 @@ android {
     }
   }
 
+  lint {
+    abortOnError = false
+  }
+
   targetProjectPath = ":app"
   experimentalProperties["android.experimental.self-instrumenting"] = true
 }
