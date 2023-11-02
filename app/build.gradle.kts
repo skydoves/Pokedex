@@ -60,6 +60,11 @@ android {
     sourceSets.configureEach {
       kotlin.srcDir("$buildDir/generated/ksp/$name/kotlin/")
     }
+    sourceSets.all {
+      languageSettings {
+        languageVersion = "2.0"
+      }
+    }
   }
 
   testOptions {
