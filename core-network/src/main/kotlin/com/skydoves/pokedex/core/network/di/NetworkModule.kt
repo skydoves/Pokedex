@@ -19,7 +19,7 @@ package com.skydoves.pokedex.core.network.di
 import com.skydoves.pokedex.core.network.interceptor.HttpRequestInterceptor
 import com.skydoves.pokedex.core.network.service.PokedexClient
 import com.skydoves.pokedex.core.network.service.PokedexService
-import com.skydoves.sandwich.adapters.ApiResponseCallAdapterFactory
+import com.skydoves.sandwich.retrofit.adapters.ApiResponseCallAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
