@@ -30,6 +30,7 @@ import com.skydoves.pokedex.core.repository.DetailRepositoryImpl
 import com.skydoves.pokedex.core.test.MainCoroutinesRule
 import com.skydoves.pokedex.core.test.MockUtil.mockPokemonInfo
 import com.skydoves.sandwich.ApiResponse
+import com.skydoves.sandwich.retrofit.responseOf
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Before
@@ -60,7 +61,7 @@ class DetailRepositoryTest {
     val mockData = mockPokemonInfo()
     whenever(pokemonInfoDao.getPokemonInfo(name_ = "bulbasaur")).thenReturn(null)
     whenever(service.fetchPokemonInfo(name = "bulbasaur")).thenReturn(
-      ApiResponse.of {
+      ApiResponse.responseOf {
         Response.success(
           mockData,
         )
@@ -86,7 +87,7 @@ class DetailRepositoryTest {
     val mockData = mockPokemonInfo()
     whenever(pokemonInfoDao.getPokemonInfo(name_ = "bulbasaur")).thenReturn(mockData.asEntity())
     whenever(service.fetchPokemonInfo(name = "bulbasaur")).thenReturn(
-      ApiResponse.of {
+      ApiResponse.responseOf {
         Response.success(
           mockData,
         )

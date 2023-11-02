@@ -31,6 +31,7 @@ import com.skydoves.pokedex.core.repository.MainRepositoryImpl
 import com.skydoves.pokedex.core.test.MainCoroutinesRule
 import com.skydoves.pokedex.core.test.MockUtil.mockPokemonList
 import com.skydoves.sandwich.ApiResponse
+import com.skydoves.sandwich.retrofit.responseOf
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Before
@@ -62,7 +63,13 @@ class MainRepositoryImplTest {
       PokemonResponse(count = 984, next = null, previous = null, results = mockPokemonList())
     whenever(pokemonDao.getPokemonList(page_ = 0)).thenReturn(emptyList())
     whenever(pokemonDao.getAllPokemonList(page_ = 0)).thenReturn(mockData.results.asEntity())
-    whenever(service.fetchPokemonList()).thenReturn(ApiResponse.of { Response.success(mockData) })
+    whenever(service.fetchPokemonList()).thenReturn(
+      ApiResponse.responseOf {
+        Response.success(
+          mockData,
+        )
+      },
+    )
 
     repository.fetchPokemonList(
       page = 0,
