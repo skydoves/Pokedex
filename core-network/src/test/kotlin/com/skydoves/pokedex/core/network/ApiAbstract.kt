@@ -20,7 +20,7 @@ package com.skydoves.pokedex.core.network
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.skydoves.pokedex.core.test.MainCoroutinesRule
-import com.skydoves.sandwich.adapters.ApiResponseCallAdapterFactory
+import com.skydoves.sandwich.retrofit.adapters.ApiResponseCallAdapterFactory
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer

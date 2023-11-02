@@ -31,7 +31,7 @@ class ApiResponseTest {
   @Test
   fun exception() {
     val exception = Exception("foo")
-    val apiResponse = ApiResponse.error<String>(exception)
+    val apiResponse = ApiResponse.exception(exception)
     assertThat(apiResponse.message, `is`("foo"))
   }
 
