@@ -18,6 +18,7 @@ package com.skydoves.pokedex.core.network
 
 import com.skydoves.sandwich.ApiResponse
 import com.skydoves.sandwich.SandwichInitializer
+import com.skydoves.sandwich.retrofit.responseOf
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
 import org.junit.Test
@@ -38,7 +39,7 @@ class ApiResponseTest {
   @Test
   fun success() {
     val apiResponse =
-      ApiResponse.of(SandwichInitializer.successCodeRange) { Response.success("foo") }
+      ApiResponse.responseOf(SandwichInitializer.successCodeRange) { Response.success("foo") }
     if (apiResponse is ApiResponse.Success) {
       assertThat(apiResponse.data, `is`("foo"))
     }
