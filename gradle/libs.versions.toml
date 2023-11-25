@@ -1,6 +1,6 @@
 [versions]
 agp = "8.1.4"
-kotlin = "1.9.20"
+kotlin = "1.9.21"
 ksp = "1.9.20-1.0.14"
 jvmTarget = "17"
 material = "1.10.0"
