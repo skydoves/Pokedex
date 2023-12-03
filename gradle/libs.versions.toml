@@ -40,7 +40,7 @@ androidxTestJunit = "1.1.5"
 androidTestRunner = "1.3.0-beta01"
 espresso = "3.5.1"
 mockitoKotlin = "2.2.0"
-mockitoInline = "3.12.4"
+mockitoInline = "5.2.0"
 spotless = "6.23.2"
 
 [plugins]
