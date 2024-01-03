@@ -1,5 +1,5 @@
 [versions]
-agp = "8.2.0"
+agp = "8.2.1"
 kotlin = "1.9.22"
 ksp = "1.9.22-1.0.16"
 jvmTarget = "17"
