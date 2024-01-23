@@ -41,7 +41,7 @@ androidTestRunner = "1.3.0-beta01"
 espresso = "3.5.1"
 mockitoKotlin = "2.2.0"
 mockitoInline = "5.2.0"
-spotless = "6.24.0"
+spotless = "6.25.0"
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
