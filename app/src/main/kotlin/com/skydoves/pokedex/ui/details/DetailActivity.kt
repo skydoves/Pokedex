@@ -41,13 +41,17 @@ class DetailActivity : BindingActivity<ActivityDetailBinding>(R.layout.activity_
   internal val viewModel: DetailViewModel by viewModels {
     DetailViewModel.provideFactory(detailViewModelFactory, pokemon.name)
   }
-
   private val pokemon: Pokemon by bundleNonNull(EXTRA_POKEMON)
-
   override fun onCreate(savedInstanceState: Bundle?) {
     onTransformationEndContainerApplyParams(this)
     super.onCreate(savedInstanceState)
-    binding.pokemon = pokemon
+    // I create a temporary Pokemon variable 'pokemonBis' for modifying the name before binding.
+    // I needed for that to change the data class Pokemon here Pokemon.kt
+    var pokemonBis = pokemon
+    // I do a replace for the name only
+    pokemonBis.name = pokemon.name.replace("-", " ")
+    // And i change set the value of binding.pokemon
+    binding.pokemon = pokemonBis
     binding.vm = viewModel
   }
 
