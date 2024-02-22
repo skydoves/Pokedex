@@ -59,7 +59,15 @@ class MainRepositoryImpl @Inject constructor(
       val response = pokedexClient.fetchPokemonList(page = page)
       response.suspendOnSuccess {
         pokemons = data.results
-        pokemons.forEach { pokemon -> pokemon.page = page }
+        pokemons.forEach { pokemon ->
+          val pokemonInfoResponse = pokedexClient.fetchPokemonInfo(pokemon.name)
+          pokemonInfoResponse.suspendOnSuccess {
+            pokemon.pokemonId = data.id
+          }.onFailure {
+            onError(message())
+          }
+          pokemon.page = page
+        }
         pokemonDao.insertPokemonList(pokemons.asEntity())
         emit(pokemonDao.getAllPokemonList(page).asDomain())
       }.onFailure { // handles the all error cases from the API request fails.
