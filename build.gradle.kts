@@ -14,24 +14,16 @@
 // * limitations under the License.
 // */
 
-@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
+  alias(libs.plugins.android.application) apply false
+  alias(libs.plugins.android.library) apply false
+  alias(libs.plugins.android.test) apply false
+  alias(libs.plugins.kotlin.android) apply false
+  alias(libs.plugins.kotlin.kapt) apply false
+  alias(libs.plugins.kotlin.parcelize) apply false
   alias(libs.plugins.ksp) apply false
+  alias(libs.plugins.hilt.plugin) apply false
   alias(libs.plugins.spotless)
-}
-
-buildscript {
-  repositories {
-    mavenCentral()
-    google()
-    gradlePluginPortal()
-  }
-
-  dependencies {
-    classpath(libs.agp)
-    classpath(libs.kotlin.gradlePlugin)
-    classpath(libs.hilt.plugin)
-  }
 }
 
 subprojects {
