@@ -1,7 +1,7 @@
 [versions]
-agp = "8.3.0"
+agp = "8.2.2"
 kotlin = "1.9.22"
-ksp = "1.9.22-1.0.18"
+ksp = "1.9.22-1.0.17"
 jvmTarget = "17"
 material = "1.11.0"
 androidxActivity = "1.7.0"
