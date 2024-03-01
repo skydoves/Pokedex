@@ -18,14 +18,13 @@ import com.skydoves.pokedex.Configuration
 import org.gradle.configurationcache.extensions.capitalized
 import org.jetbrains.kotlin.gradle.tasks.AbstractKotlinCompileTool
 
-@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-  id(libs.plugins.android.application.get().pluginId)
-  id(libs.plugins.kotlin.android.get().pluginId)
-  id(libs.plugins.kotlin.kapt.get().pluginId)
-  id(libs.plugins.ksp.get().pluginId)
-  id(libs.plugins.kotlin.parcelize.get().pluginId)
-  id(libs.plugins.hilt.plugin.get().pluginId)
+  alias(libs.plugins.android.application)
+  alias(libs.plugins.kotlin.android)
+  alias(libs.plugins.kotlin.kapt)
+  alias(libs.plugins.ksp)
+  alias(libs.plugins.kotlin.parcelize)
+  alias(libs.plugins.hilt.plugin)
 }
 
 android {

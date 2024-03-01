@@ -52,13 +52,9 @@ kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin" }
 spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
-hilt-plugin = { id = "dagger.hilt.android.plugin", version.ref = "hilt" }
+hilt-plugin = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 
 [libraries]
-agp = { module = "com.android.tools.build:gradle", version.ref = "agp" }
-kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
-ksp = { module = "com.google.devtools.ksp:symbol-processing", version.ref = "ksp" }
-
 material = { module = "com.google.android.material:material", version.ref = "material" }
 androidx-fragment = { module = "androidx.fragment:fragment-ktx", version.ref = "androidxFragment" }
 androidx-lifecycle = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "androidxLifecycle" }
