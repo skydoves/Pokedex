@@ -21,7 +21,6 @@ plugins {
 }
 
 android {
-  compileSdk = Configuration.compileSdk
   namespace = "com.skydoves.pokedex.benchmark"
 
   compileOptions {
@@ -34,8 +33,7 @@ android {
   }
 
   defaultConfig {
-    minSdk = Configuration.minSdk
-    targetSdk = Configuration.compileSdk
+    targetSdk = Configuration.targetSdk
     testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
   }
 
