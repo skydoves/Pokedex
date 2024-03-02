@@ -58,6 +58,16 @@ pluginManagement {
     }
   }
 }
+
+plugins {
+  id("com.android.settings") version "8.3.0"
+}
+
+android {
+  minSdk = 23
+  compileSdk = 34
+}
+
 dependencyResolutionManagement {
   repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
   repositories {

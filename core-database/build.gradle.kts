@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import com.skydoves.pokedex.Configuration
 
 plugins {
   alias(libs.plugins.android.library)
@@ -22,11 +21,9 @@ plugins {
 }
 
 android {
-  compileSdk = Configuration.compileSdk
   namespace = "com.skydoves.pokedex.core.database"
 
   defaultConfig {
-    minSdk = Configuration.minSdk
     // The schemas directory contains a schema file for each version of the Room database.
     // This is required to enable Room auto migrations.
     // See https://developer.android.com/reference/kotlin/androidx/room/AutoMigration.

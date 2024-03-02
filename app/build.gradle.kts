@@ -28,12 +28,10 @@ plugins {
 }
 
 android {
-  compileSdk = Configuration.compileSdk
   namespace = "com.skydoves.pokedex"
 
   defaultConfig {
     applicationId = "com.skydoves.pokedex"
-    minSdk = Configuration.minSdk
     targetSdk = Configuration.targetSdk
     versionCode = Configuration.versionCode
     versionName = Configuration.versionName

@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import com.skydoves.pokedex.Configuration
 
 plugins {
   alias(libs.plugins.android.library)
@@ -22,12 +21,7 @@ plugins {
 }
 
 android {
-  compileSdk = Configuration.compileSdk
   namespace = "com.skydoves.pokedex.core.data"
-
-  defaultConfig {
-    minSdk = Configuration.minSdk
-  }
 
   compileOptions {
     sourceCompatibility = JavaVersion.VERSION_17
