@@ -23,15 +23,6 @@ plugins {
 
 android {
   namespace = "com.skydoves.pokedex.core.model"
-
-  compileOptions {
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
-  }
-
-  lint {
-    abortOnError = false
-  }
 }
 
 dependencies {
