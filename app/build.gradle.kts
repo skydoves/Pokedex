@@ -32,16 +32,9 @@ android {
 
   defaultConfig {
     applicationId = "com.skydoves.pokedex"
-    targetSdk = Configuration.targetSdk
     versionCode = Configuration.versionCode
     versionName = Configuration.versionName
-    vectorDrawables.useSupportLibrary = true
     testInstrumentationRunner = "com.skydoves.pokedex.AppTestRunner"
-  }
-
-  compileOptions {
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
   }
 
   buildFeatures {
@@ -77,10 +70,6 @@ android {
       signingConfig = getByName("debug").signingConfig
       matchingFallbacks += listOf("release")
     }
-  }
-
-  lint {
-    abortOnError = false
   }
 }
 

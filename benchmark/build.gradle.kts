@@ -13,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import com.skydoves.pokedex.Configuration
 
 plugins {
   alias(libs.plugins.android.test)
@@ -23,17 +22,11 @@ plugins {
 android {
   namespace = "com.skydoves.pokedex.benchmark"
 
-  compileOptions {
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
-  }
-
   kotlinOptions {
     jvmTarget = "11"
   }
 
   defaultConfig {
-    targetSdk = Configuration.targetSdk
     testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
   }
 
@@ -46,10 +39,6 @@ android {
       signingConfig = getByName("debug").signingConfig
       matchingFallbacks += listOf("release")
     }
-  }
-
-  lint {
-    abortOnError = false
   }
 
   targetProjectPath = ":app"
