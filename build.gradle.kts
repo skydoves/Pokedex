@@ -80,8 +80,8 @@ subprojects {
   tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
     kotlinOptions.jvmTarget = bytecodeVersion.toString()
     kotlinOptions.freeCompilerArgs += listOf(
-      "-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
-      "-Xopt-in=kotlin.time.ExperimentalTime",
+      "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
+      "-opt-in=kotlin.time.ExperimentalTime",
     )
   }
 
