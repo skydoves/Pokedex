@@ -48,7 +48,7 @@ android {
 
   kotlin {
     sourceSets.configureEach {
-      kotlin.srcDir("$buildDir/generated/ksp/$name/kotlin/")
+      kotlin.srcDir(layout.buildDirectory.files("generated/ksp/$name/kotlin/"))
     }
     sourceSets.all {
       languageSettings {

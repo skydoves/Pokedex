@@ -92,6 +92,7 @@ dependencyResolutionManagement {
     // fetch libraries from jcenter
     // https://jfrog.com/blog/into-the-sunset-bintray-jcenter-gocenter-and-chartcenter/
     // FIXME: Need to clean up jcenter usage
+    @Suppress("DEPRECATION")
     jcenter() {
       content {
         includeGroupByRegex("com\\.github\\.florent37")
