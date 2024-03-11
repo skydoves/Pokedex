@@ -80,15 +80,16 @@ subprojects {
   tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
     kotlinOptions.jvmTarget = bytecodeVersion.toString()
     kotlinOptions.freeCompilerArgs += listOf(
-      "-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
-      "-Xopt-in=kotlin.time.ExperimentalTime",
+      "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
+      "-opt-in=kotlin.time.ExperimentalTime",
     )
   }
 
   extensions.configure<com.diffplug.gradle.spotless.SpotlessExtension> {
+    val buildDirectory = layout.buildDirectory.asFileTree
     kotlin {
       target("**/*.kt")
-      targetExclude("$buildDir/**/*.kt")
+      targetExclude(buildDirectory)
       ktlint().editorConfigOverride(
         mapOf(
           "indent_size" to "2",
@@ -101,12 +102,12 @@ subprojects {
     }
     format("kts") {
       target("**/*.kts")
-      targetExclude("$buildDir/**/*.kts")
+      targetExclude(buildDirectory)
       licenseHeaderFile(rootProject.file("spotless/spotless.license.kt"), "(^(?![\\/ ]\\*).*$)")
     }
     format("xml") {
       target("**/*.xml")
-      targetExclude("**/build/**/*.xml")
+      targetExclude(buildDirectory)
       licenseHeaderFile(rootProject.file("spotless/spotless.license.xml"), "(<[^!?])")
     }
   }
