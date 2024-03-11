@@ -46,6 +46,6 @@ dependencies {
   testImplementation(libs.junit)
   testImplementation(libs.turbine)
   testImplementation(libs.androidx.test.core)
+  testImplementation(libs.mockito.core)
   testImplementation(libs.mockito.kotlin)
-  testImplementation(libs.mockito.inline)
 }
