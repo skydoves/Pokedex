@@ -35,5 +35,5 @@ data class Pokemon(
     return "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/" +
       "pokemon/other/official-artwork/$index.png"
   }
-  fun capitalizeName(): String = name.replaceFirstChar { it.uppercase() }
+  fun getName(): String = name.replaceFirstChar { it.uppercase() }
 }
