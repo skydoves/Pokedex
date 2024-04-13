@@ -13,7 +13,6 @@
 <p align="center">  
 🗡️ Pokedex demonstrates modern Android development with Hilt, Coroutines, Flow, Jetpack (Room, ViewModel), and Material Design based on MVVM architecture.
 </p>
-</br>
 
 > [!TIP]
 > If you want to see the Jetpack Compose version of Pokedex, check out the [Pokedex](https://github.com/skydoves/pokedex-compose) repository.
