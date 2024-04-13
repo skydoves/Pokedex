@@ -15,7 +15,7 @@
 </p>
 
 > [!TIP]
-> If you want to see the Jetpack Compose version of Pokedex, check out the [Pokedex](https://github.com/skydoves/pokedex-compose) repository.
+> If you want to see the Jetpack Compose version of Pokedex, check out the [Pokedex Compose](https://github.com/skydoves/pokedex-compose) repository.
 
 <p align="center">
 <img src="/previews/screenshot.png"/>
