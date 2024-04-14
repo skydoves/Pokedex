@@ -34,6 +34,7 @@ object PokemonInfoEntityMapper : EntityMapper<PokemonInfo, PokemonInfoEntity> {
       defense = domain.defense,
       speed = domain.speed,
       exp = domain.exp,
+      stats = domain.stats
     )
   }
 
@@ -50,6 +51,7 @@ object PokemonInfoEntityMapper : EntityMapper<PokemonInfo, PokemonInfoEntity> {
       defense = entity.defense,
       speed = entity.speed,
       exp = entity.exp,
+      stats = entity.stats,
     )
   }
 }

@@ -24,10 +24,10 @@ import com.skydoves.pokedex.core.database.entitiy.PokemonInfoEntity
 
 @Database(
   entities = [PokemonEntity::class, PokemonInfoEntity::class],
-  version = 2,
+  version = 3,
   exportSchema = true,
 )
-@TypeConverters(value = [TypeResponseConverter::class])
+@TypeConverters(value = [TypeResponseConverter::class, StatsResponseConverter::class])
 abstract class PokedexDatabase : RoomDatabase() {
 
   abstract fun pokemonDao(): PokemonDao

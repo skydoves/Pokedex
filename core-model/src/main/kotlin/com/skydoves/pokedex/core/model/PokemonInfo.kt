@@ -29,6 +29,7 @@ data class PokemonInfo(
   @field:Json(name = "weight") val weight: Int,
   @field:Json(name = "base_experience") val experience: Int,
   @field:Json(name = "types") val types: List<TypeResponse>,
+  @field:Json(name = "stats") val stats: List<StatsResponse>,
   val hp: Int = Random.nextInt(MAX_HP),
   val attack: Int = Random.nextInt(MAX_ATTACK),
   val defense: Int = Random.nextInt(MAX_DEFENSE),
@@ -53,6 +54,18 @@ data class PokemonInfo(
 
   @JsonClass(generateAdapter = true)
   data class Type(
+    @field:Json(name = "name") val name: String,
+  )
+
+  @JsonClass(generateAdapter = true)
+  data class StatsResponse(
+    @field:Json(name = "base_stat") val baseStat: Int,
+    @field:Json(name = "effort") val effort: Int,
+    @field:Json(name = "stat") val stat: Stat
+  )
+
+  @JsonClass(generateAdapter = true)
+  data class Stat(
     @field:Json(name = "name") val name: String,
   )
 
