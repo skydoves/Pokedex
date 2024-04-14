@@ -34,7 +34,7 @@ object PokemonInfoEntityMapper : EntityMapper<PokemonInfo, PokemonInfoEntity> {
       defense = domain.defense,
       speed = domain.speed,
       exp = domain.exp,
-      stats = domain.stats
+      stats = domain.stats,
     )
   }
 

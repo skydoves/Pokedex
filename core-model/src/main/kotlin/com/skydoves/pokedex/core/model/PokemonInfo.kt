@@ -61,7 +61,7 @@ data class PokemonInfo(
   data class StatsResponse(
     @field:Json(name = "base_stat") val baseStat: Int,
     @field:Json(name = "effort") val effort: Int,
-    @field:Json(name = "stat") val stat: Stat
+    @field:Json(name = "stat") val stat: Stat,
   )
 
   @JsonClass(generateAdapter = true)
