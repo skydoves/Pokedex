@@ -33,4 +33,5 @@ data class PokemonInfoEntity(
   val defense: Int,
   val speed: Int,
   val exp: Int,
+  val stats: List<PokemonInfo.StatsResponse>,
 )

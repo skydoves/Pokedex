@@ -21,6 +21,7 @@ import androidx.room.Room
 import com.skydoves.pokedex.core.database.PokedexDatabase
 import com.skydoves.pokedex.core.database.PokemonDao
 import com.skydoves.pokedex.core.database.PokemonInfoDao
+import com.skydoves.pokedex.core.database.StatsResponseConverter
 import com.skydoves.pokedex.core.database.TypeResponseConverter
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -47,11 +48,13 @@ internal object DatabaseModule {
   fun provideAppDatabase(
     application: Application,
     typeResponseConverter: TypeResponseConverter,
+    statsResponseConverter: StatsResponseConverter,
   ): PokedexDatabase {
     return Room
       .databaseBuilder(application, PokedexDatabase::class.java, "Pokedex.db")
       .fallbackToDestructiveMigration()
       .addTypeConverter(typeResponseConverter)
+      .addTypeConverter(statsResponseConverter)
       .build()
   }
 
@@ -71,5 +74,11 @@ internal object DatabaseModule {
   @Singleton
   fun provideTypeResponseConverter(moshi: Moshi): TypeResponseConverter {
     return TypeResponseConverter(moshi)
+  }
+
+  @Provides
+  @Singleton
+  fun provideStatsResponseConverter(moshi: Moshi): StatsResponseConverter {
+    return StatsResponseConverter(moshi)
   }
 }
