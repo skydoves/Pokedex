@@ -24,4 +24,5 @@ data class PokemonEntity(
   var page: Int = 0,
   @PrimaryKey val name: String,
   val url: String,
+  val pokemonId: Int = 0,
 )
