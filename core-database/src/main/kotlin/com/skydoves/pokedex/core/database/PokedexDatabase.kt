@@ -19,8 +19,8 @@ package com.skydoves.pokedex.core.database
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import com.skydoves.pokedex.core.database.entitiy.PokemonEntity
-import com.skydoves.pokedex.core.database.entitiy.PokemonInfoEntity
+import com.skydoves.pokedex.core.database.entity.PokemonEntity
+import com.skydoves.pokedex.core.database.entity.PokemonInfoEntity
 
 @Database(
   entities = [PokemonEntity::class, PokemonInfoEntity::class],

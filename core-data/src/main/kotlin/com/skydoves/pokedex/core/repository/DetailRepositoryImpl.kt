@@ -19,8 +19,8 @@ package com.skydoves.pokedex.core.repository
 import androidx.annotation.VisibleForTesting
 import androidx.annotation.WorkerThread
 import com.skydoves.pokedex.core.database.PokemonInfoDao
-import com.skydoves.pokedex.core.database.entitiy.mapper.asDomain
-import com.skydoves.pokedex.core.database.entitiy.mapper.asEntity
+import com.skydoves.pokedex.core.database.entity.mapper.asDomain
+import com.skydoves.pokedex.core.database.entity.mapper.asEntity
 import com.skydoves.pokedex.core.model.PokemonInfo
 import com.skydoves.pokedex.core.network.Dispatcher
 import com.skydoves.pokedex.core.network.PokedexAppDispatchers

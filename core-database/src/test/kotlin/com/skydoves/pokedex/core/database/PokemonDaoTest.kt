@@ -16,7 +16,7 @@
 
 package com.skydoves.pokedex.core.database
 
-import com.skydoves.pokedex.core.database.entitiy.mapper.asEntity
+import com.skydoves.pokedex.core.database.entity.mapper.asEntity
 import com.skydoves.pokedex.core.test.MockUtil.mockPokemon
 import com.skydoves.pokedex.core.test.MockUtil.mockPokemonList
 import kotlinx.coroutines.runBlocking

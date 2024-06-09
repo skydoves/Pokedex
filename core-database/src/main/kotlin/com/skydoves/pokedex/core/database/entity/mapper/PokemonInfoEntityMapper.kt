@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-package com.skydoves.pokedex.core.database.entitiy.mapper
+package com.skydoves.pokedex.core.database.entity.mapper
 
-import com.skydoves.pokedex.core.database.entitiy.PokemonInfoEntity
+import com.skydoves.pokedex.core.database.entity.PokemonInfoEntity
 import com.skydoves.pokedex.core.model.PokemonInfo
 
 object PokemonInfoEntityMapper : EntityMapper<PokemonInfo, PokemonInfoEntity> {

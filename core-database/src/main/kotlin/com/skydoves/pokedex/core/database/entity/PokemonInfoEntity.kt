@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.skydoves.pokedex.core.database.entitiy
+package com.skydoves.pokedex.core.database.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

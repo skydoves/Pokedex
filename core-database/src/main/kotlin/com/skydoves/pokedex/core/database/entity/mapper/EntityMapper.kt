@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.skydoves.pokedex.core.database.entitiy.mapper
+package com.skydoves.pokedex.core.database.entity.mapper
 
 interface EntityMapper<Domain, Entity> {
 

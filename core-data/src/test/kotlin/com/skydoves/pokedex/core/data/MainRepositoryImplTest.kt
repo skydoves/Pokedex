@@ -18,7 +18,7 @@ package com.skydoves.pokedex.core.data
 
 import app.cash.turbine.test
 import com.skydoves.pokedex.core.database.PokemonDao
-import com.skydoves.pokedex.core.database.entitiy.mapper.asEntity
+import com.skydoves.pokedex.core.database.entity.mapper.asEntity
 import com.skydoves.pokedex.core.network.model.PokemonResponse
 import com.skydoves.pokedex.core.network.service.PokedexClient
 import com.skydoves.pokedex.core.network.service.PokedexService

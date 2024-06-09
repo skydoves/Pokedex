@@ -20,7 +20,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.skydoves.pokedex.core.database.entitiy.PokemonInfoEntity
+import com.skydoves.pokedex.core.database.entity.PokemonInfoEntity
 
 @Dao
 interface PokemonInfoDao {
