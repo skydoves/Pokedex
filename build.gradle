@@ -22,6 +22,7 @@ buildscript {
         mavenCentral()
         maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
         gradlePluginPortal()
+        maven { url "${rootProject.projectDir}/libs" }
     }
     dependencies {
         classpath "com.android.tools.build:gradle:$versions.gradleBuildTool"
@@ -38,6 +39,7 @@ allprojects {
         mavenCentral()
         maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
         gradlePluginPortal()
+        maven { url "${rootProject.projectDir}/libs" }
     }
 }
 

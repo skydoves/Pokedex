@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.github.florent37</groupId>
+  <artifactId>glidepalette</artifactId>
+  <version>2.1.2</version>
+  <packaging>aar</packaging>
+  <name>GlidePalette</name>
+  <description></description>
+  <url>https://github.com/florent37/GlidePalette</url>
+  <licenses>
+    <license>
+      <name>The Apache Software License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+    </license>
+  </licenses>
+  <developers>
+    <developer>
+      <id>florent37</id>
+      <name>florent37</name>
+      <email>champigny.florent@gmail.com</email>
+    </developer>
+  </developers>
+  <scm>
+    <connection>https://github.com/florent37/GlidePalette.git</connection>
+    <developerConnection>https://github.com/florent37/GlidePalette.git</developerConnection>
+    <url>https://github.com/florent37/GlidePalette</url>
+  </scm>
+  <dependencies>
+    <dependency>
+      <groupId>com.android.support</groupId>
+      <artifactId>palette-v7</artifactId>
+      <version>27.0.2</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.android.support</groupId>
+      <artifactId>support-v4</artifactId>
+      <version>27.0.2</version>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.github.bumptech.glide</groupId>
+      <artifactId>glide</artifactId>
+      <version>4.6.1</version>
+      <scope>compile</scope>
+    </dependency>
+  </dependencies>
+</project>
