@@ -18,6 +18,8 @@ package com.skydoves.pokedex.binding
 
 import android.graphics.Color
 import android.graphics.Typeface
+import android.graphics.drawable.BitmapDrawable
+import android.graphics.drawable.Drawable
 import android.view.Gravity
 import android.view.View
 import android.view.WindowManager
@@ -26,9 +28,12 @@ import androidx.activity.OnBackPressedDispatcherOwner
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.databinding.BindingAdapter
+import androidx.palette.graphics.Palette
 import com.bumptech.glide.Glide
-import com.github.florent37.glidepalette.BitmapPalette
-import com.github.florent37.glidepalette.GlidePalette
+import com.bumptech.glide.load.DataSource
+import com.bumptech.glide.load.engine.GlideException
+import com.bumptech.glide.request.RequestListener
+import com.bumptech.glide.request.target.Target
 import com.google.android.material.card.MaterialCardView
 import com.skydoves.androidribbon.RibbonRecyclerView
 import com.skydoves.androidribbon.ribbonView
@@ -57,14 +62,36 @@ object ViewBinding {
     Glide.with(view.context)
       .load(url)
       .listener(
-        GlidePalette.with(url)
-          .use(BitmapPalette.Profile.MUTED_LIGHT)
-          .intoCallBack { palette ->
-            val rgb = palette?.dominantSwatch?.rgb
-            if (rgb != null) {
-              paletteCard.setCardBackgroundColor(rgb)
+        object : RequestListener<Drawable> {
+          override fun onLoadFailed(
+            e: GlideException?,
+            model: Any?,
+            target: Target<Drawable>,
+            isFirstResource: Boolean,
+          ): Boolean {
+            return false
+          }
+
+          override fun onResourceReady(
+            resource: Drawable,
+            model: Any,
+            target: Target<Drawable>?,
+            dataSource: DataSource,
+            isFirstResource: Boolean,
+          ): Boolean {
+            val drawable = resource as BitmapDrawable
+            val bitmap = drawable.bitmap
+            Palette.Builder(bitmap).generate {
+              it?.let { palette ->
+                val rgb = palette.dominantSwatch?.rgb
+                if (rgb != null) {
+                  paletteCard.setCardBackgroundColor(rgb)
+                }
+              }
             }
-          }.crossfade(true),
+            return false
+          }
+        },
       ).into(view)
   }
 
@@ -75,28 +102,48 @@ object ViewBinding {
     Glide.with(context)
       .load(url)
       .listener(
-        GlidePalette.with(url)
-          .use(BitmapPalette.Profile.MUTED_LIGHT)
-          .intoCallBack { palette ->
-            val light = palette?.lightVibrantSwatch?.rgb
-            val domain = palette?.dominantSwatch?.rgb
-            if (domain != null) {
-              if (light != null) {
-                Rainbow(paletteView).palette {
-                  +color(domain)
-                  +color(light)
-                }.background(orientation = RainbowOrientation.TOP_BOTTOM)
-              } else {
-                paletteView.setBackgroundColor(domain)
-              }
-              if (context is AppCompatActivity) {
-                context.window.apply {
-                  addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-                  statusBarColor = domain
+        object : RequestListener<Drawable> {
+          override fun onLoadFailed(
+            e: GlideException?,
+            model: Any?,
+            target: Target<Drawable>,
+            isFirstResource: Boolean,
+          ): Boolean {
+            return false
+          }
+
+          override fun onResourceReady(
+            resource: Drawable,
+            model: Any,
+            target: Target<Drawable>?,
+            dataSource: DataSource,
+            isFirstResource: Boolean,
+          ): Boolean {
+            val drawable = resource as BitmapDrawable
+            val bitmap = drawable.bitmap
+            Palette.Builder(bitmap).generate { palette ->
+              val light = palette?.lightVibrantSwatch?.rgb
+              val domain = palette?.dominantSwatch?.rgb
+              if (domain != null) {
+                if (light != null) {
+                  Rainbow(paletteView).palette {
+                    +color(domain)
+                    +color(light)
+                  }.background(orientation = RainbowOrientation.TOP_BOTTOM)
+                } else {
+                  paletteView.setBackgroundColor(domain)
+                }
+                if (context is AppCompatActivity) {
+                  context.window.apply {
+                    addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+                    statusBarColor = domain
+                  }
                 }
               }
             }
-          }.crossfade(true),
+            return false
+          }
+        },
       ).into(view)
   }
 

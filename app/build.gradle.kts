@@ -102,6 +102,7 @@ dependencies {
   implementation(libs.androidx.fragment)
   implementation(libs.androidx.lifecycle)
   implementation(libs.androidx.startup)
+  implementation(libs.androidx.palette)
 
   // data binding
   implementation(libs.bindables)
@@ -120,7 +121,6 @@ dependencies {
 
   // image loading
   implementation(libs.glide)
-  implementation(libs.glide.palette)
 
   // bundler
   implementation(libs.bundler)
