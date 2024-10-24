@@ -48,7 +48,7 @@ Go to the [Releases](https://github.com/skydoves/Pokedex/releases) to download t
 - [ksp](https://github.com/google/ksp): Kotlin Symbol Processing API.
 - [Turbine](https://github.com/cashapp/turbine): A small testing library for kotlinx.coroutines Flow.
 - [Material-Components](https://github.com/material-components/material-components-android): Material design components for building ripple animation, and CardView.
-- [Glide](https://github.com/bumptech/glide), [GlidePalette](https://github.com/florent37/GlidePalette): Loading images from network.
+- [Glide](https://github.com/bumptech/glide): Loading images from the network.
 - [TransformationLayout](https://github.com/skydoves/transformationlayout): Implementing transformation motion animations.
 - Custom Views
   - [Rainbow](https://github.com/skydoves/rainbow): An easy way to apply gradations and tinting for Android.
