@@ -1,7 +1,7 @@
 [versions]
 targetSdk = "34"
 jvmBytecode = "17"
-agp = "8.8.2"
+agp = "8.9.0"
 kotlin = "1.9.25"
 ksp = "1.9.25-1.0.20"
 jvmTarget = "17"
