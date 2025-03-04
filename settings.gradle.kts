@@ -60,7 +60,7 @@ pluginManagement {
 }
 
 plugins {
-  id("com.android.settings") version "8.8.2"
+  id("com.android.settings") version "8.9.0"
 }
 
 android {
