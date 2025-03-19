@@ -20,6 +20,7 @@ import android.graphics.Color
 import android.graphics.Typeface
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
+import android.graphics.drawable.GradientDrawable
 import android.view.Gravity
 import android.view.View
 import android.view.WindowManager
@@ -41,9 +42,6 @@ import com.skydoves.pokedex.core.model.PokemonInfo
 import com.skydoves.pokedex.utils.PokemonTypeUtils
 import com.skydoves.pokedex.utils.SpacesItemDecoration
 import com.skydoves.progressview.ProgressView
-import com.skydoves.rainbow.Rainbow
-import com.skydoves.rainbow.RainbowOrientation
-import com.skydoves.rainbow.color
 import com.skydoves.whatif.whatIfNotNullOrEmpty
 
 object ViewBinding {
@@ -126,10 +124,11 @@ object ViewBinding {
               val domain = palette?.dominantSwatch?.rgb
               if (domain != null) {
                 if (light != null) {
-                  Rainbow(paletteView).palette {
-                    +color(domain)
-                    +color(light)
-                  }.background(orientation = RainbowOrientation.TOP_BOTTOM)
+                  val gradientDrawable = GradientDrawable(
+                    GradientDrawable.Orientation.BOTTOM_TOP,
+                    intArrayOf(light, domain),
+                  )
+                  paletteView.background = gradientDrawable
                 } else {
                   paletteView.setBackgroundColor(domain)
                 }
