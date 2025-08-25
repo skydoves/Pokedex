@@ -14,6 +14,8 @@
 // * limitations under the License.
 // */
 
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
   alias(libs.plugins.android.application) apply false
   alias(libs.plugins.android.library) apply false
@@ -78,11 +80,13 @@ subprojects {
   }
 
   tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
-    kotlinOptions.jvmTarget = bytecodeVersion.toString()
-    kotlinOptions.freeCompilerArgs += listOf(
-      "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
-      "-opt-in=kotlin.time.ExperimentalTime",
-    )
+    compilerOptions {
+      jvmTarget.set(JvmTarget.fromTarget(bytecodeVersion.toString()))
+      freeCompilerArgs.addAll(
+        "-opt-in=kotlinx.coroutines.ExperimentalCoroutinesApi",
+        "-opt-in=kotlin.time.ExperimentalTime",
+      )
+    }
   }
 
   extensions.configure<com.diffplug.gradle.spotless.SpotlessExtension> {
