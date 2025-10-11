@@ -15,9 +15,6 @@
 //limitations under the License.
 
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
-
-
-
 pluginManagement {
   repositories {
     // fetch plugins from google maven (https://maven.google.com)
@@ -67,7 +64,7 @@ plugins {
 
 android {
   minSdk = 23
-  compileSdk = 35
+  compileSdk = 36
 }
 
 dependencyResolutionManagement {
