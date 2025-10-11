@@ -50,11 +50,6 @@ android {
     sourceSets.configureEach {
       kotlin.srcDir(layout.buildDirectory.files("generated/ksp/$name/kotlin/"))
     }
-    sourceSets.all {
-      languageSettings {
-        languageVersion = "2.0"
-      }
-    }
   }
 
   testOptions {
@@ -80,7 +75,7 @@ androidComponents {
         project.tasks.findByName("dataBindingGenBaseClasses" + variant.name.capitalized()) as? DataBindingGenBaseClassesTask
       if (dataBindingTask != null) {
         project.tasks.getByName("ksp" + variant.name.capitalized() + "Kotlin") {
-          (this as AbstractKotlinCompileTool<*>).setSource(dataBindingTask.sourceOutFolder)
+          (this as? AbstractKotlinCompileTool<*>)?.setSource(dataBindingTask.sourceOutFolder)
         }
       }
     }
@@ -115,6 +110,9 @@ dependencies {
 
   // coroutines
   implementation(libs.coroutines)
+
+  // network
+  implementation(libs.okhttp.interceptor)
 
   // whatIf
   implementation(libs.whatif)
