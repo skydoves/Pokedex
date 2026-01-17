@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 /*
  * Designed and developed by 2022 skydoves (Jaewoong Eum)
  *
@@ -22,8 +24,10 @@ plugins {
 android {
   namespace = "com.skydoves.pokedex.benchmark"
 
-  kotlinOptions {
-    jvmTarget = "11"
+  kotlin {
+    compilerOptions {
+      jvmTarget = JvmTarget.JVM_11
+    }
   }
 
   defaultConfig {
