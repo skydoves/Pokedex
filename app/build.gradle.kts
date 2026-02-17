@@ -13,9 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-import com.android.build.gradle.internal.tasks.databinding.DataBindingGenBaseClassesTask
 import com.skydoves.pokedex.Configuration
-import org.gradle.configurationcache.extensions.capitalized
 import org.jetbrains.kotlin.gradle.tasks.AbstractKotlinCompileTool
 
 plugins {
@@ -71,11 +69,12 @@ android {
 androidComponents {
   onVariants(selector().all()) { variant ->
     afterEvaluate {
+      val variantName = variant.name.replaceFirstChar { it.uppercase() }
       val dataBindingTask =
-        project.tasks.findByName("dataBindingGenBaseClasses" + variant.name.capitalized()) as? DataBindingGenBaseClassesTask
+        project.tasks.findByName("dataBindingGenBaseClasses$variantName")
       if (dataBindingTask != null) {
-        project.tasks.getByName("ksp" + variant.name.capitalized() + "Kotlin") {
-          (this as? AbstractKotlinCompileTool<*>)?.setSource(dataBindingTask.sourceOutFolder)
+        project.tasks.getByName("ksp${variantName}Kotlin") {
+          (this as? AbstractKotlinCompileTool<*>)?.setSource(dataBindingTask.outputs.files)
         }
       }
     }

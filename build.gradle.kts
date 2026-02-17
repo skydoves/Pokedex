@@ -28,44 +28,41 @@ plugins {
   alias(libs.plugins.spotless)
 }
 
-private typealias AndroidExtension = com.android.build.api.dsl.CommonExtension<*, *, *, *, *, *>
-
-private val Project.androidExtension: AndroidExtension
-    get() = extensions.getByType(com.android.build.api.dsl.CommonExtension::class.java)
-
-private fun Project.android(block: AndroidExtension.() -> Unit) {
-  plugins.withType<com.android.build.gradle.BasePlugin>().configureEach {
-    androidExtension.block()
-  }
-}
-
 private val targetSdkVersion = libs.versions.targetSdk.get().toInt()
 private val bytecodeVersion = JavaVersion.toVersion(libs.versions.jvmBytecode.get())
 
 subprojects {
   apply(plugin = rootProject.libs.plugins.spotless.get().pluginId)
 
-  // Common Android configurations
-  android {
-    defaultConfig {
-      vectorDrawables.useSupportLibrary = true
-    }
-
-    compileOptions {
-      sourceCompatibility = bytecodeVersion
-      targetCompatibility = bytecodeVersion
-    }
-
-    lint {
-      abortOnError = false
-    }
-  }
-
   // Configurations for `com.android.application` plugin
   plugins.withType<com.android.build.gradle.AppPlugin>().configureEach {
     extensions.configure<com.android.build.api.dsl.ApplicationExtension> {
       defaultConfig {
         targetSdk = targetSdkVersion
+        vectorDrawables.useSupportLibrary = true
+      }
+      compileOptions {
+        sourceCompatibility = bytecodeVersion
+        targetCompatibility = bytecodeVersion
+      }
+      lint {
+        abortOnError = false
+      }
+    }
+  }
+
+  // Configurations for `com.android.library` plugin
+  plugins.withType<com.android.build.gradle.LibraryPlugin>().configureEach {
+    extensions.configure<com.android.build.api.dsl.LibraryExtension> {
+      defaultConfig {
+        vectorDrawables.useSupportLibrary = true
+      }
+      compileOptions {
+        sourceCompatibility = bytecodeVersion
+        targetCompatibility = bytecodeVersion
+      }
+      lint {
+        abortOnError = false
       }
     }
   }
@@ -75,6 +72,13 @@ subprojects {
     extensions.configure<com.android.build.api.dsl.TestExtension> {
       defaultConfig {
         targetSdk = targetSdkVersion
+      }
+      compileOptions {
+        sourceCompatibility = bytecodeVersion
+        targetCompatibility = bytecodeVersion
+      }
+      lint {
+        abortOnError = false
       }
     }
   }

@@ -25,6 +25,31 @@
 ## Download
 Go to the [Releases](https://github.com/skydoves/Pokedex/releases) to download the latest APK.
 
+<a href="https://www.android.skydoves.me/">
+<img src="https://github.com/user-attachments/assets/e014ce01-3461-40af-bb2a-eb44f3f55f36" width="13%" align="right"/>
+</a>
+
+## 📘 Manifest Android Interview
+
+[Manifest Android Interview](https://www.android.skydoves.me/) is a comprehensive guide designed to enhance your Android development expertise through 108 interview questions with detailed answers, 162 additional practical questions, and 50+ "Pro Tips for Mastery" sections. The interview questions primarily focus on Android development—including the Framework, UI, Jetpack Libraries, and Business Logic—as well as Jetpack Compose, covering Fundamentals, Runtime, and UI.
+
+<a href="https://kotlin.skydoves.me/">
+<img src="https://github.com/user-attachments/assets/85476c0d-d060-4d66-ad64-33678113d386" width="13%" align="right"/>
+</a>
+
+## 📙 Practical Kotlin Deep Dive Book
+
+[Practical Kotlin Deep Dive](https://kotlin.skydoves.me/) takes you from “how to use Kotlin” into “how Kotlin really works,” revealing the internal implementations, desmifying bytecodes and compiler behavior, and internals that shape the language. If you want to write smarter, more confident Kotlin across fundamentals, coroutines, and multiplatform, this is the book that shows you why everything is the way it is. The [Course - Practical Kotlin Deep Dive](https://leanpub.com/c/leanpub/kotlin-deep-dive-courses), with 158 interactive assessments to test and reinforce your understanding, this course doesn't just show you why everything is the way it is; it challenges you to prove you've mastered it and earn a certificate.
+
+<a href="https://github.com/doveletter">
+<img src="https://github.com/user-attachments/assets/3ecd2a7b-9713-40cd-8817-fa568271cefa" width="13%" align="right"/>
+</a>
+
+## 🕊️ Dove Letter
+
+If you're eager to dive deeper into Kotlin and Android, explore [Dove Letter](https://github.com/doveletter), a private subscription repository where you can learn, discuss, and share knowledge. To get more details about this unique opportunity, check out the [Learn Kotlin and Android With Dove Letter](https://medium.com/@skydoves/learn-kotlin-and-android-with-dove-letter-26265da11903) article.
+
+
 <img src="/previews/preview.gif" align="right" width="320"/>
 
 ## Tech stack & Open-source libraries
@@ -64,7 +89,6 @@ Go to the [Releases](https://github.com/skydoves/Pokedex/releases) to download t
 The overall architecture of **Pokedex** is composed of two layers; the UI layer and the data layer. Each layer has dedicated components and they have each different responsibilities, as defined below:
 
 **Pokedex** was built with [Guide to app architecture](https://developer.android.com/topic/architecture), so it would be a great sample to show how the architecture works in real-world projects.
-
 
 ### Architecture Overview
 
@@ -115,26 +139,6 @@ For more information, check out the [Guide to Android app modularization](https:
 
 Pokedex using the [PokeAPI](https://pokeapi.co/) for constructing RESTful API.<br>
 PokeAPI provides a RESTful API interface to highly detailed objects built from thousands of lines of data related to Pokémon.
-
-<a href="https://www.android.skydoves.me/">
-<img src="https://github.com/user-attachments/assets/e014ce01-3461-40af-bb2a-eb44f3f55f36" width="13%" align="right"/>
-</a>
-
-## 📘 Manifest Android Interview
-
-[Manifest Android Interview](https://www.android.skydoves.me/) is a comprehensive guide designed to enhance your Android development expertise through 108 interview questions with detailed answers, 162 additional practical questions, and 50+ "Pro Tips for Mastery" sections. The interview questions primarily focus on Android development—including the Framework, UI, Jetpack Libraries, and Business Logic—as well as Jetpack Compose, covering Fundamentals, Runtime, and UI.
-
-## 📙 Practical Kotlin Deep Dive Book
-
-[Practical Kotlin Deep Dive](https://kotlin.skydoves.me/) takes you from “how to use Kotlin” into “how Kotlin really works,” revealing the internal implementations, desmifying bytecodes and compiler behavior, and internals that shape the language. If you want to write smarter, more confident Kotlin across fundamentals, coroutines, and multiplatform, this is the book that shows you why everything is the way it is.
-
-<a href="https://github.com/doveletter">
-<img src="https://github.com/user-attachments/assets/3ecd2a7b-9713-40cd-8817-fa568271cefa" width="13%" align="right"/>
-</a>
-
-## 🕊️ Dove Letter
-
-If you're eager to dive deeper into Kotlin and Android, explore [Dove Letter](https://github.com/doveletter), a private subscription repository where you can learn, discuss, and share knowledge. To get more details about this unique opportunity, check out the [Learn Kotlin and Android With Dove Letter](https://medium.com/@skydoves/learn-kotlin-and-android-with-dove-letter-26265da11903) article.
 
 ## Find this repository useful? :heart:
 Support it by joining __[stargazers](https://github.com/skydoves/Pokedex/stargazers)__ for this repository. :star: <br>
