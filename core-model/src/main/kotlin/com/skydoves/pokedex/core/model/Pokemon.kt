@@ -26,7 +26,9 @@ import kotlinx.parcelize.Parcelize
 data class Pokemon(
   var page: Int = 0,
   @field:Json(name = "name")
-  val name: String,
+  // In Kotlin, the keyword val is used to declare an immutable variable. Once a value is assigned to a val variable, it cannot be changed or reassigned.
+  // That why i needed to change it
+  var name: String,
   @field:Json(name = "url") val url: String,
 ) : Parcelable {
 
