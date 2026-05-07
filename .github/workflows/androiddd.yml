@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
-      - name: set up JDK
+      - name: set up 
         uses: actions/setup-java@v5
         with:
           distribution: zulu
