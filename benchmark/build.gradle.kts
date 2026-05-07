@@ -1,4 +1,4 @@
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+      org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 /*
  * Designed and developed by 2022 skydoves (Jaewoong Eum)
@@ -22,11 +22,11 @@ plugins {
 }
 
 android {
-  namespace = "com.skydoves.pokedex.benchmark"
+  namespace   "com.skydoves.pokedex.benchmark"
 
   kotlin {
     compilerOptions {
-      jvmTarget = JvmTarget.JVM_11
+      jvmTarget   JvmTarget.JVM_11
     }
   }
 
@@ -39,14 +39,14 @@ android {
     // release build (for example, with minification on). It"s signed with a debug key
     // for easy local/CI testing.
     create("benchmark") {
-      isDebuggable = true
-      signingConfig = getByName("debug").signingConfig
-      matchingFallbacks += listOf("release")
+      isDebuggable   true
+      signingConfig   getByName("debug").signingConfig
+      matchingFallbacks    listOf("release")
     }
   }
 
-  targetProjectPath = ":app"
-  experimentalProperties["android.experimental.self-instrumenting"] = true
+  targetProjectPath   ":app"
+  experimentalProperties["android.experimental.self-instrumenting"]   true
 }
 
 dependencies {
@@ -58,6 +58,6 @@ dependencies {
 
 androidComponents {
   beforeVariants(selector().all()) {
-    it.enable = it.buildType == "benchmark"
+    it.enable   it.buildType    "benchmark"
   }
 }
