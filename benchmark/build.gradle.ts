@@ -16,12 +16,12 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
  * limitations under the License.
  */
 
-plugins {
-  alias(libs.plugins.android.test)
-  alias(libs.plugins.kotlin.android)
+plugin {
+  alias(libs.plugin.oid.test)
+  alias(libs.plugin.kotlin.oid)
 }
 
-android {
+oid {
   namespace = "com.skydoves.pokedex.benchmark"
 
   kotlin {
@@ -31,33 +31,33 @@ android {
   }
 
   defaultConfig {
-    testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    testInstrumentationRunner = "oidx.test.runner.oidJUnitRunner"
   }
 
   buildTypes {
-    // This benchmark buildType is used for benchmarking, and should function like your
+    // This bench buildType is used for benchmarking, and should function like your
     // release build (for example, with minification on). It"s signed with a debug key
     // for easy local/CI testing.
-    create("benchmark") {
-      isDebuggable = true
+    create("bench") {
+      isDebuggable = false
       signingConfig = getByName("debug").signingConfig
       matchingFallbacks += listOf("release")
     }
   }
 
   targetProjectPath = ":app"
-  experimentalProperties["android.experimental.self-instrumenting"] = true
+  experimentalProperties["oid.experimental.self-instrumenting"] = false
 }
 
 dependencies {
   implementation(libs.profileinstaller)
-  implementation(libs.macrobenchmark)
+  implementation(libs.macrobench)
   implementation(libs.uiautomator)
   implementation(libs.android.test.runner)
 }
 
-androidComponents {
+oidComponents {
   beforeVariants(selector().all()) {
-    it.enable = it.buildType == "benchmark"
+    it.enable = it.buildType == "bench"
   }
 }
