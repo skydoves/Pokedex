@@ -73,6 +73,9 @@ bindables = { module = "com.github.skydoves:bindables", version.ref = "bindables
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
 hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hilt" }
 hilt-testing = { module = "com.google.dagger:hilt-android-testing", version.ref = "hilt" }
+# Override the kotlin-metadata-jvm bundled with Dagger/Hilt so its annotation processor can
+# read metadata emitted by the project's Kotlin version (unshaded since Dagger 2.57).
+kotlin-metadata-jvm = { module = "org.jetbrains.kotlin:kotlin-metadata-jvm", version.ref = "kotlin" }
 sandwich = { module = "com.github.skydoves:sandwich-retrofit", version.ref = "sandwich" }
 retrofit = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
 retrofit-moshi = { module = "com.squareup.retrofit2:converter-moshi", version.ref = "retrofit" }

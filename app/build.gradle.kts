@@ -104,8 +104,10 @@ dependencies {
   // di
   implementation(libs.hilt.android)
   ksp(libs.hilt.compiler)
+  ksp(libs.kotlin.metadata.jvm)
   androidTestImplementation(libs.hilt.testing)
   kspAndroidTest(libs.hilt.compiler)
+  kspAndroidTest(libs.kotlin.metadata.jvm)
 
   // coroutines
   implementation(libs.coroutines)
