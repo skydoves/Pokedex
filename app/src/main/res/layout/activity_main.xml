@@ -47,6 +47,13 @@
         android:id="@+id/main_toolbar"
         layout="@layout/toolbar_home" />
 
+      <SearchView
+        android:id="@+id/searchView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:queryHint="Pesquisar Pokémon..." />
+
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.recyclerview.widget.RecyclerView

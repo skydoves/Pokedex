@@ -17,6 +17,7 @@
 package com.skydoves.pokedex.ui.main
 
 import android.os.Bundle
+import android.widget.SearchView
 import androidx.activity.viewModels
 import androidx.annotation.VisibleForTesting
 import com.skydoves.bindables.BindingActivity
@@ -31,12 +32,27 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
   @get:VisibleForTesting
   internal val viewModel: MainViewModel by viewModels()
 
+  private lateinit var pokemonAdapter: PokemonAdapter
+
   override fun onCreate(savedInstanceState: Bundle?) {
     onTransformationStartContainer()
     super.onCreate(savedInstanceState)
     binding {
-      adapter = PokemonAdapter()
+      pokemonAdapter = PokemonAdapter()
+      adapter = pokemonAdapter
       vm = viewModel
+
+      searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        override fun onQueryTextSubmit(query: String?): Boolean = false
+
+        override fun onQueryTextChange(newText: String?): Boolean {
+          val query = newText.orEmpty()
+          val listaFiltrada = viewModel.pokemonList
+            .filter { it.name.contains(query, ignoreCase = true) }
+          pokemonAdapter.submitList(listaFiltrada)
+          return true
+        }
+      })
     }
   }
 }
