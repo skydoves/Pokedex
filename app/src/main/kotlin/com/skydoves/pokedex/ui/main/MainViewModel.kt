@@ -26,6 +26,7 @@ import com.skydoves.pokedex.core.model.Pokemon
 import com.skydoves.pokedex.core.repository.MainRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flatMapLatest
 import timber.log.Timber
 import javax.inject.Inject
@@ -44,6 +45,8 @@ class MainViewModel @Inject constructor(
     private set
 
   private val pokemonFetchingIndex: MutableStateFlow<Int> = MutableStateFlow(0)
+  private val searchQuery: MutableStateFlow<String> = MutableStateFlow("")
+
   private val pokemonListFlow = pokemonFetchingIndex.flatMapLatest { page ->
     mainRepository.fetchPokemonList(
       page = page,
@@ -53,8 +56,13 @@ class MainViewModel @Inject constructor(
     )
   }
 
+  private val filteredPokemonListFlow = pokemonListFlow.combine(searchQuery) { list, query ->
+    if (query.isEmpty()) list
+    else list.filter { it.name.contains(query, ignoreCase = true) }
+  }
+
   @get:Bindable
-  val pokemonList: List<Pokemon> by pokemonListFlow.asBindingProperty(viewModelScope, emptyList())
+  val pokemonList: List<Pokemon> by filteredPokemonListFlow.asBindingProperty(viewModelScope, emptyList())
 
   init {
     Timber.d("init MainViewModel")
@@ -65,5 +73,9 @@ class MainViewModel @Inject constructor(
     if (!isLoading) {
       pokemonFetchingIndex.value++
     }
+  }
+
+  fun searchPokemon(query: String) {
+    searchQuery.value = query
   }
 }

@@ -32,24 +32,18 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
   @get:VisibleForTesting
   internal val viewModel: MainViewModel by viewModels()
 
-  private lateinit var pokemonAdapter: PokemonAdapter
-
   override fun onCreate(savedInstanceState: Bundle?) {
     onTransformationStartContainer()
     super.onCreate(savedInstanceState)
     binding {
-      pokemonAdapter = PokemonAdapter()
-      adapter = pokemonAdapter
+      adapter = PokemonAdapter()
       vm = viewModel
 
       searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
         override fun onQueryTextSubmit(query: String?): Boolean = false
 
         override fun onQueryTextChange(newText: String?): Boolean {
-          val query = newText.orEmpty()
-          val listaFiltrada = viewModel.pokemonList
-            .filter { it.name.contains(query, ignoreCase = true) }
-          pokemonAdapter.submitList(listaFiltrada)
+          viewModel.searchPokemon(newText.orEmpty())
           return true
         }
       })
