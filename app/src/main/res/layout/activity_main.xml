@@ -123,6 +123,7 @@
       android:layout_marginEnd="24dp"
       android:layout_marginBottom="24dp"
       android:background="@drawable/bottom_nav_background"
+      android:backgroundTint="@android:color/transparent"
       android:elevation="8dp"
       app:itemIconTint="#FFFFFF"
       app:itemTextColor="#FFFFFF"
