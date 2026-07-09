@@ -35,5 +35,11 @@ data class Pokemon(
     return "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/" +
       "pokemon/other/official-artwork/$index.png"
   }
+
+  fun getIndex(): String {
+    val index = url.split("/".toRegex()).dropLast(1).last()
+    return String.format("#%03d", index.toInt())
+  }
+
   fun name(): String = name.replaceFirstChar { it.uppercase() }
 }

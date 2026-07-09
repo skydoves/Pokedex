@@ -35,26 +35,33 @@
     android:background="@color/background"
     android:clipToPadding="false">
 
-    <com.google.android.material.appbar.AppBarLayout
-      android:id="@+id/appBarLayout"
+    <LinearLayout
+      android:id="@+id/header"
       android:layout_width="match_parent"
-      android:layout_height="wrap_content"
+      android:layout_height="56dp"
+      android:gravity="center_vertical"
+      android:orientation="horizontal"
+      android:paddingStart="16dp"
+      android:paddingEnd="16dp"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent">
 
-      <include
-        android:id="@+id/main_toolbar"
-        layout="@layout/toolbar_home" />
+      <ImageView
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:src="@mipmap/ic_launcher" />
 
-      <SearchView
-        android:id="@+id/searchView"
-        android:layout_width="match_parent"
+      <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:queryHint="Pesquisar Pokémon..." />
+        android:layout_marginStart="8dp"
+        android:text="Pokédex"
+        android:textColor="@color/white"
+        android:textSize="22sp"
+        android:textStyle="bold" />
 
-    </com.google.android.material.appbar.AppBarLayout>
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
       android:id="@+id/recyclerView"
@@ -62,7 +69,10 @@
       android:layout_height="0dp"
       android:clipToPadding="false"
       android:fadeScrollbars="false"
-      android:padding="6dp"
+      android:paddingStart="6dp"
+      android:paddingEnd="6dp"
+      android:paddingTop="16dp"
+      android:paddingBottom="80dp"
       android:scrollbarStyle="outsideOverlay"
       android:scrollbarThumbVertical="@drawable/scrollbar"
       android:scrollbars="vertical"
@@ -70,12 +80,30 @@
       app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
       app:layout_constraintBottom_toBottomOf="parent"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@id/appBarLayout"
+      app:layout_constraintTop_toBottomOf="@id/header"
       app:paginationPokemonList="@{vm}"
-      app:spanCount="2"
+      app:spanCount="3"
       app:submitList="@{vm.pokemonList}"
       app:toast="@{vm.toastMessage}"
       tools:listitem="@layout/item_pokemon" />
+
+    <EditText
+      android:id="@+id/searchView"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_margin="12dp"
+      android:background="#F5F5F5"
+      android:hint="Pesquisar Pokémon..."
+      android:inputType="text"
+      android:padding="12dp"
+      android:singleLine="true"
+      android:textColor="#333333"
+      android:textColorHint="#999999"
+      android:textSize="16sp"
+      android:visibility="gone"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/header" />
 
     <ProgressBar
       android:id="@+id/progressbar"
@@ -86,6 +114,22 @@
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+      android:id="@+id/bottomNavigation"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="24dp"
+      android:layout_marginEnd="24dp"
+      android:layout_marginBottom="24dp"
+      android:background="@drawable/bottom_nav_background"
+      android:elevation="8dp"
+      app:itemIconTint="#FFFFFF"
+      app:itemTextColor="#FFFFFF"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:menu="@menu/bottom_nav_menu" />
 
   </androidx.constraintlayout.widget.ConstraintLayout>
 

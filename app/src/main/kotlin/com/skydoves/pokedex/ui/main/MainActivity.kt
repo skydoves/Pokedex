@@ -17,7 +17,9 @@
 package com.skydoves.pokedex.ui.main
 
 import android.os.Bundle
-import android.widget.SearchView
+import android.text.Editable
+import android.text.TextWatcher
+import android.view.View
 import androidx.activity.viewModels
 import androidx.annotation.VisibleForTesting
 import com.skydoves.bindables.BindingActivity
@@ -39,12 +41,28 @@ class MainActivity : BindingActivity<ActivityMainBinding>(R.layout.activity_main
       adapter = PokemonAdapter()
       vm = viewModel
 
-      searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-        override fun onQueryTextSubmit(query: String?): Boolean = false
+      bottomNavigation.setOnItemSelectedListener { item ->
+        when (item.itemId) {
+          R.id.nav_pokedex -> {
+            searchView.visibility = View.GONE
+            searchView.setText("")
+            viewModel.searchPokemon("")
+            true
+          }
+          R.id.nav_search -> {
+            searchView.visibility = View.VISIBLE
+            searchView.requestFocus()
+            true
+          }
+          else -> false
+        }
+      }
 
-        override fun onQueryTextChange(newText: String?): Boolean {
-          viewModel.searchPokemon(newText.orEmpty())
-          return true
+      searchView.addTextChangedListener(object : TextWatcher {
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+        override fun afterTextChanged(s: Editable?) {
+          viewModel.searchPokemon(s.toString())
         }
       })
     }

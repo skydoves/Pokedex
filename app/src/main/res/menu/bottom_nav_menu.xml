@@ -7,6 +7,11 @@
     android:title="Pokédex" />
 
   <item
+    android:id="@+id/nav_search"
+    android:icon="@android:drawable/ic_menu_search"
+    android:title="Pesquisar" />
+
+  <item
     android:id="@+id/nav_favorites"
     android:icon="@android:drawable/btn_star"
     android:title="Favoritos" />

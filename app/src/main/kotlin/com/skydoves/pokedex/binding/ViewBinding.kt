@@ -220,4 +220,15 @@ object ViewBinding {
       progressView.max = value.toFloat()
     }
   }
+
+  @JvmStatic
+  @BindingAdapter("silhouetteImage")
+  fun bindSilhouetteImage(view: AppCompatImageView, url: String?) {
+    url?.let {
+      Glide.with(view.context)
+        .load(it)
+        .into(view)
+      view.setColorFilter(android.graphics.Color.WHITE)
+    }
+  }
 }
