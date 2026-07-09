@@ -21,6 +21,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.skydoves.pokedex.core.database.entity.PokemonEntity
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface PokemonDao {
@@ -33,4 +34,10 @@ interface PokemonDao {
 
   @Query("SELECT * FROM PokemonEntity WHERE page <= :page_")
   suspend fun getAllPokemonList(page_: Int): List<PokemonEntity>
+
+  @Query("UPDATE PokemonEntity SET isFavorite = :isFavorite WHERE name = :name")
+  suspend fun updateFavorite(name: String, isFavorite: Boolean)
+
+  @Query("SELECT * FROM PokemonEntity WHERE isFavorite = 1")
+  fun getFavoritePokemons(): Flow<List<PokemonEntity>>
 }
