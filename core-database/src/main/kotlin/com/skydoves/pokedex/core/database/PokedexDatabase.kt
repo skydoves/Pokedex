@@ -24,7 +24,7 @@ import com.skydoves.pokedex.core.database.entity.PokemonInfoEntity
 
 @Database(
   entities = [PokemonEntity::class, PokemonInfoEntity::class],
-  version = 2,
+  version = 3,
   exportSchema = true,
 )
 @TypeConverters(value = [TypeResponseConverter::class])
