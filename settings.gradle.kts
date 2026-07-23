@@ -59,7 +59,7 @@ pluginManagement {
 }
 
 plugins {
-  id("com.android.settings") version "9.3.0"
+  id("com.android.settings") version "9.3.1"
 }
 
 android {
