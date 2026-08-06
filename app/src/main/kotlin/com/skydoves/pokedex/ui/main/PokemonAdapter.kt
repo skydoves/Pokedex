@@ -55,7 +55,17 @@ class PokemonAdapter : BindingListAdapter<Pokemon, PokemonAdapter.PokemonViewHol
     }
 
     fun bindPokemon(pokemon: Pokemon) {
-      binding.pokemon = pokemon
+      // I create a temporary Pokemon variable 'pokemonBis' for modifying the name before binding.
+      // I needed for that to change the data class Pokemon here Pokemon.kt
+      val modifiedPokemon = Pokemon(
+        page = pokemon.page,
+        // I do a replace for the name only
+        name = pokemon.name.replace("-", " "),
+        url = pokemon.url
+      )
+
+      // And i change set the value of binding.pokemon
+      binding.pokemon = modifiedPokemon
       binding.executePendingBindings()
     }
   }
