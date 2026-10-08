@@ -2,7 +2,7 @@
 targetSdk = "36"
 jvmBytecode = "17"
 agp = "9.4.1"
-kotlin = "2.4.20"
+kotlin = "2.4.21"
 ksp = "2.3.12"
 jvmTarget = "17"
 material = "1.14.0"
